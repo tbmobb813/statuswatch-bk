@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict'
-const path = require('path');
+import path from 'path';
 
 async function main() {
   try {
