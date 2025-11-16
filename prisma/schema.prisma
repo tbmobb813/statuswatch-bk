@@ -1,0 +1,180 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Subscription info
+  stripeCustomerId       String?   @unique
+  stripeSubscriptionId   String?   @unique
+  stripePriceId          String?
+  stripeCurrentPeriodEnd DateTime?
+  
+  // Relations
+  monitoredServices MonitoredService[]
+  alertPreferences  AlertPreference?
+  notifications     Notification[]
+  
+  @@map("users")
+}
+
+// Services we can monitor (master list)
+model Service {
+  id          String   @id @default(cuid())
+  name        String   // "AWS", "GitHub", "Vercel"
+  slug        String   @unique // "aws", "github", "vercel"
+  category    String   // "Cloud", "Version Control", "Hosting"
+  statusUrl   String   // URL to their status page
+  logoUrl     String?  // Service logo
+  color       String   @default("#3B82F6") // Brand color
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  incidents         Incident[]
+  monitoredServices MonitoredService[]
+  statusChecks      StatusCheck[]
+  
+  @@map("services")
+}
+
+// User's monitored services
+model MonitoredService {
+  id        String   @id @default(cuid())
+  userId    String
+  serviceId String
+  
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  service   Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, serviceId])
+  @@map("monitored_services")
+}
+
+// Incidents detected
+model Incident {
+  id          String   @id @default(cuid())
+  serviceId   String
+  
+  title       String
+  description String?  @db.Text
+  status      String   // "investigating", "identified", "monitoring", "resolved"
+  severity    String   // "critical", "major", "minor", "maintenance"
+  
+  startedAt   DateTime
+  resolvedAt  DateTime?
+  
+  impact      String?  // What was affected
+  externalUrl String?  // Link to service's status page
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  updates     IncidentUpdate[]
+  notifications Notification[]
+  
+  @@index([serviceId])
+  @@index([startedAt])
+  @@map("incidents")
+}
+
+// Updates to incidents
+model IncidentUpdate {
+  id         String   @id @default(cuid())
+  incidentId String
+  
+  message    String   @db.Text
+  status     String
+  
+  createdAt  DateTime @default(now())
+  
+  incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  
+  @@index([incidentId])
+  @@map("incident_updates")
+}
+
+// Status check results (for uptime tracking)
+model StatusCheck {
+  id          String   @id @default(cuid())
+  serviceId   String
+  
+  isUp        Boolean
+  responseTime Int?    // in milliseconds
+  statusCode  Int?
+  
+  checkedAt   DateTime @default(now())
+  
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  
+  @@index([serviceId, checkedAt])
+  @@map("status_checks")
+}
+
+// User alert preferences
+model AlertPreference {
+  id     String @id @default(cuid())
+  userId String @unique
+  
+  // Alert channels
+  emailEnabled   Boolean @default(true)
+  slackEnabled   Boolean @default(false)
+  discordEnabled Boolean @default(false)
+  smsEnabled     Boolean @default(false)
+  
+  // Alert settings
+  onlyMonitored  Boolean @default(true) // Only alert for monitored services
+  severity       String  @default("all") // "all", "critical", "major"
+  digestMode     Boolean @default(false) // Send digest vs real-time
+  
+  // Webhook URLs
+  slackWebhook   String?
+  discordWebhook String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("alert_preferences")
+}
+
+// Notifications sent to users
+model Notification {
+  id         String   @id @default(cuid())
+  userId     String
+  incidentId String?
+  
+  type       String   // "incident_started", "incident_update", "incident_resolved"
+  channel    String   // "email", "slack", "discord", "sms"
+  
+  sent       Boolean  @default(false)
+  sentAt     DateTime?
+  
+  createdAt  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  incident   Incident? @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([incidentId])
+  @@map("notifications")
+}

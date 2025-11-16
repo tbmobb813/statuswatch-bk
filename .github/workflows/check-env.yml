@@ -1,0 +1,25 @@
+name: CI - check env & prisma
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install
+        run: npm ci
+      - name: Provide example DATABASE_URL
+        run: echo "DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/statuswatch?schema=public" >> $GITHUB_ENV
+      - name: Syntax-check script
+        run: bash -n scripts/check-env.sh
+      - name: Run check-env
+        run: bash scripts/check-env.sh
+      - name: Prisma generate
+        run: npm run prisma:generate
