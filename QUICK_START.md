@@ -6,7 +6,7 @@ All your StatusWatch project files are ready in the `statuswatch` folder!
 
 ```
 ✅ Backend API (Express + TypeScript)
-✅ Frontend Dashboard (Next.js 14 + React + Tailwind)
+✅ Frontend Dashboard (Next.js 16 (App Router) + React + Tailwind)
 ✅ Automated Monitoring (Cron jobs every 2 minutes)
 ✅ Notification System (Email, Discord, Slack)
 ✅ User Authentication (JWT)

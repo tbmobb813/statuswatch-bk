@@ -330,4 +330,25 @@ For issues and questions, please open a GitHub issue.
 
 ---
 
+## Linting (ESLint v9)
+
+This repository uses ESLint v9 with flat configurations. We run linting per-package to avoid scanning build artifacts. Key files:
+
+- Root flat config: `eslint.config.js`
+- Frontend flat config: `frontend/eslint.config.js`
+
+Recommended commands:
+
+```bash
+# Lint backend (server)
+npx eslint src --ext .js,.ts,.tsx
+
+# Lint frontend (from repo root)
+cd frontend && npx eslint . --ext .js,.ts,.tsx
+```
+
+Notes:
+- `frontend/.eslintignore` excludes `.next` build artifacts so they are not linted.
+- If you encounter unexpected rules or config resolution, run ESLint with `--debug` to inspect which config is used.
+
 Built with ❤️ for developers who rely on these amazing tools.

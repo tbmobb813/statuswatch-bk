@@ -367,6 +367,12 @@ npx tsx prisma/seed.ts
 - Discord/Slack webhooks work out of the box
 - All timestamps are in UTC
 
+## 🔐 Dependency notes
+
+- During dependency upgrades we applied a temporary override in `frontend/package.json` to force `rimraf@^4.0.0`. This removes an old transitive dependency on `inflight@1.0.6` (a deprecated package) from the frontend dev dependency tree.
+- This override is intentional and safe for development, but is temporary. Remove the override once upstream packages (or ESLint/file-entry-cache chains) have published versions that no longer depend on `rimraf@3` / `glob@7` / `inflight@1.0.6`.
+- Location: `frontend/package.json` (look for an `overrides` or `resolutions` entry depending on your package manager).
+
 ## 🎉 You're All Set
 
 Everything is implemented and ready to go. Just:
