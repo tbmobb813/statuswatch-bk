@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,9 +15,9 @@ export default async function DebugPage() {
   }
 
   return (
-    <div style={{ padding: 24 }}>
+    <div className={styles.container}>
       <h1>Debug: Server-side fetch of /api/dashboard/summary</h1>
-      <pre style={{ whiteSpace: 'pre-wrap', background: '#f6f8fa', padding: 12, borderRadius: 6 }}>{JSON.stringify(result, null, 2)}</pre>
+      <pre className={styles.pre}>{JSON.stringify(result, null, 2)}</pre>
       <p>This page fetches the backend from the Next server (server-side). If this shows the expected JSON, the backend is reachable from the frontend server runtime.</p>
     </div>
   );
