@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // Base scraper interface
 export interface StatusData {
   isUp: boolean;
@@ -25,13 +27,12 @@ export abstract class StatusScraper {
   abstract scrape(): Promise<StatusData>;
   
   protected async fetchPage(url: string): Promise<string> {
-    const axios = require('axios');
     const response = await axios.get(url, {
       timeout: 10000,
       headers: {
         'User-Agent': 'StatusWatch/1.0'
       }
     });
-    return response.data;
+    return response.data as string;
   }
 }

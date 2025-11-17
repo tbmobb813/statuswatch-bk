@@ -1,112 +1,337 @@
-# This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
+# StatusWatch 🚦
 
-## Getting Started
+Real-time status monitoring for popular developer tools and services. Get instant notifications when your favorite services go down or experience issues.
 
-First, run the development server:
+## Features
+
+- ✅ **Real-time Monitoring**: Automated checks every 2 minutes
+- 📊 **Beautiful Dashboard**: Clean, responsive UI showing service status
+- 🔔 **Multi-channel Notifications**: Email, Discord, and Slack webhooks
+- 📈 **Uptime Tracking**: 90-day historical uptime charts
+- 🔐 **User Authentication**: Secure JWT-based authentication
+- 👤 **Personal Preferences**: Monitor only the services you care about
+- 🚨 **Incident Management**: Track and resolve service incidents
+- ⚡ **Fast & Lightweight**: Built with Express and Next.js
+
+## Monitored Services
+
+- GitHub
+- AWS
+- Vercel
+- Stripe
+- OpenAI
+- (Easily extensible to add more)
+
+## Tech Stack
+
+### Backend
+
+- **Node.js** + **Express**: REST API server
+-- **Prisma**: Type-safe database ORM
+-- **PostgreSQL**: Default development database (docker-compose included)
+- **node-cron**: Scheduled status checks
+- **cheerio**: HTML parsing for status pages
+- **JWT**: Authentication
+- **bcrypt**: Password hashing
+
+### Frontend
+
+- **Next.js (16.x)**: React framework with App Router
+- **TailwindCSS**: Utility-first CSS
+- **TypeScript**: Type safety
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn
+
+### Backend Setup
+
+1. **Clone and navigate to the project**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd statuswatch
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Database & Prisma
-
-This project uses Prisma with a PostgreSQL datasource. Prisma expects a DATABASE_URL environment variable.
-
-1. Copy the example env file:
-
-```bash
-cp .env.example .env```
-
-2. Open `.env` and set `DATABASE_URL` with your credentials. For local development you can use a local Postgres server or switch to SQLite (note: if you switch to SQLite, also update `provider` in `prisma/schema.prisma`).
-
-3. Run Prisma to push your schema and generate the client:
-
-```bash
-npx prisma db push # creates database tables from prisma/schema.prisma
-npx prisma generate # generates prisma client
-```
-
-If `npx prisma db push` fails with `Environment variable not found: DATABASE_URL`, ensure your `.env` file exists and contains a valid `DATABASE_URL` before running the command.
-
-### Using .env.local (Next.js) with Prisma
-
-Next.js projects often keep local environment variables in `.env.local`. Prisma reads `.env` by default, so if your DB config lives in `.env.local` you have three choices:
-
-- Copy `.env.local` to `.env` so Prisma reads it automatically:
-
-```bash
-cp .env.local .env
-```
-
-- Export the variables from `.env.local` into your current shell and then run Prisma (works on Linux/macOS):
-
-```bash
-set -a && . .env.local && set +a
-npx prisma db push
-```
-
-- Use the convenience npm scripts below which will source `.env.local` for the command in a cross-platform way (via `dotenv-cli`):
-Before using the helper `prisma:*:envlocal` scripts, install dependencies so `dotenv-cli` is available:
+2. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-- Use the convenience npm scripts below which will source `.env.local` for the command in a cross-platform way (via `dotenv-cli`):
+3. **Set up environment variables**
 
 ```bash
-npm run prisma:db:push:envlocal
-npm run prisma:generate:envlocal
+# Recommended: use local Postgres (see docker-compose.yml)
+# Example: start Postgres and create .env
+docker compose up -d db
+echo 'DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/statuswatch"' > .env
+echo 'JWT_SECRET="your-super-secret-key-change-this"' >> .env
+echo 'PORT=5555' >> .env
+
+# Optional: Add email service (Resend, SendGrid, etc.)
+# echo 'RESEND_API_KEY="your-resend-key"' >> .env
 ```
-
-Under the hood these scripts call `dotenv -e .env.local -- ...` so they work on Windows, macOS and Linux without bash. If you prefer not to add a dev dependency, you can still source `.env.local` with the methods above.
-
-If you copy `.env.local` to `.env` be careful not to commit any secrets.
-
-### Quick local Postgres with Docker
-
-If you don't have a Postgres server, you can spin one up quickly with Docker:
+4. **Generate Prisma client and run migrations**
 
 ```bash
-docker run --name statuswatch-db \
-  -e POSTGRES_PASSWORD=mysecretpassword \
-  -e POSTGRES_USER=postgres \
-  -e POSTGRES_DB=statuswatch \
-  -p 5432:5432 \
-  -d postgres:15
+npx prisma generate
+npx prisma migrate dev --name init
 ```
 
-Then use this `DATABASE_URL` in your `.env`:
+5. **Seed the database with services**
 
 ```bash
-DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/statuswatch?schema=public"
+npx tsx prisma/seed.ts
 ```
 
-Run `npx prisma db push` and `npx prisma generate` again after you set it up.
+6. **Start the development server**
+
+```bash
+npm run dev
+```
+
+Server will be running at `http://localhost:5555`
+
+### Frontend Setup
+
+1. **Navigate to frontend directory**
+
+```bash
+cd frontend
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Create .env.local**
+
+```bash
+echo 'NEXT_PUBLIC_API_URL=http://localhost:5555' > .env.local
+```
+
+4. **Start the development server**
+
+```bash
+npm run dev
+```
+
+Frontend will be running at `http://localhost:3000`
+
+## API Endpoints
+
+### Public Endpoints
+
+#### Status
+
+- `GET /api/status` - Get all service statuses
+- `GET /api/status/:slug` - Get specific service status
+- `POST /api/status/:slug/refresh` - Force refresh a service
+
+#### Incidents
+
+- `GET /api/incidents` - Get recent incidents
+- `GET /api/incidents/:id` - Get specific incident
+
+#### Uptime
+
+- `GET /api/uptime` - Get uptime data for all services (90 days)
+- `GET /api/uptime/:slug` - Get uptime for specific service
+
+### Authentication Required
+
+#### Auth
+
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login
+- `GET /api/auth/me` - Get current user
+
+#### User Preferences
+
+- `GET /api/user/services` - Get monitored services
+- `POST /api/user/services/:slug` - Add service to monitoring
+- `DELETE /api/user/services/:slug` - Remove service
+- `GET /api/user/alerts` - Get alert preferences
+- `PUT /api/user/alerts` - Update alert preferences
+- `GET /api/user/notifications` - Get notifications
+- `PATCH /api/user/notifications/:id/read` - Mark as read
+
+## Configuration
+
+### Adding New Services
+
+1. Add service to database:
+
+```typescript
+await prisma.service.create({
+  data: {
+    name: 'New Service',
+    slug: 'new-service',
+    category: 'Category',
+    statusUrl: 'https://status.newservice.com',
+    logoUrl: 'https://logo-url.png',
+    color: '#hexcolor',
+    isActive: true
+  }
+});
+```
+
+2. Add parser in `src/services/parsers/status-parser.ts`:
+
+```typescript
+private parseNewService($: cheerio.CheerioAPI): ParsedStatus {
+  // Your custom parsing logic
+  return {
+    status: 'operational',
+    message: 'All systems operational'
+  };
+}
+```
+
+### Notification Setup
+
+#### Email (Resend)
+
+```bash
+# Add to .env
+RESEND_API_KEY=your_key
+```
+
+#### Discord Webhook
+
+Users can add their Discord webhook URL in alert preferences
+
+#### Slack Webhook
+
+Users can add their Slack webhook URL in alert preferences
+
+## Database Schema
+
+### Key Models
+
+- **Service**: Services being monitored
+- **StatusCheck**: Historical status check results
+- **Incident**: Service incidents/outages
+- **User**: Registered users
+- **MonitoredService**: User's watched services
+- **AlertPreference**: User notification preferences
+- **Notification**: In-app notifications
+
+## Cron Jobs
+
+- **Status Monitoring**: Every 2 minutes
+- **Incident Checking**: Every 5 minutes  
+- **Cleanup Old Checks**: Daily at 2 AM (keeps 7 days)
+
+## Project Structure
+
+```
+statuswatch/
+├── src/
+│   ├── routes/
+│   │   ├── status.routes.ts
+│   │   ├── incidents.routes.ts
+│   │   ├── uptime.routes.ts
+│   │   ├── auth.routes.ts
+│   │   └── user.routes.ts
+│   ├── services/
+│   │   ├── status.service.ts
+│   │   ├── cron.service.ts
+│   │   ├── notification.service.ts
+│   │   └── parsers/
+│   │       └── status-parser.ts
+│   ├── middleware/
+│   │   └── auth.middleware.ts
+│   └── server.ts
+├── prisma/
+│   ├── schema.prisma
+│   └── seed.ts
+├── frontend/
+│   ├── app/
+│   │   └── page.tsx
+│   └── components/
+│       ├── ServiceCard.tsx
+│       ├── IncidentList.tsx
+│       └── UptimeChart.tsx
+└── package.json
+```
+
+## Development
+
+### Run Tests
+
+There are no automated tests included yet. You can add a test script to `package.json` or run your own test runner.
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+### Database Commands
+
+```bash
+# View database in Prisma Studio
+npx prisma studio
+
+# Create new migration
+npx prisma migrate dev --name migration_name
+
+# Reset database
+npx prisma migrate reset
+```
+
+## Environment Variables
+
+### Backend (.env)
+
+```env
+DATABASE_URL="file:./prisma/dev.db"
+JWT_SECRET="your-secret-key"
+PORT=5555
+RESEND_API_KEY="optional-email-service-key"
+```
+
+### Frontend (.env.local)
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5555
+```
+
+## Deployment
+
+### Backend (Railway, Render, Fly.io)
+
+1. Push code to GitHub
+2. Connect repository to hosting platform
+3. Set environment variables
+4. Deploy!
+
+### Frontend (Vercel, Netlify)
+
+1. Push code to GitHub
+2. Import project
+3. Set NEXT_PUBLIC_API_URL
+4. Deploy!
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT
+
+## Support
+
+For issues and questions, please open a GitHub issue.
+
+---
+
+Built with ❤️ for developers who rely on these amazing tools.
