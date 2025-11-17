@@ -19,7 +19,8 @@
   "db:up": "docker compose up -d db",
   "db:down": "docker compose down",
     "db:seed": "npm run db:up && npm run prisma:db:push:envlocal && npx ts-node prisma/seed.ts",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "node tests/run-smoke.js",
+    "notify:once": "node scripts/notify-worker.js --once"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",

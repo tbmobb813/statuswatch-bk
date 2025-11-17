@@ -171,6 +171,10 @@ model Notification {
   message    String?  @db.Text
   read       Boolean  @default(false)
 
+  // delivery tracking
+  attempts   Int      @default(0)
+  lastError  String?  @db.Text
+
   sent       Boolean  @default(false)
   sentAt     DateTime?
   

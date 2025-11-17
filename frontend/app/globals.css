@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
+/* stylelint-disable at-rule-no-unknown */
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
 :root {
   --background: #ffffff;

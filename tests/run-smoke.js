@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-'/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-require-imports */
 'use strict'
 
 const { exec } = require('child_process');
@@ -46,8 +46,8 @@ async function checkHealth() {
     await checkHealth();
     console.log('SMOKE TESTS PASSED');
     process.exit(0);
-  } catch (/* err */) {
-    console.error('SMOKE TESTS FAILED');
+  } catch (err) {
+    console.error('SMOKE TESTS FAILED', err && err.message ? err.message : String(err));
     process.exit(1);
   }
 })();
