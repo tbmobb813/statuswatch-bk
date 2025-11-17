@@ -25,16 +25,18 @@ Real-time status monitoring for popular developer tools and services. Get instan
 ## Tech Stack
 
 ### Backend
+
 - **Node.js** + **Express**: REST API server
-- **Prisma**: Type-safe database ORM
-- **SQLite**: Lightweight database (easily switchable to PostgreSQL)
+-- **Prisma**: Type-safe database ORM
+-- **PostgreSQL**: Default development database (docker-compose included)
 - **node-cron**: Scheduled status checks
 - **cheerio**: HTML parsing for status pages
 - **JWT**: Authentication
 - **bcrypt**: Password hashing
 
 ### Frontend
-- **Next.js 14**: React framework with App Router
+
+- **Next.js (16.x)**: React framework with App Router
 - **TailwindCSS**: Utility-first CSS
 - **TypeScript**: Type safety
 
@@ -48,19 +50,24 @@ Real-time status monitoring for popular developer tools and services. Get instan
 ### Backend Setup
 
 1. **Clone and navigate to the project**
+
 ```bash
 cd statuswatch
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Set up environment variables**
+
 ```bash
-# Create .env file
-echo 'DATABASE_URL="file:./prisma/dev.db"' > .env
+# Recommended: use local Postgres (see docker-compose.yml)
+# Example: start Postgres and create .env
+docker compose up -d db
+echo 'DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/statuswatch"' > .env
 echo 'JWT_SECRET="your-super-secret-key-change-this"' >> .env
 echo 'PORT=5555' >> .env
 
@@ -69,17 +76,20 @@ echo 'PORT=5555' >> .env
 ```
 
 4. **Generate Prisma client and run migrations**
+
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
 ```
 
 5. **Seed the database with services**
+
 ```bash
 npx tsx prisma/seed.ts
 ```
 
 6. **Start the development server**
+
 ```bash
 npm run dev
 ```
@@ -89,21 +99,25 @@ Server will be running at `http://localhost:5555`
 ### Frontend Setup
 
 1. **Navigate to frontend directory**
+
 ```bash
 cd frontend
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Create .env.local**
+
 ```bash
 echo 'NEXT_PUBLIC_API_URL=http://localhost:5555' > .env.local
 ```
 
 4. **Start the development server**
+
 ```bash
 npm run dev
 ```
@@ -115,26 +129,31 @@ Frontend will be running at `http://localhost:3000`
 ### Public Endpoints
 
 #### Status
+
 - `GET /api/status` - Get all service statuses
 - `GET /api/status/:slug` - Get specific service status
 - `POST /api/status/:slug/refresh` - Force refresh a service
 
 #### Incidents
+
 - `GET /api/incidents` - Get recent incidents
 - `GET /api/incidents/:id` - Get specific incident
 
 #### Uptime
+
 - `GET /api/uptime` - Get uptime data for all services (90 days)
 - `GET /api/uptime/:slug` - Get uptime for specific service
 
 ### Authentication Required
 
 #### Auth
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login
 - `GET /api/auth/me` - Get current user
 
 #### User Preferences
+
 - `GET /api/user/services` - Get monitored services
 - `POST /api/user/services/:slug` - Add service to monitoring
 - `DELETE /api/user/services/:slug` - Remove service
@@ -148,6 +167,7 @@ Frontend will be running at `http://localhost:3000`
 ### Adding New Services
 
 1. Add service to database:
+
 ```typescript
 await prisma.service.create({
   data: {
@@ -163,6 +183,7 @@ await prisma.service.create({
 ```
 
 2. Add parser in `src/services/parsers/status-parser.ts`:
+
 ```typescript
 private parseNewService($: cheerio.CheerioAPI): ParsedStatus {
   // Your custom parsing logic
@@ -176,15 +197,18 @@ private parseNewService($: cheerio.CheerioAPI): ParsedStatus {
 ### Notification Setup
 
 #### Email (Resend)
+
 ```bash
 # Add to .env
 RESEND_API_KEY=your_key
 ```
 
 #### Discord Webhook
+
 Users can add their Discord webhook URL in alert preferences
 
 #### Slack Webhook
+
 Users can add their Slack webhook URL in alert preferences
 
 ## Database Schema
@@ -241,17 +265,18 @@ statuswatch/
 ## Development
 
 ### Run Tests
-```bash
-npm test
-```
+
+There are no automated tests included yet. You can add a test script to `package.json` or run your own test runner.
 
 ### Build for Production
+
 ```bash
 npm run build
 npm start
 ```
 
 ### Database Commands
+
 ```bash
 # View database in Prisma Studio
 npx prisma studio
@@ -266,6 +291,7 @@ npx prisma migrate reset
 ## Environment Variables
 
 ### Backend (.env)
+
 ```env
 DATABASE_URL="file:./prisma/dev.db"
 JWT_SECRET="your-secret-key"
@@ -274,6 +300,7 @@ RESEND_API_KEY="optional-email-service-key"
 ```
 
 ### Frontend (.env.local)
+
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5555
 ```
@@ -281,12 +308,14 @@ NEXT_PUBLIC_API_URL=http://localhost:5555
 ## Deployment
 
 ### Backend (Railway, Render, Fly.io)
+
 1. Push code to GitHub
 2. Connect repository to hosting platform
 3. Set environment variables
 4. Deploy!
 
 ### Frontend (Vercel, Netlify)
+
 1. Push code to GitHub
 2. Import project
 3. Set NEXT_PUBLIC_API_URL

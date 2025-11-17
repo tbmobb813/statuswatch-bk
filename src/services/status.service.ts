@@ -4,10 +4,23 @@ import { StatusParser } from './parsers/status-parser';
 import { execSync } from 'child_process';
 
 // Simple SQLite wrapper using sqlite3 CLI
+interface DBServiceRow {
+  id: string;
+  name: string;
+  slug: string;
+  category: string;
+  statusUrl: string;
+  logoUrl?: string;
+  color?: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 class SimplePrisma {
   private dbPath = './prisma/dev.db';
 
-  query(sql: string): any[] {
+  query(sql: string): DBServiceRow[] {
     try {
       const result = execSync(`sqlite3 ${this.dbPath} "${sql}"`, { 
         encoding: 'utf-8',
@@ -20,7 +33,7 @@ class SimplePrisma {
     }
   }
 
-  queryOne(sql: string): any | null {
+  queryOne(sql: string): DBServiceRow | null {
     const results = this.query(sql);
     return results.length > 0 ? results[0] : null;
   }
@@ -36,7 +49,7 @@ class SimplePrisma {
     }
   }
 
-  private parseResult(result: string): any[] {
+  private parseResult(result: string): DBServiceRow[] {
     if (!result || result.trim() === '') return [];
     
     const lines = result.trim().split('\n');
@@ -53,7 +66,7 @@ class SimplePrisma {
         isActive: parts[7] === '1',
         createdAt: new Date(parts[8]),
         updatedAt: new Date(parts[9])
-      };
+      } as DBServiceRow;
     });
   }
 }
@@ -188,7 +201,7 @@ export class StatusService {
     return {
       slug: service.slug,
       name: service.name,
-      status: latestCheck.status as any,
+      status: (String(latestCheck.status) as ServiceStatus['status']),
       message: latestCheck.message || undefined,
       lastChecked: latestCheck.checkedAt,
       responseTime: latestCheck.responseTime || undefined

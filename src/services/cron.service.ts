@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import { StatusService } from './status.service';
+import { StatusService, ServiceStatus } from './status.service';
 import { NotificationService } from './notification.service';
 import { PrismaClient } from '@prisma/client';
 
@@ -84,7 +84,7 @@ export class CronService {
     console.log('✅ Cleanup cron job started (daily at 2 AM)');
   }
 
-  private async checkForStatusChange(currentStatus: any) {
+  private async checkForStatusChange(currentStatus: ServiceStatus) {
     try {
       const service = await prisma.service.findUnique({
         where: { slug: currentStatus.slug },
@@ -102,25 +102,27 @@ export class CronService {
 
       const [current, previous] = service.statusChecks;
 
-      // Status changed
-      if (current.status !== previous.status) {
-        console.log(`⚠️  Status change detected for ${service.name}: ${previous.status} → ${current.status}`);
+      // Compare by isUp boolean (Prisma StatusCheck uses isUp)
+      if (current.isUp !== previous.isUp) {
+        const prevStatus = previous.isUp ? 'operational' : 'outage';
+        const currStatus = current.isUp ? 'operational' : 'outage';
+        console.log(`⚠️  Status change detected for ${service.name}: ${prevStatus} → ${currStatus}`);
 
         // Send notifications to users
         await notificationService.notifyStatusChange(
           service.id,
-          previous.status,
-          current.status,
-          current.message
+          prevStatus,
+          currStatus,
+          currentStatus.message
         );
 
         // Create incident if status degraded
-        if (current.status !== 'operational' && previous.status === 'operational') {
-          await this.createIncident(service.id, current.status, current.message);
+        if (!current.isUp && previous.isUp) {
+          await this.createIncident(service.id, currStatus, currentStatus.message);
         }
 
         // Resolve incident if service recovered
-        if (current.status === 'operational' && previous.status !== 'operational') {
+        if (current.isUp && !previous.isUp) {
           await this.resolveIncidents(service.id);
         }
       }
@@ -138,6 +140,8 @@ export class CronService {
         title: `Service ${status.replace('_', ' ')}`,
         description: message || undefined,
         status: 'investigating',
+        severity: impact === 'critical' ? 'critical' : impact === 'major' ? 'major' : 'minor',
+        startedAt: new Date(),
         impact
       }
     });

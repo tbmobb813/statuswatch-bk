@@ -4,8 +4,12 @@ import { PrismaClient } from '@prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
 
+// Minimal request/response shapes to avoid external type dependency in scripts
+type SimpleReq = { query?: Record<string, unknown>; params?: Record<string, string> };
+type SimpleRes = { json: (body: unknown) => void; status: (code: number) => { json: (body: unknown) => void } };
+
 // Get uptime statistics
-router.get('/', async (req, res) => {
+router.get('/', async (req: SimpleReq, res: SimpleRes) => {
   try {
     const { days = '90', serviceSlug } = req.query;
     const daysCount = parseInt(days as string);
@@ -43,8 +47,9 @@ router.get('/', async (req, res) => {
       }
     });
 
-    // Group by service and date
-    const uptimeByService: Record<string, any[]> = {};
+  // Group by service and date
+  type DayRow = { date: string; total: number; operational: number; service: string };
+  const uptimeByService: Record<string, DayRow[]> = {};
 
     statusChecks.forEach(check => {
       const serviceName = check.service.name;
@@ -71,9 +76,10 @@ router.get('/', async (req, res) => {
       }
     });
 
-    // Calculate uptime percentage for each day
-    Object.keys(uptimeByService).forEach(service => {
-      uptimeByService[service] = uptimeByService[service].map(day => ({
+    // Calculate uptime percentage for each day and build output
+    const outputByService: Record<string, { date: string; uptime: number; service: string }[]> = {};
+    Object.keys(uptimeByService).forEach((service) => {
+      outputByService[service] = uptimeByService[service].map(day => ({
         date: day.date,
         uptime: (day.operational / day.total) * 100,
         service: day.service
@@ -82,7 +88,7 @@ router.get('/', async (req, res) => {
 
     res.json({
       success: true,
-      data: uptimeByService
+      data: outputByService
     });
   } catch (error) {
     console.error('Error fetching uptime data:', error);
@@ -94,7 +100,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get overall uptime for a service
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', async (req: SimpleReq, res: SimpleRes) => {
   try {
     const { slug } = req.params;
     const { days = '30' } = req.query;
@@ -124,8 +130,8 @@ router.get('/:slug', async (req, res) => {
     });
 
     const total = statusChecks.length;
-    const operational = statusChecks.filter(c => c.status === 'operational').length;
-    const uptime = total > 0 ? (operational / total) * 100 : 0;
+  const operational = statusChecks.filter(c => c.isUp).length;
+  const uptime = total > 0 ? (operational / total) * 100 : 0;
 
     res.json({
       success: true,

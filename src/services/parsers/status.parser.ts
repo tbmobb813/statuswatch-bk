@@ -36,8 +36,8 @@ export class StatusParser {
     const status = $('.status').first().text().trim().toLowerCase();
     const message = $('.page-status .status').text().trim();
 
-    // Check for incidents
-    const incidents: any[] = [];
+  // Check for incidents
+  const incidents: ParsedStatus['incidents'] = [];
     $('.unresolved-incident').each((i, el) => {
       const title = $(el).find('.incident-title').text().trim();
       const impact = $(el).find('.impact-description').text().trim();

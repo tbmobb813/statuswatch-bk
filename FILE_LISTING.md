@@ -10,12 +10,13 @@ This document lists every file that has been created for your StatusWatch projec
 2. **IMPLEMENTATION_SUMMARY.md** - What was built and next steps
 3. **package.json** - Backend dependencies
 4. **tsconfig.json** - TypeScript configuration
-5. **setup.sh** - Automated setup script
-6. **.env** - Environment variables (create this)
+5. **scripts/setup.sh** - Automated setup script (run as `./scripts/setup.sh`)
+6. **.env** - Environment variables (create this; example provided by `scripts/setup.sh`)
 
 ### Backend Files (`src/`)
 
 #### Routes (`src/routes/`)
+
 1. **status.routes.ts** - Status check endpoints
 2. **incidents.routes.ts** - Incident management endpoints
 3. **uptime.routes.ts** - Uptime statistics endpoints
@@ -23,30 +24,36 @@ This document lists every file that has been created for your StatusWatch projec
 5. **user.routes.ts** - User preferences and notifications
 
 #### Services (`src/services/`)
+
 1. **status.service.ts** - Core status checking logic
 2. **cron.service.ts** - Automated monitoring with cron jobs
 3. **notification.service.ts** - Multi-channel notifications
 4. **parsers/status-parser.ts** - Status page parsers for each service
 
 #### Middleware (`src/middleware/`)
+
 1. **auth.middleware.ts** - JWT authentication middleware
 
 #### Server
+
 1. **server.ts** - Main Express application
 
 ### Frontend Files (`frontend/`)
 
 #### App (`frontend/app/`)
+
 1. **page.tsx** - Main dashboard page
 2. **layout.tsx** - Root layout
 3. **globals.css** - Global styles with Tailwind
 
 #### Components (`frontend/components/`)
+
 1. **ServiceCard.tsx** - Service status display card
 2. **IncidentList.tsx** - Recent incidents list
 3. **UptimeChart.tsx** - 90-day uptime visualization
 
 #### Configuration
+
 1. **package.json** - Frontend dependencies
 2. **next.config.js** - Next.js configuration
 3. **tailwind.config.js** - Tailwind CSS configuration
@@ -55,6 +62,7 @@ This document lists every file that has been created for your StatusWatch projec
 6. **.env.local** - Frontend environment variables (create this)
 
 ### Database (`prisma/`)
+
 1. **schema.prisma** - Database schema (already exists in your project)
 2. **seed.ts** - Database seed script (needed if not exists)
 
@@ -116,6 +124,8 @@ statuswatch/
 │   └── dev.db                         # SQLite database
 │
 └── frontend/                          # Next.js frontend
+├── .github/workflows/                 # CI workflows (monitoring)
+├── scripts/                           # helper scripts (run-monitoring, monitor-cron, setup)
     ├── package.json
     ├── next.config.js
     ├── tailwind.config.js
@@ -141,6 +151,7 @@ statuswatch/
    - Make sure to place files in the correct folders
 
 2. **Install dependencies**
+
    ```bash
    # Backend
    npm install
@@ -151,6 +162,7 @@ statuswatch/
    ```
 
 3. **Set up environment**
+
    ```bash
    # Create .env in root
    DATABASE_URL="file:./prisma/dev.db"
@@ -162,6 +174,7 @@ statuswatch/
    ```
 
 4. **Initialize database**
+
    ```bash
    npx prisma generate
    npx prisma migrate dev
@@ -169,6 +182,7 @@ statuswatch/
    ```
 
 5. **Start servers**
+
    ```bash
    # Terminal 1 (backend)
    npm run dev
@@ -180,12 +194,14 @@ statuswatch/
 ## Quick Setup (Automated)
 
 Run the setup script:
+
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
 This will automatically:
+
 - Install all dependencies
 - Create .env files
 - Set up the database
@@ -194,26 +210,31 @@ This will automatically:
 ## Verifying Installation
 
 ### Backend Check
+
 ```bash
 curl http://localhost:5555/health
 curl http://localhost:5555/api/status
 ```
 
 ### Frontend Check
-Visit: http://localhost:3000
+
+Visit: <http://localhost:3000>
 
 Should see:
+
 - Dashboard with 5 services (GitHub, AWS, Vercel, Stripe, OpenAI)
 - Service status cards
 - Uptime chart
 - Incidents section
 
 ### Database Check
+
 ```bash
 npx prisma studio
 ```
 
 Should see:
+
 - 5 services in Service table
 - Status checks being populated
 - Empty User, Notification, Incident tables
@@ -231,6 +252,7 @@ Should see:
 ## Need Help?
 
 Check these files for detailed information:
+
 - **README.md** - Complete project documentation
 - **IMPLEMENTATION_SUMMARY.md** - What was built and troubleshooting
 - **API Documentation** - See README.md ## API Endpoints section

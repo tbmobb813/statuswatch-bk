@@ -5,18 +5,16 @@
 ### Backend (Complete)
 
 #### 1. Core Status Monitoring
+
 - ✅ **Status Service** (`src/services/status.service.ts`)
   - Checks service status from status pages
   - Saves results to database
   - Tracks response times
 
 - ✅ **Status Parser** (`src/services/parsers/status-parser.ts`)
-  - Parses GitHub status page
-  - Parses AWS health dashboard
-  - Parses Vercel status
-  - Parses Stripe status
-  - Parses OpenAI status
-  - Generic fallback parser
+  - Implemented parsers: GitHub, AWS
+  - Additional parsers (Vercel, Stripe, OpenAI) are planned/stubbed and can be added under `src/services/parsers`
+  - Generic fallback parser exists for unknown formats
 
 - ✅ **Cron Service** (`src/services/cron.service.ts`)
   - Automated checks every 2 minutes
@@ -26,6 +24,7 @@
   - Integrated notification system
 
 #### 2. API Routes
+
 - ✅ **Status Routes** (`src/routes/status.routes.ts`)
   - `GET /api/status` - All services
   - `GET /api/status/:slug` - Specific service
@@ -57,6 +56,7 @@
   - `PATCH /api/user/notifications/:id/read` - Mark as read
 
 #### 3. Notification System
+
 - ✅ **Notification Service** (`src/services/notification.service.ts`)
   - Email notifications (template included for Resend)
   - Discord webhook integration
@@ -65,13 +65,16 @@
   - Smart notification filtering based on user preferences
 
 #### 4. Middleware
+
 - ✅ **Auth Middleware** (`src/middleware/auth.middleware.ts`)
   - JWT token verification
   - User authentication
   - Optional auth for public routes
 
 #### 5. Database Schema (Prisma)
+
 Already exists in your project! Includes:
+
 - Service
 - StatusCheck
 - Incident
@@ -84,6 +87,7 @@ Already exists in your project! Includes:
 ### Frontend (Complete)
 
 #### 1. Main Dashboard
+
 - ✅ **Dashboard Page** (`frontend/app/page.tsx`)
   - Real-time status display
   - Overall health banner
@@ -91,6 +95,7 @@ Already exists in your project! Includes:
   - Responsive grid layout
 
 #### 2. Components
+
 - ✅ **ServiceCard** (`frontend/components/ServiceCard.tsx`)
   - Visual status indicators
   - Color-coded by status
@@ -110,7 +115,8 @@ Already exists in your project! Includes:
   - Tooltip on hover
 
 #### 3. Configuration
-- ✅ Next.js 14 with App Router
+
+- ✅ Next.js (16.x) with App Router
 - ✅ TailwindCSS configured
 - ✅ TypeScript setup
 - ✅ All necessary config files
@@ -118,6 +124,7 @@ Already exists in your project! Includes:
 ## 📋 What You Need to Do
 
 ### 1. Update Database Schema (Optional)
+
 If you want full authentication, add password field to User model:
 
 ```prisma
@@ -138,11 +145,13 @@ model User {
 ```
 
 Then run:
+
 ```bash
 npx prisma migrate dev --name add_user_password
 ```
 
 ### 2. Install Additional Dependencies
+
 ```bash
 # In your backend directory
 npm install bcrypt jsonwebtoken
@@ -152,8 +161,11 @@ npm install -D @types/bcrypt @types/jsonwebtoken
 ### 3. Set Up Environment Variables
 
 **Backend (.env)**
+
+Default project configuration expects PostgreSQL (see `prisma/schema.prisma`). Example `.env` using the included docker-compose Postgres:
+
 ```env
-DATABASE_URL="file:./prisma/dev.db"
+DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/statuswatch"
 JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
 PORT=5555
 
@@ -162,6 +174,7 @@ RESEND_API_KEY="your-resend-api-key"
 ```
 
 **Frontend (.env.local)**
+
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5555
 ```
@@ -169,11 +182,13 @@ NEXT_PUBLIC_API_URL=http://localhost:5555
 ### 4. Start Development
 
 **Terminal 1 - Backend:**
+
 ```bash
 npm run dev
 ```
 
 **Terminal 2 - Frontend:**
+
 ```bash
 cd frontend
 npm install
@@ -202,6 +217,7 @@ curl http://localhost:5555/api/uptime
 ## 🚀 Next Steps (Priority Order)
 
 ### High Priority
+
 1. **Test the Status Monitoring**
    - Verify cron jobs are running
    - Check that status checks are being saved
@@ -218,6 +234,7 @@ curl http://localhost:5555/api/uptime
    - Test parsers
 
 ### Medium Priority
+
 4. **Build Additional Frontend Pages**
    - Service detail page
    - Incident detail page
@@ -231,6 +248,7 @@ curl http://localhost:5555/api/uptime
    - Notification center
 
 ### Low Priority
+
 6. **Production Preparation**
    - Switch to PostgreSQL
    - Set up proper logging
@@ -285,13 +303,17 @@ statuswatch/
 ## 🔧 Common Issues & Solutions
 
 ### Issue: Prisma client not generated
+
 **Solution:**
+
 ```bash
 npx prisma generate
 ```
 
 ### Issue: Port already in use
+
 **Solution:**
+
 ```bash
 # Kill process on port 5555
 lsof -ti:5555 | xargs kill -9
@@ -301,7 +323,9 @@ PORT=3001
 ```
 
 ### Issue: CORS errors in frontend
+
 **Solution:** Already configured in server.ts, but if issues persist:
+
 ```typescript
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -310,7 +334,9 @@ app.use(cors({
 ```
 
 ### Issue: Status checks not running
+
 **Solution:** Check server logs for cron job startup messages. Cron should show:
+
 ```
 ✅ Status monitoring cron job started (every 2 minutes)
 ✅ Incident monitoring cron job started (every 5 minutes)
@@ -339,18 +365,19 @@ npx tsx prisma/seed.ts
 
 ## 📝 Notes
 
-- Currently using SQLite for development (easy to switch to PostgreSQL)
+- Defaults to PostgreSQL for development (see `docker-compose.yml`). SQLite is a possible alternative if you modify `prisma/schema.prisma`.
 - JWT secret should be changed in production
 - Email sending is templated but needs API key
 - Discord/Slack webhooks work out of the box
 - All timestamps are in UTC
 
-## 🎉 You're All Set!
+## 🎉 You're All Set
 
 Everything is implemented and ready to go. Just:
+
 1. Install dependencies
 2. Set up .env files
 3. Run the servers
-4. Visit http://localhost:3000
+4. Visit <http://localhost:3000>
 
 Happy monitoring! 🚀

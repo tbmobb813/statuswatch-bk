@@ -18,7 +18,8 @@ export function UptimeChart() {
 
   const fetchUptimeData = async () => {
     try {
-      const response = await fetch('http://localhost:5555/api/uptime?days=90');
+      const base = process.env.NEXT_PUBLIC_API_URL || '';
+      const response = await fetch(`${base}/api/uptime?days=90`);
       const data = await response.json();
       
       if (data.success) {

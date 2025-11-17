@@ -89,22 +89,23 @@ export class NotificationService {
       if (!service) return;
 
       // Determine notification type and filter users
-      const shouldNotify = (pref: any) => {
+      const shouldNotify = (pref: Record<string, unknown>) => {
+        // Simple mapping: notify on any outage/degraded; recovery notifications only if severity is 'all'
         if (newStatus === 'operational' && oldStatus !== 'operational') {
-          return pref.notifyOnRecovery;
+          return (pref['severity'] === 'all');
         } else if (newStatus === 'degraded') {
-          return pref.notifyOnDegraded;
+          return true;
         } else if (newStatus.includes('outage')) {
-          return pref.notifyOnOutage;
+          return true;
         }
         return false;
       };
 
       for (const monitored of service.monitoredServices) {
-        const user = monitored.user;
-        const pref = user.alertPreferences[0];
+  const user = monitored.user;
+  const pref = user.alertPreferences || null;
 
-        if (pref && shouldNotify(pref)) {
+  if (pref && shouldNotify(pref)) {
           await this.sendNotification({
             userId: user.id,
             title: `${service.name} Status Change`,

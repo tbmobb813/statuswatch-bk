@@ -25,7 +25,8 @@ export function IncidentList() {
 
   const fetchIncidents = async () => {
     try {
-      const response = await fetch('http://localhost:5555/api/incidents?limit=10');
+      const base = process.env.NEXT_PUBLIC_API_URL || '';
+      const response = await fetch(`${base}/api/incidents?limit=10`);
       const data = await response.json();
       
       if (data.success) {

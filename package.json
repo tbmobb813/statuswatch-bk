@@ -18,7 +18,8 @@
   "monitor:run": "npx tsx scripts/run-monitoring.js",
   "db:up": "docker compose up -d db",
   "db:down": "docker compose down",
-  "db:seed": "npm run db:up && npm run prisma:db:push:envlocal && npx ts-node prisma/seed.ts"
+    "db:seed": "npm run db:up && npm run prisma:db:push:envlocal && npx ts-node prisma/seed.ts",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
@@ -59,6 +60,7 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   ,"dotenv-cli": "^11.0.0",
-  "ts-node": "^10.9.1"
+  "ts-node": "^10.9.1",
+  "@types/express": "^4.17.21"
   }
 }

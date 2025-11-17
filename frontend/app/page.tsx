@@ -29,7 +29,8 @@ export default function Dashboard() {
 
   const fetchStatuses = async () => {
     try {
-      const response = await fetch('http://localhost:5555/api/status');
+      const base = process.env.NEXT_PUBLIC_API_URL || '';
+      const response = await fetch(`${base}/api/status`);
       const data = await response.json();
       
       if (data.success) {
