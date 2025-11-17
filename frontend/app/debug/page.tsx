@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function DebugPage() {
   const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555';
-  let result: any = { error: 'unknown' };
+  let result: unknown = { error: 'unknown' };
 
   try {
     const res = await fetch(`${base}/api/dashboard/summary`, { cache: 'no-store' });

@@ -22,20 +22,20 @@ module.exports = [
   // We wire the parser module and the TS plugin so rules that depend on the
   // type-aware parser won't crash. The plugin object is attached to the
   // config so user rules can reference it.
-  {
-    files: ['src/**/*.{ts,tsx,js,jsx,mjs,cjs}'],
-    languageOptions: {
-      parser: require('@typescript-eslint/parser'),
-      parserOptions: {
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        project: './tsconfig.json',
+    {
+      files: ['src/**/*.{ts,tsx,js,jsx,mjs,cjs}'],
+      languageOptions: {
+        parser: require('@typescript-eslint/parser'),
+        parserOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module',
+          project: './tsconfig.json',
+        },
       },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
+      plugins: {
+        '@typescript-eslint': tsPlugin,
+      },
     },
-  },
 
   // Keep frontend build artifacts ignored; frontend keeps its own rules via
   // `frontend/.eslintrc.cjs` (which extends eslint-config-next).
