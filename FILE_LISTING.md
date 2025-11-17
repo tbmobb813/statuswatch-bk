@@ -89,7 +89,6 @@ This document lists every file that has been created for your StatusWatch projec
 
 ## Directory Structure
 
-```
 statuswatch/
 ├── README.md                          # Main documentation
 ├── IMPLEMENTATION_SUMMARY.md          # Implementation guide
@@ -139,7 +138,6 @@ statuswatch/
       ├── ServiceCard.tsx
       ├── IncidentList.tsx
       └── UptimeChart.tsx
-```
 
 ## How to Use These Files
 

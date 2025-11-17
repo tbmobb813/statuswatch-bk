@@ -29,12 +29,31 @@ export default function Dashboard() {
 
   const fetchStatuses = async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await fetch(`${base}/api/status`);
+      const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555';
+      const response = await fetch(`${base}/api/dashboard/summary`);
       const data = await response.json();
-      
+
       if (data.success) {
-        setServices(data.data);
+        // Map dashboard summary into the shape expected by this component
+        type DashboardItem = {
+          slug: string;
+          name: string;
+          status?: string;
+          isUp?: boolean;
+          lastChecked?: string | null;
+        };
+
+        const items = data.data as DashboardItem[];
+        const mapped = items.map((s) => ({
+          slug: s.slug,
+          name: s.name,
+          status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
+          message: undefined,
+          lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
+          responseTime: undefined
+        }));
+
+        setServices(mapped);
         setLastUpdate(new Date());
       }
     } catch (error) {

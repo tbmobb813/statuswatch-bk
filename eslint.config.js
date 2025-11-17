@@ -2,7 +2,6 @@
 // used in the legacy `.eslintrc.cjs` into a flat config that ESLint v9+ can
 // consume. It keeps per-package configs operational by not forcing heavy
 // rule sets for `frontend` (which uses `eslint-config-next`).
-const path = require('node:path');
 
 // Pull in the TypeScript plugin and use its flat-compatible recommended
 // presets. The plugin exports `flat/*` configs which are intended for use
@@ -28,11 +27,11 @@ module.exports = [
     languageOptions: {
       parser: require('@typescript-eslint/parser'),
       parserOptions: {
+      parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
-        project: path.resolve(__dirname, 'tsconfig.json'),
+        project: './tsconfig.json',
       },
-    },
     plugins: {
       '@typescript-eslint': tsPlugin,
     },
