@@ -1,7 +1,0 @@
- .next
- node_modules
- public
- eslint.config.js
-.next/
-node_modules/
-public/

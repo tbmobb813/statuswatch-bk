@@ -74,17 +74,20 @@ echo 'PORT=5555' >> .env
 # Optional: Add email service (Resend, SendGrid, etc.)
 # echo 'RESEND_API_KEY="your-resend-key"' >> .env
 ```
+
 4. **Generate Prisma client and run migrations**
 
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
 ```
+
 5. **Seed the database with services**
 
 ```bash
 npx tsx prisma/seed.ts
 ```
+
 6. **Start the development server**
 
 ```bash
@@ -106,11 +109,13 @@ cd frontend
 ```bash
 npm install
 ```
+
 3. **Create .env.local**
 
 ```bash
 echo 'NEXT_PUBLIC_API_URL=http://localhost:5555' > .env.local
 ```
+
 4. **Start the development server**
 
 ```bash
@@ -348,6 +353,7 @@ cd frontend && npx eslint . --ext .js,.ts,.tsx
 ```
 
 Notes:
+
 - `frontend/.eslintignore` excludes `.next` build artifacts so they are not linted.
 - If you encounter unexpected rules or config resolution, run ESLint with `--debug` to inspect which config is used.
 
