@@ -80,13 +80,11 @@ echo 'PORT=5555' >> .env
 npx prisma generate
 npx prisma migrate dev --name init
 ```
-
 5. **Seed the database with services**
 
 ```bash
 npx tsx prisma/seed.ts
 ```
-
 6. **Start the development server**
 
 ```bash
@@ -108,13 +106,11 @@ cd frontend
 ```bash
 npm install
 ```
-
 3. **Create .env.local**
 
 ```bash
 echo 'NEXT_PUBLIC_API_URL=http://localhost:5555' > .env.local
 ```
-
 4. **Start the development server**
 
 ```bash
