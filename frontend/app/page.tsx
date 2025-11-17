@@ -17,10 +17,15 @@ interface ServiceStatus {
 export default function Dashboard() {
   const [services, setServices] = useState<ServiceStatus[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [hydrated, setHydrated] = useState(false);
+  const [rawResponse, setRawResponse] = useState<string | null>(null);
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
     fetchStatuses();
+    // mark hydrated once effect runs on client
+    setHydrated(true);
     
     // Refresh every 30 seconds
     const interval = setInterval(fetchStatuses, 30000);
@@ -29,11 +34,11 @@ export default function Dashboard() {
 
   const fetchStatuses = async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555';
-      const response = await fetch(`${base}/api/dashboard/summary`);
+  // Use same-origin proxy to avoid client-side cross-origin issues
+  const response = await fetch('/api/proxy/dashboard');
       const data = await response.json();
 
-      if (data.success) {
+  if (data.success) {
         // Map dashboard summary into the shape expected by this component
         type DashboardItem = {
           slug: string;
@@ -55,9 +60,17 @@ export default function Dashboard() {
 
         setServices(mapped);
         setLastUpdate(new Date());
+        setErrorMessage(null);
+        // also keep a raw JSON string for on-page debugging
+        try {
+          setRawResponse(JSON.stringify(data, null, 2));
+        } catch {
+          setRawResponse(String(data));
+        }
       }
     } catch (error) {
       console.error('Error fetching statuses:', error);
+      setErrorMessage(String(error));
     } finally {
       setLoading(false);
     }
@@ -112,7 +125,7 @@ export default function Dashboard() {
               </span>
             </div>
             <span className="text-sm text-gray-500">
-              Last updated: {lastUpdate.toLocaleTimeString()}
+              Last updated: {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
             </span>
           </div>
         </div>
@@ -126,6 +139,20 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="space-y-8">
+            {/* Debug panel - shows raw services or fetch error for troubleshooting */}
+            <div className="bg-white p-4 rounded shadow-sm">
+              <h3 className="font-medium">Debug</h3>
+              <div className="text-xs text-gray-600">Client hydrated: <strong>{hydrated ? 'yes' : 'no'}</strong></div>
+              {errorMessage ? (
+                <pre className="text-xs text-red-600">{errorMessage}</pre>
+              ) : (
+                <>
+                  <pre className="text-xs text-gray-700">{JSON.stringify(services, null, 2)}</pre>
+                  <h4 className="mt-2 font-medium">Raw response</h4>
+                  <pre className="text-xs text-gray-500">{rawResponse ?? 'no raw response captured'}</pre>
+                </>
+              )}
+            </div>
             {/* Service Status Grid */}
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Services</h2>

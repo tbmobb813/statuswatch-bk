@@ -20,10 +20,23 @@ export function UptimeChart() {
     try {
       const base = process.env.NEXT_PUBLIC_API_URL || '';
       const response = await fetch(`${base}/api/uptime?days=90`);
+
+      // Guard against non-OK responses or HTML error pages which would break json()
+      const contentType = response.headers.get('content-type') || '';
+      if (!response.ok) {
+        console.warn('Uptime API returned non-OK:', response.status);
+        return;
+      }
+
+      if (!contentType.includes('application/json')) {
+        console.warn('Uptime API did not return JSON, content-type:', contentType);
+        return;
+      }
+
       const data = await response.json();
-      
-      if (data.success) {
-        setUptimeData(data.data);
+
+      if (data && data.success) {
+        setUptimeData(data.data || {});
       }
     } catch (error) {
       console.error('Error fetching uptime data:', error);
