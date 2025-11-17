@@ -265,7 +265,6 @@ curl http://localhost:5555/api/uptime
 
 ## 📁 File Structure Overview
 
-```
 statuswatch/
 ├── src/
 │   ├── routes/              # API endpoints
@@ -298,7 +297,6 @@ statuswatch/
 ├── package.json
 ├── tsconfig.json
 └── README.md
-```
 
 ## 🔧 Common Issues & Solutions
 
@@ -337,11 +335,9 @@ app.use(cors({
 
 **Solution:** Check server logs for cron job startup messages. Cron should show:
 
-```
 ✅ Status monitoring cron job started (every 2 minutes)
 ✅ Incident monitoring cron job started (every 5 minutes)
 ✅ Cleanup cron job started (daily at 2 AM)
-```
 
 ## 📊 Database Seeding
 
