@@ -1,5 +1,6 @@
 import { prisma } from './db';
 import { scrapers } from './scrapers';
+import { StatusData, IncidentData } from './scrapers/base';
 
 export class MonitoringService {
   /**
@@ -46,7 +47,7 @@ export class MonitoringService {
   /**
    * Store status check result
    */
-  private async storeStatusCheck(serviceSlug: string, data: any) {
+  private async storeStatusCheck(serviceSlug: string, data: StatusData) {
     const service = await prisma.service.findUnique({
       where: { slug: serviceSlug }
     });
@@ -105,11 +106,11 @@ export class MonitoringService {
             severity: incidentData.severity,
             startedAt: incidentData.startedAt,
             updates: {
-              create: incidentData.updates.map((upd: any) => ({
-                message: upd.message,
-                status: incidentData.status,
-                createdAt: upd.createdAt
-              }))
+              create: incidentData.updates.map((upd: { message: string; createdAt: Date }) => ({
+                  message: upd.message,
+                  status: incidentData.status,
+                  createdAt: upd.createdAt
+                }))
             }
           }
         });
@@ -123,7 +124,7 @@ export class MonitoringService {
   /**
    * Trigger notifications for new incident
    */
-  private async triggerNotifications(serviceId: string, incidentData: any) {
+  private async triggerNotifications(serviceId: string, incidentData: IncidentData) {
     // Get users monitoring this service
     const monitoredBy = await prisma.monitoredService.findMany({
       where: { serviceId },

@@ -1,34 +1,32 @@
 import { StatusScraper, StatusData, IncidentData } from './base';
 import axios from 'axios';
 
-export class GitHubStatusScraper extends StatusScraper {
-  serviceName = 'GitHub';
-  serviceUrl = 'https://www.githubstatus.com/api/v2/status.json';
-  
+export class OpenAIStatusScraper extends StatusScraper {
+  serviceName = 'OpenAI';
+  serviceUrl = 'https://status.openai.com/api/v2/status.json';
+
   async scrape(): Promise<StatusData> {
     try {
       const response = await axios.get(this.serviceUrl);
       const data: unknown = response.data;
 
-      const d = data as { status?: { indicator?: string } } | undefined;
-      // GitHub uses Atlassian Statuspage
-      const isUp = !!(d && d.status && d.status.indicator === 'none');
-      const status = this.mapStatus(d?.status?.indicator || 'none');
+  const dd = data as { status?: { indicator?: string } } | undefined;
+  const isUp = !!(dd && dd.status && dd.status.indicator === 'none');
+  const status = this.mapStatus(dd?.status?.indicator || 'none');
 
-      // Fetch recent incidents
       const incidents: IncidentData[] = [];
       try {
-        const incidentsResponse = await axios.get('https://www.githubstatus.com/api/v2/incidents.json');
-        const list = Array.isArray(incidentsResponse.data?.incidents) ? incidentsResponse.data.incidents : [];
+        const incidentsRes = await axios.get('https://status.openai.com/api/v2/incidents.json');
+        const list = Array.isArray(incidentsRes.data?.incidents) ? incidentsRes.data.incidents : [];
         for (const inc of list) {
           if (inc.status === 'resolved') continue;
           const updatesRaw = Array.isArray(inc.incident_updates) ? inc.incident_updates : [];
-          const updates = updatesRaw.map((upd: unknown) => {
-            const u = upd as { body?: string; created_at?: string };
-            return { message: u.body || '', createdAt: u.created_at ? new Date(u.created_at) : new Date() };
+          const updates = updatesRaw.map((u: unknown) => {
+            const ur = u as { body?: string; created_at?: string };
+            return { message: ur.body || '', createdAt: ur.created_at ? new Date(ur.created_at) : new Date() };
           });
           incidents.push({
-            title: inc.name || 'GitHub incident',
+            title: inc.name || 'OpenAI incident',
             description: updates[0]?.message || '',
             status: (this.mapIncidentStatus(inc.status) as IncidentData['status']) || 'investigating',
             severity: (this.mapSeverity(inc.impact) as IncidentData['severity']) || 'minor',
@@ -37,9 +35,9 @@ export class GitHubStatusScraper extends StatusScraper {
           });
         }
       } catch {
-        // ignore
+        // ignore incidents fetch errors
       }
-      
+
       return {
         isUp,
         status,
@@ -47,11 +45,11 @@ export class GitHubStatusScraper extends StatusScraper {
         lastChecked: new Date()
       };
     } catch (error) {
-      console.error('GitHub scraper error:', error);
+      console.error('OpenAI scraper error:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
-  
+
   private mapStatus(indicator: string): StatusData['status'] {
     const map: Record<string, StatusData['status']> = {
       'none': 'operational',
@@ -61,7 +59,7 @@ export class GitHubStatusScraper extends StatusScraper {
     };
     return map[indicator] || 'operational';
   }
-  
+
     private mapIncidentStatus(status: string) {
     const map: Record<string, string> = {
       'investigating': 'investigating',
@@ -71,7 +69,7 @@ export class GitHubStatusScraper extends StatusScraper {
     };
     return map[status] || 'investigating';
   }
-  
+
   private mapSeverity(impact: string) {
     const map: Record<string, string> = {
       'none': 'minor',

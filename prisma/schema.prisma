@@ -166,6 +166,15 @@ model Notification {
   type       String   // "incident_started", "incident_update", "incident_resolved"
   channel    String   // "email", "slack", "discord", "sms"
   
+  // Payload fields stored for display and delivery
+  title      String?
+  message    String?  @db.Text
+  read       Boolean  @default(false)
+
+  // delivery tracking
+  attempts   Int      @default(0)
+  lastError  String?  @db.Text
+
   sent       Boolean  @default(false)
   sentAt     DateTime?
   
