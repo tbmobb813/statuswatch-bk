@@ -36,7 +36,10 @@ app.use((req, res) => {
 });
 
 // Error handler
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: Error, req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  // Mark `_next` as used to satisfy unused-var lint rule (we intentionally
+  // don't call it here because we handle the error response directly).
+  void _next;
   console.error('Error:', err);
   res.status(500).json({
     success: false,

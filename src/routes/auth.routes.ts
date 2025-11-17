@@ -33,8 +33,9 @@ router.post('/register', async (req, res) => {
       });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+  // Hash password (not stored yet in schema) — perform hashing to keep the
+  // operation but don't assign an unused variable.
+  await bcrypt.hash(password, 10);
 
     // Create user (Note: You'll need to add password field to schema)
     const user = await prisma.user.create({

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
-import { StatusParser } from './parsers/status-parser';
+import { StatusParser } from './parsers/status.parser';
 import { execSync } from 'child_process';
 
 // Simple SQLite wrapper using sqlite3 CLI
