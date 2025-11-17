@@ -89,7 +89,6 @@ This document lists every file that has been created for your StatusWatch projec
 
 ## Directory Structure
 
-```
 statuswatch/
 ├── README.md                          # Main documentation
 ├── IMPLEMENTATION_SUMMARY.md          # Implementation guide
@@ -120,29 +119,25 @@ statuswatch/
 │
 ├── prisma/                            # Database
 │   ├── schema.prisma                  # Schema (exists)
-│   ├── seed.ts                        # Seed script
-│   └── dev.db                         # SQLite database
+│   └── seed.ts                        # Seed script
 │
 └── frontend/                          # Next.js frontend
-├── .github/workflows/                 # CI workflows (monitoring)
-├── scripts/                           # helper scripts (run-monitoring, monitor-cron, setup)
-    ├── package.json
-    ├── next.config.js
-    ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── tsconfig.json
-    ├── .env.local
-    │
-    ├── app/                           # Next.js 14 app directory
-    │   ├── layout.tsx                 # Root layout
-    │   ├── page.tsx                   # Dashboard
-    │   └── globals.css                # Global styles
-    │
-    └── components/                    # React components
-        ├── ServiceCard.tsx
-        ├── IncidentList.tsx
-        └── UptimeChart.tsx
-```
+   ├── package.json
+   ├── next.config.js
+   ├── tailwind.config.js
+   ├── postcss.config.js
+   ├── tsconfig.json
+   ├── .env.local
+   │
+   ├── app/                           # Next.js app directory (app router)
+   │   ├── layout.tsx                 # Root layout
+   │   ├── page.tsx                   # Dashboard
+   │   └── globals.css                # Global styles
+   │
+   └── components/                    # React components
+      ├── ServiceCard.tsx
+      ├── IncidentList.tsx
+      └── UptimeChart.tsx
 
 ## How to Use These Files
 

@@ -1,77 +1,9 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
-import { StatusParser } from './parsers/status-parser';
-import { execSync } from 'child_process';
+import { StatusParser } from './parsers/status.parser';
+import { PrismaClient } from '@prisma/client';
 
-// Simple SQLite wrapper using sqlite3 CLI
-interface DBServiceRow {
-  id: string;
-  name: string;
-  slug: string;
-  category: string;
-  statusUrl: string;
-  logoUrl?: string;
-  color?: string;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-class SimplePrisma {
-  private dbPath = './prisma/dev.db';
-
-  query(sql: string): DBServiceRow[] {
-    try {
-      const result = execSync(`sqlite3 ${this.dbPath} "${sql}"`, { 
-        encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'pipe']
-      });
-      return this.parseResult(result);
-    } catch (error) {
-      console.error('Database query error:', error);
-      return [];
-    }
-  }
-
-  queryOne(sql: string): DBServiceRow | null {
-    const results = this.query(sql);
-    return results.length > 0 ? results[0] : null;
-  }
-
-  exec(sql: string): void {
-    try {
-      execSync(`sqlite3 ${this.dbPath} "${sql}"`, { 
-        encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'pipe']
-      });
-    } catch (error) {
-      console.error('Database exec error:', error);
-    }
-  }
-
-  private parseResult(result: string): DBServiceRow[] {
-    if (!result || result.trim() === '') return [];
-    
-    const lines = result.trim().split('\n');
-    return lines.map(line => {
-      const parts = line.split('|');
-      return {
-        id: parts[0],
-        name: parts[1],
-        slug: parts[2],
-        category: parts[3],
-        statusUrl: parts[4],
-        logoUrl: parts[5],
-        color: parts[6],
-        isActive: parts[7] === '1',
-        createdAt: new Date(parts[8]),
-        updatedAt: new Date(parts[9])
-      } as DBServiceRow;
-    });
-  }
-}
-
-const prisma = new SimplePrisma();
+// Use PrismaClient to interact with the configured DATABASE_URL (Postgres in dev)
+const prisma = new PrismaClient();
 
 export interface ServiceStatus {
   slug: string;
@@ -96,13 +28,13 @@ export class StatusService {
   }
 
   async checkServiceStatus(slug: string): Promise<ServiceStatus> {
-    const serviceResult = prisma.queryOne(`SELECT * FROM Service WHERE slug='${slug}'`);
+    const service = await prisma.service.findUnique({
+      where: { slug },
+    });
 
-    if (!serviceResult) {
+    if (!service) {
       throw new Error(`Service not found: ${slug}`);
     }
-
-    const service = serviceResult;
     const startTime = Date.now();
     
     try {
@@ -119,14 +51,18 @@ export class StatusService {
       // Parse the status page based on the service
       const status = await this.parser.parse(slug, html);
 
-      // Save status check to database
-      const checkId = `check_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      const message = (status.message || '').replace(/'/g, "''"); // Escape single quotes
-      
-      prisma.exec(
-        `INSERT INTO StatusCheck (id, serviceId, status, responseTime, message, checkedAt) 
-         VALUES ('${checkId}', '${service.id}', '${status.status}', ${responseTime}, '${message}', datetime('now'))`
-      );
+      // Map parsed status to boolean isUp used by Prisma StatusCheck
+      const isUp = status.status === 'operational';
+
+      await prisma.statusCheck.create({
+        data: {
+          serviceId: service.id,
+          isUp,
+          responseTime: responseTime,
+          statusCode: (response && response.status) ? response.status : null,
+          checkedAt: new Date()
+        }
+      });
 
       return {
         slug: service.slug,
@@ -141,13 +77,16 @@ export class StatusService {
       console.error(`Error checking ${service.name}:`, error);
       
       // Save failed check
-      const checkId = `check_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      const errorMsg = (error instanceof Error ? error.message : 'Unknown error').replace(/'/g, "''");
-      
-      prisma.exec(
-        `INSERT INTO StatusCheck (id, serviceId, status, responseTime, message, checkedAt) 
-         VALUES ('${checkId}', '${service.id}', 'unknown', ${Date.now() - startTime}, '${errorMsg}', datetime('now'))`
-      );
+      const responseTime = Date.now() - startTime;
+      await prisma.statusCheck.create({
+        data: {
+          serviceId: service.id,
+          isUp: false,
+          responseTime,
+          statusCode: null,
+          checkedAt: new Date()
+        }
+      });
 
       return {
         slug: service.slug,
@@ -160,10 +99,10 @@ export class StatusService {
   }
 
   async checkAllServices(): Promise<ServiceStatus[]> {
-    const services = prisma.query("SELECT * FROM Service WHERE isActive=1");
+    const services = await prisma.service.findMany({ where: { isActive: true } });
 
     const statusChecks = await Promise.all(
-      services.map(service => this.checkServiceStatus(service.slug))
+      services.map(svc => this.checkServiceStatus(svc.slug))
     );
 
     return statusChecks;
@@ -174,35 +113,21 @@ export class StatusService {
   }
 
   async getLatestStatus(slug: string): Promise<ServiceStatus | null> {
-    const service = prisma.queryOne(`SELECT * FROM Service WHERE slug='${slug}'`);
+    const service = await prisma.service.findUnique({ where: { slug } });
+    if (!service) return null;
 
-    if (!service) {
-      return null;
-    }
+    const latestCheck = await prisma.statusCheck.findFirst({
+      where: { serviceId: service.id },
+      orderBy: { checkedAt: 'desc' }
+    });
 
-    // Get latest status check
-    const result = execSync(
-      `sqlite3 ${prisma['dbPath']} "SELECT * FROM StatusCheck WHERE serviceId='${service.id}' ORDER BY checkedAt DESC LIMIT 1"`,
-      { encoding: 'utf-8' }
-    );
-
-    if (!result || result.trim() === '') {
-      return null;
-    }
-
-    const parts = result.trim().split('|');
-    const latestCheck = {
-      status: parts[2],
-      responseTime: parts[3] ? parseInt(parts[3]) : null,
-      message: parts[4],
-      checkedAt: new Date(parts[5])
-    };
+    if (!latestCheck) return null;
 
     return {
       slug: service.slug,
       name: service.name,
-      status: (String(latestCheck.status) as ServiceStatus['status']),
-      message: latestCheck.message || undefined,
+      status: latestCheck.isUp ? 'operational' : 'degraded',
+      message: undefined,
       lastChecked: latestCheck.checkedAt,
       responseTime: latestCheck.responseTime || undefined
     };

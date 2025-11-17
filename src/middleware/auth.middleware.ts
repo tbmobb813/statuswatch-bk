@@ -32,7 +32,7 @@ export const authMiddleware = (
     req.userEmail = decoded.email;
 
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({
       success: false,
       error: 'Invalid or expired token'
@@ -59,7 +59,7 @@ export const optionalAuth = (
     }
 
     next();
-  } catch (error) {
+  } catch {
     // If token is invalid, just continue without auth
     next();
   }

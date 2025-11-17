@@ -49,19 +49,19 @@ Real-time status monitoring for popular developer tools and services. Get instan
 
 ### Backend Setup
 
-1. **Clone and navigate to the project**
+. **Clone and navigate to the project**
 
 ```bash
 cd statuswatch
 ```
 
-2. **Install dependencies**
+. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-3. **Set up environment variables**
+. **Set up environment variables**
 
 ```bash
 # Recommended: use local Postgres (see docker-compose.yml)
@@ -74,18 +74,21 @@ echo 'PORT=5555' >> .env
 # Optional: Add email service (Resend, SendGrid, etc.)
 # echo 'RESEND_API_KEY="your-resend-key"' >> .env
 ```
-4. **Generate Prisma client and run migrations**
+
+. **Generate Prisma client and run migrations**
 
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
 ```
-5. **Seed the database with services**
+
+. **Seed the database with services**
 
 ```bash
 npx tsx prisma/seed.ts
 ```
-6. **Start the development server**
+
+. **Start the development server**
 
 ```bash
 npm run dev
@@ -95,23 +98,25 @@ Server will be running at `http://localhost:5555`
 
 ### Frontend Setup
 
-1. **Navigate to frontend directory**
+. **Navigate to frontend directory**
 
 ```bash
 cd frontend
 ```
 
-2. **Install dependencies**
+. **Install dependencies**
 
 ```bash
 npm install
 ```
-3. **Create .env.local**
+
+. **Create .env.local**
 
 ```bash
 echo 'NEXT_PUBLIC_API_URL=http://localhost:5555' > .env.local
 ```
-4. **Start the development server**
+
+. **Start the development server**
 
 ```bash
 npm run dev
@@ -161,7 +166,7 @@ Frontend will be running at `http://localhost:3000`
 
 ### Adding New Services
 
-1. Add service to database:
+. Add service to database:
 
 ```typescript
 await prisma.service.create({
@@ -177,7 +182,7 @@ await prisma.service.create({
 });
 ```
 
-2. Add parser in `src/services/parsers/status-parser.ts`:
+. Add parser in `src/services/parsers/status-parser.ts`:
 
 ```typescript
 private parseNewService($: cheerio.CheerioAPI): ParsedStatus {
@@ -226,7 +231,6 @@ Users can add their Slack webhook URL in alert preferences
 
 ## Project Structure
 
-```
 statuswatch/
 ├── src/
 │   ├── routes/
@@ -255,7 +259,6 @@ statuswatch/
 │       ├── IncidentList.tsx
 │       └── UptimeChart.tsx
 └── package.json
-```
 
 ## Development
 
@@ -329,5 +332,27 @@ MIT
 For issues and questions, please open a GitHub issue.
 
 ---
+
+## Linting (ESLint v9)
+
+This repository uses ESLint v9 with flat configurations. We run linting per-package to avoid scanning build artifacts. Key files:
+
+- Root flat config: `eslint.config.js`
+- Frontend flat config: `frontend/eslint.config.js`
+
+Recommended commands:
+
+```bash
+# Lint backend (server)
+npx eslint src --ext .js,.ts,.tsx
+
+# Lint frontend (from repo root)
+cd frontend && npx eslint . --ext .js,.ts,.tsx
+```
+
+Notes:
+
+- `frontend/.eslintignore` excludes `.next` build artifacts so they are not linted.
+- If you encounter unexpected rules or config resolution, run ESLint with `--debug` to inspect which config is used.
 
 Built with ❤️ for developers who rely on these amazing tools.

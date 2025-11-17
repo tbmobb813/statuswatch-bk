@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
             slug: true
           }
         },
-        incidentUpdates: {
+        updates: {
           orderBy: { createdAt: 'desc' },
           take: 5
         }
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
       where: { id },
       include: {
         service: true,
-        incidentUpdates: {
+        updates: {
           orderBy: { createdAt: 'desc' }
         }
       }
@@ -84,11 +84,14 @@ router.post('/', async (req, res) => {
     
     const incident = await prisma.incident.create({
       data: {
-        serviceId,
         title,
         description,
         status: status || 'investigating',
-        impact: impact || 'minor'
+        severity: impact || 'minor',
+        startedAt: new Date(),
+        service: {
+          connect: { id: serviceId }
+        }
       },
       include: {
         service: true
@@ -99,20 +102,20 @@ router.post('/', async (req, res) => {
       success: true,
       data: incident
     });
-  } catch (error) {
-    console.error('Error creating incident:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
-  }
-});
+    } catch (error) {
+      console.error('Error creating incident:', error);
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
 
-// Update incident
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { status, title, description, impact } = req.body;
+    const severity = impact;
     
     const incident = await prisma.incident.update({
       where: { id },
@@ -120,7 +123,7 @@ router.patch('/:id', async (req, res) => {
         ...(status && { status }),
         ...(title && { title }),
         ...(description && { description }),
-        ...(impact && { impact }),
+        ...(severity && { severity }),
         ...(status === 'resolved' && { resolvedAt: new Date() })
       },
       include: {

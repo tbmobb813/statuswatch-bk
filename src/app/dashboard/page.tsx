@@ -1,5 +1,5 @@
-import { prisma } from '@/lib/db';
-import { monitoringService } from '@/lib/monitoring';
+import { prisma } from '../../lib/db';
+import { monitoringService } from '../../lib/monitoring';
 
 export default async function DashboardPage() {
   const services = await prisma.service.findMany({

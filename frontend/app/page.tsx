@@ -17,10 +17,12 @@ interface ServiceStatus {
 export default function Dashboard() {
   const [services, setServices] = useState<ServiceStatus[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // removed debug hydration/rawResponse states
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
-    fetchStatuses();
+  fetchStatuses();
     
     // Refresh every 30 seconds
     const interval = setInterval(fetchStatuses, 30000);
@@ -29,16 +31,37 @@ export default function Dashboard() {
 
   const fetchStatuses = async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await fetch(`${base}/api/status`);
+  // Use same-origin proxy to avoid client-side cross-origin issues
+  const response = await fetch('/api/proxy/dashboard');
       const data = await response.json();
-      
-      if (data.success) {
-        setServices(data.data);
+
+  if (data.success) {
+        // Map dashboard summary into the shape expected by this component
+        type DashboardItem = {
+          slug: string;
+          name: string;
+          status?: string;
+          isUp?: boolean;
+          lastChecked?: string | null;
+        };
+
+        const items = data.data as DashboardItem[];
+        const mapped = items.map((s) => ({
+          slug: s.slug,
+          name: s.name,
+          status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
+          message: undefined,
+          lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
+          responseTime: undefined
+        }));
+
+        setServices(mapped);
         setLastUpdate(new Date());
+        setErrorMessage(null);
       }
     } catch (error) {
       console.error('Error fetching statuses:', error);
+      setErrorMessage(String(error));
     } finally {
       setLoading(false);
     }
@@ -93,7 +116,7 @@ export default function Dashboard() {
               </span>
             </div>
             <span className="text-sm text-gray-500">
-              Last updated: {lastUpdate.toLocaleTimeString()}
+              Last updated: {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
             </span>
           </div>
         </div>
@@ -107,6 +130,13 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="space-y-8">
+            {/* If an error occurred fetching statuses show it */}
+            {errorMessage && (
+              <div className="bg-white p-4 rounded shadow-sm">
+                <h3 className="font-medium">Error</h3>
+                <pre className="text-xs text-red-600">{errorMessage}</pre>
+              </div>
+            )}
             {/* Service Status Grid */}
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Services</h2>

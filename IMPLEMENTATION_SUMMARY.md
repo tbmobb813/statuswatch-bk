@@ -160,7 +160,7 @@ npm install -D @types/bcrypt @types/jsonwebtoken
 
 ### 3. Set Up Environment Variables
 
-**Backend (.env)**
+## **Backend (.env)**
 
 Default project configuration expects PostgreSQL (see `prisma/schema.prisma`). Example `.env` using the included docker-compose Postgres:
 
@@ -173,7 +173,7 @@ PORT=5555
 RESEND_API_KEY="your-resend-api-key"
 ```
 
-**Frontend (.env.local)**
+## **Frontend (.env.local)**
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5555
@@ -235,13 +235,13 @@ curl http://localhost:5555/api/uptime
 
 ### Medium Priority
 
-4. **Build Additional Frontend Pages**
+1. **Build Additional Frontend Pages**
    - Service detail page
    - Incident detail page
    - User dashboard (if auth implemented)
    - Settings page
 
-5. **Implement User Features**
+2. **Implement User Features**
    - Login/Register UI
    - User dashboard
    - Alert preferences UI
@@ -249,14 +249,14 @@ curl http://localhost:5555/api/uptime
 
 ### Low Priority
 
-6. **Production Preparation**
+1. **Production Preparation**
    - Switch to PostgreSQL
    - Set up proper logging
    - Add rate limiting
    - Implement proper error handling
    - Add API documentation
 
-7. **Nice to Have**
+2. **Nice to Have**
    - Historical graphs
    - Comparison tools
    - Export functionality
@@ -366,6 +366,12 @@ npx tsx prisma/seed.ts
 - Email sending is templated but needs API key
 - Discord/Slack webhooks work out of the box
 - All timestamps are in UTC
+
+## 🔐 Dependency notes
+
+- During dependency upgrades we applied a temporary override in `frontend/package.json` to force `rimraf@^4.0.0`. This removes an old transitive dependency on `inflight@1.0.6` (a deprecated package) from the frontend dev dependency tree.
+- This override is intentional and safe for development, but is temporary. Remove the override once upstream packages (or ESLint/file-entry-cache chains) have published versions that no longer depend on `rimraf@3` / `glob@7` / `inflight@1.0.6`.
+- Location: `frontend/package.json` (look for an `overrides` or `resolutions` entry depending on your package manager).
 
 ## 🎉 You're All Set
 
