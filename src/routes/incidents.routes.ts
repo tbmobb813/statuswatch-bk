@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
             slug: true
           }
         },
-        incidentUpdates: {
+        updates: {
           orderBy: { createdAt: 'desc' },
           take: 5
         }
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
       where: { id },
       include: {
         service: true,
-        incidentUpdates: {
+        updates: {
           orderBy: { createdAt: 'desc' }
         }
       }

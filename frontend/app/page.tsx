@@ -18,14 +18,11 @@ export default function Dashboard() {
   const [services, setServices] = useState<ServiceStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-  const [rawResponse, setRawResponse] = useState<string | null>(null);
+  // removed debug hydration/rawResponse states
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
-    fetchStatuses();
-    // mark hydrated once effect runs on client
-    setHydrated(true);
+  fetchStatuses();
     
     // Refresh every 30 seconds
     const interval = setInterval(fetchStatuses, 30000);
@@ -61,12 +58,6 @@ export default function Dashboard() {
         setServices(mapped);
         setLastUpdate(new Date());
         setErrorMessage(null);
-        // also keep a raw JSON string for on-page debugging
-        try {
-          setRawResponse(JSON.stringify(data, null, 2));
-        } catch {
-          setRawResponse(String(data));
-        }
       }
     } catch (error) {
       console.error('Error fetching statuses:', error);
@@ -139,20 +130,13 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="space-y-8">
-            {/* Debug panel - shows raw services or fetch error for troubleshooting */}
-            <div className="bg-white p-4 rounded shadow-sm">
-              <h3 className="font-medium">Debug</h3>
-              <div className="text-xs text-gray-600">Client hydrated: <strong>{hydrated ? 'yes' : 'no'}</strong></div>
-              {errorMessage ? (
+            {/* If an error occurred fetching statuses show it */}
+            {errorMessage && (
+              <div className="bg-white p-4 rounded shadow-sm">
+                <h3 className="font-medium">Error</h3>
                 <pre className="text-xs text-red-600">{errorMessage}</pre>
-              ) : (
-                <>
-                  <pre className="text-xs text-gray-700">{JSON.stringify(services, null, 2)}</pre>
-                  <h4 className="mt-2 font-medium">Raw response</h4>
-                  <pre className="text-xs text-gray-500">{rawResponse ?? 'no raw response captured'}</pre>
-                </>
-              )}
-            </div>
+              </div>
+            )}
             {/* Service Status Grid */}
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Services</h2>

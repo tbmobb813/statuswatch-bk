@@ -18,8 +18,11 @@ export function UptimeChart() {
 
   const fetchUptimeData = async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await fetch(`${base}/api/uptime?days=90`);
+      // Prefer forwarding via the same-origin proxy when NEXT_PUBLIC_API_URL isn't set
+      const endpoint = process.env.NEXT_PUBLIC_API_URL
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/uptime?days=90`
+        : `/api/uptime?days=90`;
+      const response = await fetch(endpoint);
 
       // Guard against non-OK responses or HTML error pages which would break json()
       const contentType = response.headers.get('content-type') || '';

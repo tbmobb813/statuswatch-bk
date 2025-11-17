@@ -25,8 +25,11 @@ export function IncidentList() {
 
   const fetchIncidents = async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await fetch(`${base}/api/incidents?limit=10`);
+      // Prefer forwarding via the same-origin proxy when NEXT_PUBLIC_API_URL isn't set
+      const endpoint = process.env.NEXT_PUBLIC_API_URL
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/incidents?limit=10`
+        : `/api/incidents?limit=10`;
+      const response = await fetch(endpoint);
 
       // Guard against non-OK responses or HTML error pages which would break json()
       const contentType = response.headers.get('content-type') || '';
