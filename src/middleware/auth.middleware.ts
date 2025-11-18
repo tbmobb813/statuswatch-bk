@@ -6,6 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 export interface AuthRequest extends Request {
   userId?: string;
   userEmail?: string;
+  userRole?: string;
 }
 
 export const authMiddleware = (
@@ -26,10 +27,12 @@ export const authMiddleware = (
     const decoded = jwt.verify(token, JWT_SECRET) as {
       userId: string;
       email: string;
+      role: string;
     };
 
     req.userId = decoded.userId;
     req.userEmail = decoded.email;
+    req.userRole = decoded.role;
 
     next();
   } catch {
@@ -52,10 +55,12 @@ export const optionalAuth = (
       const decoded = jwt.verify(token, JWT_SECRET) as {
         userId: string;
         email: string;
+        role: string;
       };
 
       req.userId = decoded.userId;
       req.userEmail = decoded.email;
+      req.userRole = decoded.role;
     }
 
     next();
@@ -63,4 +68,27 @@ export const optionalAuth = (
     // If token is invalid, just continue without auth
     next();
   }
+};
+
+// Admin middleware - must be used after authMiddleware
+export const adminMiddleware = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.userRole) {
+    return res.status(401).json({
+      success: false,
+      error: 'Authentication required'
+    });
+  }
+
+  if (req.userRole !== 'ADMIN' && req.userRole !== 'SUPERADMIN') {
+    return res.status(403).json({
+      success: false,
+      error: 'Admin access required'
+    });
+  }
+
+  next();
 };
