@@ -15,12 +15,31 @@ interface NotificationPayload {
 }
 
 export class NotificationService {
+  // Simple retry helper with exponential backoff
+  private retryAttempts: number = Number(process.env.DB_RETRY_ATTEMPTS ?? process.env.RETRY_ATTEMPTS ?? 5);
+  private retryDelayMs: number = Number(process.env.DB_RETRY_DELAY_MS ?? process.env.RETRY_DELAY_MS ?? 300);
+  private async retry<T>(fn: () => Promise<T>, attempts = 3, initialDelayMs = 300): Promise<T> {
+    let lastErr: unknown;
+    let delay = initialDelayMs;
+    for (let i = 0; i < attempts; i++) {
+      try {
+        return await fn();
+      } catch (err) {
+        lastErr = err;
+        if (i < attempts - 1) {
+          await new Promise((res) => setTimeout(res, delay));
+          delay *= 2;
+        }
+      }
+    }
+    throw lastErr;
+  }
   // Send notification to all enabled channels
   async sendNotification(payload: NotificationPayload) {
     try {
-      const alertPreference = await prisma.alertPreference.findUnique({
+      const alertPreference = await this.retry(() => prisma.alertPreference.findUnique({
         where: { userId: payload.userId }
-      });
+      }), this.retryAttempts, this.retryDelayMs);
 
       if (!alertPreference) {
         console.log(`No alert preferences found for user ${payload.userId}`);
@@ -28,15 +47,20 @@ export class NotificationService {
       }
 
       // Create notification record
-      await prisma.notification.create({
-        data: {
-          userId: payload.userId,
-          title: payload.title,
-          message: payload.message,
-          type: payload.type,
-          read: false
-        }
-      });
+      try {
+        await this.retry(() => prisma.notification.create({
+          data: {
+            userId: payload.userId,
+            title: payload.title,
+            message: payload.message,
+            type: payload.type,
+            channel: 'in-app',
+            read: false
+          }
+        }), this.retryAttempts, this.retryDelayMs);
+      } catch (err) {
+        console.error('Failed to persist notification after retries:', err);
+      }
 
       // Send email if enabled
       if (alertPreference.emailEnabled) {
@@ -107,7 +131,7 @@ export class NotificationService {
   const user = monitored.user;
   const pref = user.alertPreferences || null;
 
-  if (pref && shouldNotify(pref)) {
+      if (pref && shouldNotify(pref)) {
           await this.sendNotification({
             userId: user.id,
             title: `${service.name} Status Change`,
@@ -128,9 +152,9 @@ export class NotificationService {
   private async sendEmail(payload: NotificationPayload) {
     try {
       // Get user email
-      const user = await prisma.user.findUnique({
+      const user = await this.retry(() => prisma.user.findUnique({
         where: { id: payload.userId }
-      });
+      }), this.retryAttempts, this.retryDelayMs);
 
       if (!user || !user.email) {
         console.log('No user email found, skipping email notification');

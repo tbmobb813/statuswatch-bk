@@ -88,9 +88,39 @@ app.listen(PORT, () => {
   console.log(`   - GET  /api/status/:slug    - Check specific service`);
   console.log(`   - POST /api/status/:slug/refresh - Force refresh`);
   
+  // Dev-only: resolve DB host from DATABASE_URL and print addresses (helps debug IPv4/IPv6)
+  if (process.env.NODE_ENV !== 'production') {
+    const dbUrl = process.env.DATABASE_URL;
+    if (dbUrl) {
+      try {
+        const hostname = new URL(dbUrl).hostname;
+        console.log(`\n🔎 Resolving database host from DATABASE_URL: ${hostname}`);
+        dns.lookup(hostname, { all: true })
+          .then((addrs) => {
+            if (!addrs || addrs.length === 0) {
+              console.log('  (no addresses returned)');
+            } else {
+              addrs.forEach((a) => console.log(`  - ${a.address} (family ${a.family})`));
+            }
+          })
+          .catch((err) => {
+            console.warn('Could not resolve DB host:', err && err.message ? err.message : err);
+          });
+      } catch (_err) {
+        console.warn('Invalid DATABASE_URL, skipping DB host resolution', String(_err));
+      }
+    } else {
+      console.log('DATABASE_URL not set; skipping DB host resolution');
+    }
+  }
+
   // Start cron jobs
-  cronService.startAll();
-  console.log(`\n⏰ Automated monitoring started`);
+  if (process.env.DEV_CRON === 'false') {
+    console.log('\n⏸️ Cron jobs disabled in dev (DEV_CRON=false)');
+  } else {
+    cronService.startAll();
+    console.log(`\n⏰ Automated monitoring started`);
+  }
 });
 
 export default app;

@@ -22,9 +22,31 @@ export interface ServiceStatus {
 
 export class StatusService {
   private parser: StatusParser;
+  private retryAttempts: number;
+  private retryDelayMs: number;
 
   constructor() {
     this.parser = new StatusParser();
+    this.retryAttempts = Number(process.env.DB_RETRY_ATTEMPTS ?? process.env.RETRY_ATTEMPTS ?? 5);
+    this.retryDelayMs = Number(process.env.DB_RETRY_DELAY_MS ?? process.env.RETRY_DELAY_MS ?? 300);
+  }
+
+  // Simple retry helper with exponential backoff
+  private async retry<T>(fn: () => Promise<T>, attempts = 3, initialDelayMs = 300): Promise<T> {
+    let lastErr: unknown;
+    let delay = initialDelayMs;
+    for (let i = 0; i < attempts; i++) {
+      try {
+        return await fn();
+      } catch (err) {
+        lastErr = err;
+        if (i < attempts - 1) {
+          await new Promise((res) => setTimeout(res, delay));
+          delay *= 2;
+        }
+      }
+    }
+    throw lastErr;
   }
 
   async checkServiceStatus(slug: string): Promise<ServiceStatus> {
@@ -60,7 +82,7 @@ export class StatusService {
       // Map parsed status to boolean isUp used by Prisma StatusCheck
       const isUp = status.status === 'operational';
 
-      await prisma.statusCheck.create({
+      await this.retry(() => prisma.statusCheck.create({
         data: {
           serviceId: service.id,
           isUp,
@@ -68,7 +90,7 @@ export class StatusService {
           statusCode: (response && response.status) ? response.status : null,
           checkedAt: new Date()
         }
-      });
+      }), this.retryAttempts, this.retryDelayMs);
 
       return {
         slug: service.slug,
@@ -84,15 +106,20 @@ export class StatusService {
 
       // Save failed check
       const responseTime = Date.now() - startTime;
-      await prisma.statusCheck.create({
-        data: {
-          serviceId: service.id,
-          isUp: false,
-          responseTime,
-          statusCode: null,
-          checkedAt: new Date()
-        }
-      });
+      try {
+        await this.retry(() => prisma.statusCheck.create({
+          data: {
+            serviceId: service.id,
+            isUp: false,
+            responseTime,
+            statusCode: null,
+            checkedAt: new Date()
+          }
+        }), this.retryAttempts, this.retryDelayMs);
+      } catch (err) {
+        // If even retries fail, log and move on — don't throw from cron tasks
+        console.error('Failed to persist failed statusCheck after retries:', err);
+      }
 
       return {
         slug: service.slug,
