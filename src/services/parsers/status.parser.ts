@@ -13,7 +13,7 @@ interface ParsedStatus {
 
 export class StatusParser {
   async parse(slug: string, html: string): Promise<ParsedStatus> {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html) as unknown as cheerio.CheerioAPI;
 
     switch (slug) {
       case 'github':

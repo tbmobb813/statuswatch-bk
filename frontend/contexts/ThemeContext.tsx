@@ -27,6 +27,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // Initialize theme from localStorage
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Required for preventing hydration mismatch
     setMounted(true);
 
     const stored = localStorage.getItem('theme') as Theme | null;
