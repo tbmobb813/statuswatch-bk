@@ -1,5 +1,12 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { authMiddleware, adminMiddleware } from '../middleware/auth.middleware';
+import { validate } from '../middleware/validation.middleware';
+import {
+  createIncidentSchema,
+  updateIncidentSchema,
+  createIncidentUpdateSchema
+} from '../schemas/incident.schema';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -78,7 +85,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create incident (admin)
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, adminMiddleware, validate(createIncidentSchema), async (req, res) => {
   try {
     const { serviceId, title, description, status, impact } = req.body;
     
@@ -111,7 +118,7 @@ router.post('/', async (req, res) => {
     }
   });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authMiddleware, adminMiddleware, validate(updateIncidentSchema), async (req, res) => {
   try {
     const { id } = req.params;
     const { status, title, description, impact } = req.body;
@@ -145,7 +152,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Add incident update
-router.post('/:id/updates', async (req, res) => {
+router.post('/:id/updates', authMiddleware, adminMiddleware, validate(createIncidentUpdateSchema), async (req, res) => {
   try {
     const { id } = req.params;
     const { message, status } = req.body;

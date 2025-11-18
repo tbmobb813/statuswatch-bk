@@ -9,25 +9,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User roles enum
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
 // User Management
 model User {
   id            String    @id @default(cuid())
   email         String    @unique
   name          String?
+  password      String    // Hashed password
+  role          Role      @default(USER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  
+
   // Subscription info
   stripeCustomerId       String?   @unique
   stripeSubscriptionId   String?   @unique
   stripePriceId          String?
   stripeCurrentPeriodEnd DateTime?
-  
+
   // Relations
   monitoredServices MonitoredService[]
   alertPreferences  AlertPreference?
   notifications     Notification[]
-  
+
   @@map("users")
 }
 
