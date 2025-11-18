@@ -9,6 +9,26 @@ const notificationService = new NotificationService();
 
 export class CronService {
   private tasks: cron.ScheduledTask[] = [];
+  private retryAttempts: number = Number(process.env.DB_RETRY_ATTEMPTS ?? process.env.RETRY_ATTEMPTS ?? 5);
+  private retryDelayMs: number = Number(process.env.DB_RETRY_DELAY_MS ?? process.env.RETRY_DELAY_MS ?? 300);
+
+  // Simple retry helper with exponential backoff (copied locally to avoid cross-service coupling)
+  private async retry<T>(fn: () => Promise<T>, attempts = 3, initialDelayMs = 300): Promise<T> {
+    let lastErr: unknown;
+    let delay = initialDelayMs;
+    for (let i = 0; i < attempts; i++) {
+      try {
+        return await fn();
+      } catch (err) {
+        lastErr = err;
+        if (i < attempts - 1) {
+          await new Promise((res) => setTimeout(res, delay));
+          delay *= 2;
+        }
+      }
+    }
+    throw lastErr;
+  }
 
   // Check all services every 2 minutes
   startStatusMonitoring() {
@@ -36,18 +56,22 @@ export class CronService {
     const task = cron.schedule('*/5 * * * *', async () => {
       console.log('🔍 Checking for unresolved incidents...');
       try {
-        const unresolvedIncidents = await prisma.incident.findMany({
-          where: {
-            status: {
-              not: 'resolved'
+        try {
+          const unresolvedIncidents = await this.retry(() => prisma.incident.findMany({
+            where: {
+              status: {
+                not: 'resolved'
+              }
+            },
+            include: {
+              service: true
             }
-          },
-          include: {
-            service: true
-          }
-        });
+          }));
 
-        console.log(`Found ${unresolvedIncidents.length} unresolved incidents`);
+          console.log(`Found ${unresolvedIncidents.length} unresolved incidents`);
+        } catch (err) {
+          console.error('Failed to fetch unresolved incidents after retries:', err);
+        }
       } catch (error) {
         console.error('❌ Error checking incidents:', error);
       }
@@ -66,15 +90,19 @@ export class CronService {
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-        const deleted = await prisma.statusCheck.deleteMany({
-          where: {
-            checkedAt: {
-              lt: sevenDaysAgo
+        try {
+          const deleted = await this.retry(() => prisma.statusCheck.deleteMany({
+            where: {
+              checkedAt: {
+                lt: sevenDaysAgo
+              }
             }
-          }
-        });
+          }));
 
-        console.log(`✅ Deleted ${deleted.count} old status checks`);
+          console.log(`✅ Deleted ${deleted.count} old status checks`);
+        } catch (err) {
+          console.error('Failed cleanup deleteMany after retries:', err);
+        }
       } catch (error) {
         console.error('❌ Error in cleanup task:', error);
       }
@@ -86,7 +114,7 @@ export class CronService {
 
   private async checkForStatusChange(currentStatus: ServiceStatus) {
     try {
-      const service = await prisma.service.findUnique({
+      const service = await this.retry(() => prisma.service.findUnique({
         where: { slug: currentStatus.slug },
         include: {
           statusChecks: {
@@ -94,7 +122,7 @@ export class CronService {
             take: 2
           }
         }
-      });
+      }));
 
       if (!service || service.statusChecks.length < 2) {
         return;
@@ -133,37 +161,44 @@ export class CronService {
 
   private async createIncident(serviceId: string, status: string, message?: string | null) {
     const impact = this.determineImpact(status);
-    
-    await prisma.incident.create({
-      data: {
-        serviceId,
-        title: `Service ${status.replace('_', ' ')}`,
-        description: message || undefined,
-        status: 'investigating',
-        severity: impact === 'critical' ? 'critical' : impact === 'major' ? 'major' : 'minor',
-        startedAt: new Date(),
-        impact
-      }
-    });
+    try {
+      await this.retry(() => prisma.incident.create({
+        data: {
+          serviceId,
+          title: `Service ${status.replace('_', ' ')}`,
+          description: message || undefined,
+          status: 'investigating',
+          severity: impact === 'critical' ? 'critical' : impact === 'major' ? 'major' : 'minor',
+          startedAt: new Date(),
+          impact
+        }
+      }));
 
-    console.log(`📝 Created new incident for service ${serviceId}`);
+      console.log(`📝 Created new incident for service ${serviceId}`);
+    } catch (err) {
+      console.error('Failed to create incident after retries:', err);
+    }
   }
 
   private async resolveIncidents(serviceId: string) {
-    await prisma.incident.updateMany({
-      where: {
-        serviceId,
-        status: {
-          not: 'resolved'
+    try {
+      await this.retry(() => prisma.incident.updateMany({
+        where: {
+          serviceId,
+          status: {
+            not: 'resolved'
+          }
+        },
+        data: {
+          status: 'resolved',
+          resolvedAt: new Date()
         }
-      },
-      data: {
-        status: 'resolved',
-        resolvedAt: new Date()
-      }
-    });
+      }));
 
-    console.log(`✅ Resolved incidents for service ${serviceId}`);
+      console.log(`✅ Resolved incidents for service ${serviceId}`);
+    } catch (err) {
+      console.error('Failed to resolve incidents after retries:', err);
+    }
   }
 
   private determineImpact(status: string): string {
