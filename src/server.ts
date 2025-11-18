@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import dashboardRoutes from './routes/dashboard.routes';
 import customServicesRoutes from './routes/custom-services.routes';
+import analyticsRoutes from './routes/analytics.routes';
 import { CronService } from './services/cron.service';
 
 const app = express();
@@ -58,6 +59,7 @@ app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/custom-services', customServicesRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // 404 handler
 app.use((req, res) => {
