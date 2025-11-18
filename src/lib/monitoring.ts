@@ -70,14 +70,7 @@ export class MonitoringService {
    */
   private async processIncidents(
     serviceSlug: string,
-    incidents: {
-      title: string;
-      description: string;
-      status: string;
-      severity: string;
-      startedAt: Date;
-      updates: { message: string; createdAt: Date }[];
-    }[]
+    incidents: IncidentData[]
   ) {
     const service = await prisma.service.findUnique({
       where: { slug: serviceSlug }

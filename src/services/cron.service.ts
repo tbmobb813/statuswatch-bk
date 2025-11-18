@@ -1,4 +1,4 @@
-import cron from 'node-cron';
+import cron, { ScheduledTask } from 'node-cron';
 import { StatusService, ServiceStatus } from './status.service';
 import { NotificationService } from './notification.service';
 import { PrismaClient } from '@prisma/client';
@@ -8,7 +8,7 @@ const statusService = new StatusService();
 const notificationService = new NotificationService();
 
 export class CronService {
-  private tasks: cron.ScheduledTask[] = [];
+  private tasks: ScheduledTask[] = [];
   private retryAttempts: number = Number(process.env.DB_RETRY_ATTEMPTS ?? process.env.RETRY_ATTEMPTS ?? 5);
   private retryDelayMs: number = Number(process.env.DB_RETRY_DELAY_MS ?? process.env.RETRY_DELAY_MS ?? 300);
 

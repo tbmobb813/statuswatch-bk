@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
+import dns from 'dns/promises';
 import statusRoutes from './routes/status.routes';
 import incidentRoutes from './routes/incidents.routes';
 import uptimeRoutes from './routes/uptime.routes';

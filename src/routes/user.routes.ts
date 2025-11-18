@@ -143,10 +143,13 @@ router.get('/alerts', async (req: AuthRequest, res) => {
 router.put('/alerts', async (req: AuthRequest, res) => {
   try {
     const {
-      notifyOnDegraded,
-      notifyOnOutage,
-      notifyOnRecovery,
       emailEnabled,
+      slackEnabled,
+      discordEnabled,
+      smsEnabled,
+      onlyMonitored,
+      severity,
+      digestMode,
       discordWebhook,
       slackWebhook
     } = req.body;
@@ -156,21 +159,27 @@ router.put('/alerts', async (req: AuthRequest, res) => {
         userId: req.userId!
       },
       update: {
-        ...(typeof notifyOnDegraded === 'boolean' && { notifyOnDegraded }),
-        ...(typeof notifyOnOutage === 'boolean' && { notifyOnOutage }),
-        ...(typeof notifyOnRecovery === 'boolean' && { notifyOnRecovery }),
         ...(typeof emailEnabled === 'boolean' && { emailEnabled }),
+        ...(typeof slackEnabled === 'boolean' && { slackEnabled }),
+        ...(typeof discordEnabled === 'boolean' && { discordEnabled }),
+        ...(typeof smsEnabled === 'boolean' && { smsEnabled }),
+        ...(typeof onlyMonitored === 'boolean' && { onlyMonitored }),
+        ...(severity !== undefined && { severity }),
+        ...(typeof digestMode === 'boolean' && { digestMode }),
         ...(discordWebhook !== undefined && { discordWebhook }),
         ...(slackWebhook !== undefined && { slackWebhook })
       },
       create: {
         userId: req.userId!,
-        notifyOnDegraded,
-        notifyOnOutage,
-        notifyOnRecovery,
-        emailEnabled,
-        discordWebhook,
-        slackWebhook
+        emailEnabled: emailEnabled ?? true,
+        slackEnabled: slackEnabled ?? false,
+        discordEnabled: discordEnabled ?? false,
+        smsEnabled: smsEnabled ?? false,
+        onlyMonitored: onlyMonitored ?? true,
+        severity: severity ?? 'all',
+        digestMode: digestMode ?? false,
+        discordWebhook: discordWebhook ?? null,
+        slackWebhook: slackWebhook ?? null
       }
     });
 

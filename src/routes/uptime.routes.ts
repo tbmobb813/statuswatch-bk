@@ -11,7 +11,8 @@ type SimpleRes = { json: (body: unknown) => void; status: (code: number) => { js
 // Get uptime statistics
 router.get('/', async (req: SimpleReq, res: SimpleRes) => {
   try {
-    const { days = '90', serviceSlug } = req.query;
+    const days = (req.query?.days as string) || '90';
+    const serviceSlug = req.query?.serviceSlug as string | undefined;
     const daysCount = parseInt(days as string);
     
     const startDate = new Date();
@@ -63,14 +64,14 @@ router.get('/', async (req: SimpleReq, res: SimpleRes) => {
       
       if (existingDay) {
         existingDay.total++;
-        if (check.status === 'operational') {
+        if (check.isUp) {
           existingDay.operational++;
         }
       } else {
         uptimeByService[serviceName].push({
           date,
           total: 1,
-          operational: check.status === 'operational' ? 1 : 0,
+          operational: check.isUp ? 1 : 0,
           service: serviceName
         });
       }
@@ -102,8 +103,8 @@ router.get('/', async (req: SimpleReq, res: SimpleRes) => {
 // Get overall uptime for a service
 router.get('/:slug', async (req: SimpleReq, res: SimpleRes) => {
   try {
-    const { slug } = req.params;
-    const { days = '30' } = req.query;
+    const slug = req.params?.slug;
+    const days = (req.query?.days as string) || '30';
     
     const daysCount = parseInt(days as string);
     const startDate = new Date();
