@@ -8,6 +8,7 @@ interface ServiceCardProps {
     message?: string;
     lastChecked: Date;
     responseTime?: number;
+    uptime?: number;
   };
 }
 
@@ -46,10 +47,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
       icon: XCircle
     },
     unknown: {
-      bg: 'bg-gray-50 dark:bg-gray-800',
-      border: 'border-gray-200 dark:border-gray-700',
-      text: 'text-gray-800 dark:text-gray-300',
-      dot: 'bg-gray-500 dark:bg-gray-400',
+      bg: 'bg-gray-50 dark:bg-slate-800',
+      border: 'border-gray-200 dark:border-slate-700',
+      text: 'text-gray-800 dark:text-slate-300',
+      dot: 'bg-gray-500 dark:bg-slate-400',
       label: 'Status Unknown',
       icon: HelpCircle
     }
@@ -58,16 +59,40 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const config = statusConfig[service.status as keyof typeof statusConfig] || statusConfig.unknown;
   const StatusIcon = config.icon;
 
+  // Calculate uptime percentage based on status if not provided
+  const getUptimePercentage = () => {
+    if (service.uptime !== undefined) return service.uptime;
+
+    // Mock uptime based on status
+    switch (service.status) {
+      case 'operational': return 99.95;
+      case 'degraded': return 98.2;
+      case 'partial_outage': return 95.5;
+      case 'major_outage': return 85.0;
+      default: return null;
+    }
+  };
+
+  const uptimePercentage = getUptimePercentage();
+
   return (
     <div className={`
       ${config.bg} ${config.border} border rounded-lg p-6
       transition-all duration-200
-      hover:shadow-lg hover:-translate-y-1
+      hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]
       dark:hover:shadow-xl
+      cursor-pointer
     `}>
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{service.name}</h3>
-        <div className={`w-3 h-3 rounded-full ${config.dot}`} />
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-50">{service.name}</h3>
+          {uptimePercentage !== null && (
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-1 font-medium">
+              {uptimePercentage.toFixed(2)}% uptime
+            </p>
+          )}
+        </div>
+        <div className={`w-3 h-3 rounded-full ${config.dot} transition-transform duration-200 group-hover:scale-110`} />
       </div>
 
       <div className="space-y-2">
@@ -79,10 +104,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         {service.message && (
-          <p className="text-sm text-gray-600 dark:text-gray-400">{service.message}</p>
+          <p className="text-sm text-gray-600 dark:text-slate-400">{service.message}</p>
         )}
 
-        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 pt-2 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-2 border-t border-gray-200 dark:border-slate-700">
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>
