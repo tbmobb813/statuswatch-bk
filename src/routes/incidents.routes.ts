@@ -1,5 +1,12 @@
 import { Router, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { authMiddleware, adminMiddleware } from '../middleware/auth.middleware';
+import { validate } from '../middleware/validation.middleware';
+import {
+  createIncidentSchema,
+  updateIncidentSchema,
+  createIncidentUpdateSchema
+} from '../schemas/incident.schema';
 
 const router = Router();
 const prisma = new PrismaClient();

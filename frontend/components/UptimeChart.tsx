@@ -58,9 +58,9 @@ export function UptimeChart() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200/50 dark:border-slate-700/50">
         <div className="animate-pulse">
-          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-32 bg-gray-200 dark:bg-slate-700 rounded"></div>
         </div>
       </div>
     );
@@ -84,7 +84,7 @@ export function UptimeChart() {
 
         {Object.entries(uptimeData).map(([serviceName, data]) => {
           const avgUptime = data.reduce((sum, d) => sum + d.uptime, 0) / data.length;
-          
+
           return (
             <div key={serviceName}>
               <div className="flex items-center justify-between mb-3">
