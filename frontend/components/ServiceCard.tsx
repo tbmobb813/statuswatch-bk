@@ -1,3 +1,5 @@
+import { CheckCircle, AlertTriangle, AlertOctagon, XCircle, HelpCircle } from 'lucide-react';
+
 interface ServiceCardProps {
   service: {
     slug: string;
@@ -16,42 +18,53 @@ export function ServiceCard({ service }: ServiceCardProps) {
       border: 'border-green-200 dark:border-green-800',
       text: 'text-green-800 dark:text-green-300',
       dot: 'bg-green-500 dark:bg-green-400',
-      label: 'Operational'
+      label: 'Operational',
+      icon: CheckCircle
     },
     degraded: {
       bg: 'bg-yellow-50 dark:bg-yellow-900/20',
       border: 'border-yellow-200 dark:border-yellow-800',
       text: 'text-yellow-800 dark:text-yellow-300',
       dot: 'bg-yellow-500 dark:bg-yellow-400',
-      label: 'Degraded Performance'
+      label: 'Degraded Performance',
+      icon: AlertTriangle
     },
     partial_outage: {
       bg: 'bg-orange-50 dark:bg-orange-900/20',
       border: 'border-orange-200 dark:border-orange-800',
       text: 'text-orange-800 dark:text-orange-300',
       dot: 'bg-orange-500 dark:bg-orange-400',
-      label: 'Partial Outage'
+      label: 'Partial Outage',
+      icon: AlertOctagon
     },
     major_outage: {
       bg: 'bg-red-50 dark:bg-red-900/20',
       border: 'border-red-200 dark:border-red-800',
       text: 'text-red-800 dark:text-red-300',
       dot: 'bg-red-500 dark:bg-red-400',
-      label: 'Major Outage'
+      label: 'Major Outage',
+      icon: XCircle
     },
     unknown: {
       bg: 'bg-gray-50 dark:bg-gray-800',
       border: 'border-gray-200 dark:border-gray-700',
       text: 'text-gray-800 dark:text-gray-300',
       dot: 'bg-gray-500 dark:bg-gray-400',
-      label: 'Status Unknown'
+      label: 'Status Unknown',
+      icon: HelpCircle
     }
   };
 
   const config = statusConfig[service.status as keyof typeof statusConfig] || statusConfig.unknown;
+  const StatusIcon = config.icon;
 
   return (
-    <div className={`${config.bg} ${config.border} border rounded-lg p-6 hover:shadow-md dark:hover:shadow-xl transition-shadow`}>
+    <div className={`
+      ${config.bg} ${config.border} border rounded-lg p-6
+      transition-all duration-200
+      hover:shadow-lg hover:-translate-y-1
+      dark:hover:shadow-xl
+    `}>
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{service.name}</h3>
         <div className={`w-3 h-3 rounded-full ${config.dot}`} />
@@ -59,6 +72,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
       <div className="space-y-2">
         <div className="flex items-center gap-2">
+          <StatusIcon className={`w-4 h-4 ${config.text}`} />
           <span className={`text-sm font-medium ${config.text}`}>
             {config.label}
           </span>
@@ -73,7 +87,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>
           {service.responseTime && (
-            <span>{service.responseTime}ms</span>
+            <span className="font-mono">{service.responseTime}ms</span>
           )}
         </div>
       </div>
