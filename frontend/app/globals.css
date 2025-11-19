@@ -1,5 +1,5 @@
 @import "tailwindcss/preflight";
-/* stylelint-disable at-rule-no-unknown */
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 /* stylelint-enable at-rule-no-unknown */
 
@@ -22,8 +22,8 @@
    Use class `panel` on cards/banners that use glassmorphism. This keeps contrast predictable. */
 .panel {
   background-color: rgba(255,255,255,var(--panel-alpha));
-  backdrop-filter: blur(.4rem);
   -webkit-backdrop-filter: blur(.4rem);
+  backdrop-filter: blur(.4rem);
   border: 1px solid rgba(0,0,0,0.06);
 }
 

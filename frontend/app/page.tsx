@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useDbStatus } from '@/components/DbStatusContext';
 import { ServiceCard } from '@/components/ServiceCard';
 import { IncidentList } from '@/components/IncidentList';
 import { UptimeChart } from '@/components/UptimeChart';
@@ -15,6 +16,7 @@ interface ServiceStatus {
 }
 
 export default function Dashboard() {
+  const { setDbUnavailable } = useDbStatus();
   const [services, setServices] = useState<ServiceStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -33,6 +35,17 @@ export default function Dashboard() {
     try {
   // Use same-origin proxy to avoid client-side cross-origin issues
   const response = await fetch('/api/proxy/dashboard');
+      // If we get a 503 from the server, flag DB unavailable in the global context
+      if (response.status === 503) {
+        try {
+          const err = await response.json();
+          if (err && (err.code === 'db_unavailable' || err.error?.includes('Database unavailable'))) {
+            setDbUnavailable(true);
+          }
+        } catch (_) {
+          setDbUnavailable(true);
+        }
+      }
       const data = await response.json();
 
   if (data.success) {
@@ -62,6 +75,10 @@ export default function Dashboard() {
     } catch (error) {
       console.error('Error fetching statuses:', error);
       setErrorMessage(String(error));
+      // If fetch itself failed (network or CORS), treat as DB unavailable indicator
+      try {
+        setDbUnavailable(true);
+      } catch (_) {}
     } finally {
       setLoading(false);
     }

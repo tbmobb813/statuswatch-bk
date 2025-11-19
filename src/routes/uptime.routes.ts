@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 const router = Router();
@@ -9,9 +9,9 @@ type SimpleReq = { query?: Record<string, unknown>; params?: Record<string, stri
 type SimpleRes = { json: (body: unknown) => void; status: (code: number) => { json: (body: unknown) => void } };
 
 // Get uptime statistics
-router.get('/', async (req: SimpleReq, res: SimpleRes) => {
+router.get('/', async (req: SimpleReq, res: SimpleRes, next: NextFunction) => {
   try {
-    const { days = '90', serviceSlug } = req.query;
+    const { days = '90', serviceSlug } = (req.query as Record<string, string | undefined>) || {};
     const daysCount = parseInt(days as string);
     
     const startDate = new Date();
@@ -63,14 +63,14 @@ router.get('/', async (req: SimpleReq, res: SimpleRes) => {
       
       if (existingDay) {
         existingDay.total++;
-        if (check.status === 'operational') {
+        if (check.isUp) {
           existingDay.operational++;
         }
       } else {
         uptimeByService[serviceName].push({
           date,
           total: 1,
-          operational: check.status === 'operational' ? 1 : 0,
+          operational: check.isUp ? 1 : 0,
           service: serviceName
         });
       }
@@ -92,18 +92,21 @@ router.get('/', async (req: SimpleReq, res: SimpleRes) => {
     });
   } catch (error) {
     console.error('Error fetching uptime data:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 
 // Get overall uptime for a service
-router.get('/:slug', async (req: SimpleReq, res: SimpleRes) => {
+router.get('/:slug', async (req: SimpleReq, res: SimpleRes, next: NextFunction) => {
   try {
-    const { slug } = req.params;
-    const { days = '30' } = req.query;
+    const slug = req.params?.slug;
+    if (!slug) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing service slug parameter'
+      });
+    }
+    const { days = '30' } = (req.query as Record<string, string | undefined>) || {};
     
     const daysCount = parseInt(days as string);
     const startDate = new Date();
@@ -146,10 +149,7 @@ router.get('/:slug', async (req: SimpleReq, res: SimpleRes) => {
     });
   } catch (error) {
     console.error('Error fetching service uptime:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 

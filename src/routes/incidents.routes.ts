@@ -1,11 +1,11 @@
-import { Router } from 'express';
+import { Router, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 const router = Router();
 const prisma = new PrismaClient();
 
 // Get recent incidents
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next: NextFunction) => {
   try {
     const { limit = '10', status } = req.query;
     
@@ -33,17 +33,14 @@ router.get('/', async (req, res) => {
       success: true,
       data: incidents
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error fetching incidents:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 
 // Get incident by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next: NextFunction) => {
   try {
     const { id } = req.params;
     
@@ -70,15 +67,12 @@ router.get('/:id', async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching incident:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 
 // Create incident (admin)
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next: NextFunction) => {
   try {
     const { serviceId, title, description, status, impact } = req.body;
     
@@ -104,14 +98,11 @@ router.post('/', async (req, res) => {
     });
     } catch (error) {
       console.error('Error creating incident:', error);
-      res.status(500).json({
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error'
-      });
+      return next(error);
     }
   });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async (req, res, next: NextFunction) => {
   try {
     const { id } = req.params;
     const { status, title, description, impact } = req.body;
@@ -137,15 +128,12 @@ router.patch('/:id', async (req, res) => {
     });
   } catch (error) {
     console.error('Error updating incident:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 
 // Add incident update
-router.post('/:id/updates', async (req, res) => {
+router.post('/:id/updates', async (req, res, next: NextFunction) => {
   try {
     const { id } = req.params;
     const { message, status } = req.body;
@@ -164,10 +152,7 @@ router.post('/:id/updates', async (req, res) => {
     });
   } catch (error) {
     console.error('Error adding incident update:', error);
-    res.status(500).json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    return next(error);
   }
 });
 
