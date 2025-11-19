@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   );
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main id="main-content" role="main" className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Service Status</h1>
         
@@ -64,6 +64,6 @@ export default async function DashboardPage() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

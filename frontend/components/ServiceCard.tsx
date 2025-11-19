@@ -65,10 +65,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         {service.message && (
-          <p className="text-sm text-gray-600">{service.message}</p>
+          <p className="text-sm text-gray-700">{service.message}</p>
         )}
 
-        <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-200">
+        <div className="flex items-center justify-between text-xs text-gray-600 pt-2 border-t border-gray-200">
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>

@@ -17,6 +17,8 @@ export default function RootLayout({
     // when the HTML <html> class is toggled by the inline script before hydration.
     <html lang="en" suppressHydrationWarning>
       <body>
+        {/* Accessible skip link for keyboard users - becomes visible on focus */}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white p-2 rounded border">Skip to main content</a>
         <Providers>
           {children}
         </Providers>

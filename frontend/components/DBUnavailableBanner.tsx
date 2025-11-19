@@ -51,7 +51,7 @@ export function DBUnavailableBanner() {
         </div>
         <div className="flex items-center gap-3">
           <button
-            className="text-sm text-yellow-700 underline"
+            className="text-sm text-yellow-900 underline focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 rounded"
             onClick={onRetry}
             disabled={retrying}
             aria-label="Retry fetching live data"
@@ -60,7 +60,7 @@ export function DBUnavailableBanner() {
           </button>
 
           <button
-            className="text-sm text-yellow-700 underline"
+            className="text-sm text-yellow-900 underline focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 rounded"
             onClick={onClose}
             aria-label="Dismiss database unavailable banner"
           >

@@ -6,8 +6,9 @@ import { chromium } from 'playwright';
 const OUTDIR = path.resolve('logs');
 if (!fs.existsSync(OUTDIR)) fs.mkdirSync(OUTDIR, { recursive: true });
 
-const seedUrl = 'http://localhost:3000/';
-const pages = [seedUrl, 'http://localhost:3000/dashboard', 'http://localhost:3000/incidents'];
+const BASE = process.env.A11Y_BASE || process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+const seedUrl = `${BASE}/`;
+const pages = [seedUrl, `${BASE}/dashboard`, `${BASE}/incidents`];
 
 const AXE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.6.3/axe.min.js';
 
@@ -17,10 +18,10 @@ async function run() {
   for (const p of pages) {
     const page = await context.newPage();
     try {
-      console.log('Visiting', p.url);
+      console.log('Visiting', p);
       const res = await page.goto(p, { waitUntil: 'networkidle', timeout: 30000 });
       if (!res || res.status() >= 400) {
-        console.warn(`Page ${p.url} returned status ${res ? res.status() : 'NO-RESPONSE'}`);
+        console.warn(`Page ${p} returned status ${res ? res.status() : 'NO-RESPONSE'}`);
       }
 
       // Inject axe
@@ -32,13 +33,20 @@ async function run() {
         return await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2aa', 'best-practice'] } });
       });
 
-      const name = new URL(p).pathname.replace(/\//g, '_') || 'home';
-      const outPath = path.join(OUTDIR, `accessibility-${name || 'home'}.json`);
+  // build a friendly name: 'home' for '/', otherwise strip leading/trailing slashes
+  const pathname = new URL(p).pathname;
+  const cleaned = pathname === '/' ? 'home' : pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '_');
+  const name = cleaned || 'home';
+  const outPath = path.join(OUTDIR, `accessibility-${name}.json`);
       fs.writeFileSync(outPath, JSON.stringify(result, null, 2));
       console.log('Saved', outPath);
     } catch (err) {
-      console.error('Error auditing', p.url, String(err));
-      fs.writeFileSync(path.join(OUTDIR, `accessibility-${p.name}-error.txt`), String(err));
+      console.error('Error auditing', p, String(err));
+      // safe fallback filename
+      const errName = (function () {
+        try { return new URL(p).pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '_') || 'home'; } catch { return 'unknown'; }
+      })();
+      fs.writeFileSync(path.join(OUTDIR, `accessibility-${errName}-error.txt`), String(err));
     } finally {
       await page.close();
     }
@@ -64,8 +72,10 @@ async function run() {
         const result = await page2.evaluate(async () => {
           return await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2aa', 'best-practice'] } });
         });
-        const name = new URL(u).pathname.replace(/\//g, '_') || 'home';
-        const outPath = path.join(OUTDIR, `accessibility-${name || 'page'}.json`);
+        const pathname = new URL(u).pathname;
+        const cleaned = pathname === '/' ? 'home' : pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '_');
+        const name = cleaned || 'home';
+        const outPath = path.join(OUTDIR, `accessibility-${name}.json`);
         fs.writeFileSync(outPath, JSON.stringify(result, null, 2));
         console.log('Saved', outPath);
       } catch (err) {

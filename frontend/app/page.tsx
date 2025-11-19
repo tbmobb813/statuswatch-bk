@@ -103,14 +103,14 @@ export default function Dashboard() {
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <h1 className="text-3xl font-bold text-gray-900">StatusWatch</h1>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-700">
             Real-time status monitoring for your favorite developer tools
           </p>
         </div>
       </header>
 
       {/* Overall Status Banner */}
-      <div className={`${
+      <div className={`$${
         overallStatus === 'operational' ? 'bg-green-50 border-green-200' :
         overallStatus === 'degraded' ? 'bg-yellow-50 border-yellow-200' :
         overallStatus === 'outage' ? 'bg-red-50 border-red-200' :
@@ -132,7 +132,7 @@ export default function Dashboard() {
                 {overallStatus === 'unknown' && 'Loading...'}
               </span>
             </div>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-600">
               Last updated: {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
             </span>
           </div>
@@ -140,7 +140,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" role="main" aria-label="Primary content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="motion-safe:animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
@@ -186,7 +186,7 @@ export default function Dashboard() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-gray-600">
             StatusWatch - Monitoring the tools you rely on
           </p>
         </div>
