@@ -3,7 +3,10 @@ import axios from 'axios';
 import { Resend } from 'resend';
 
 const prisma = new PrismaClient();
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Only initialize Resend if API key is provided
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 interface NotificationPayload {
   userId: string;
@@ -162,7 +165,7 @@ export class NotificationService {
       }
 
       // Skip if no API key is configured
-      if (!process.env.RESEND_API_KEY) {
+      if (!resend) {
         console.log(`📧 Email would be sent to ${user.email}: ${payload.title} (Resend API key not configured)`);
         return;
       }
