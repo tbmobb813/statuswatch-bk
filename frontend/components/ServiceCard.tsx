@@ -51,13 +51,13 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const config = statusConfig[service.status as keyof typeof statusConfig] || statusConfig.unknown;
 
   return (
-    <div className={`${config.bg} ${config.border} border rounded-lg p-6 hover:shadow-md transition-shadow`}>
+    <div className={`${config.bg} ${config.border} border rounded-lg p-6 transition-shadow`}>
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
         <div className={`w-3 h-3 rounded-full ${config.dot}`} />
       </div>
 
-      <div className="space-y-2">
+  <div className="space-y-2">
         <div className="flex items-center gap-2">
           <span className={`text-sm font-medium ${config.text}`}>
             {config.label}

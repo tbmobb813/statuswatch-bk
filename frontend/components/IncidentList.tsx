@@ -77,7 +77,7 @@ export function IncidentList() {
   if (loading) {
     return (
       <div className="bg-white rounded-lg shadow p-6">
-        <div className="animate-pulse space-y-4">
+        <div className="motion-safe:animate-pulse space-y-4">
           <div className="h-4 bg-gray-200 rounded w-3/4"></div>
           <div className="h-4 bg-gray-200 rounded w-1/2"></div>
         </div>
@@ -103,7 +103,7 @@ export function IncidentList() {
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="divide-y divide-gray-200">
         {incidents.map((incident) => (
-          <div key={incident.id} className="p-6 hover:bg-gray-50 transition-colors">
+          <div key={incident.id} className="p-6 hover:bg-gray-50 motion-safe:transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">

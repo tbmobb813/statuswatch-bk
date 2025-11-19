@@ -3,18 +3,48 @@
 @tailwind utilities;
 /* stylelint-enable at-rule-no-unknown */
 
+/* Design tokens and accessibility helpers */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --panel-alpha: 0.6; /* default panel opacity */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --panel-alpha: 0.4;
   }
 }
 
+/* Panel utility that provides a tokenized translucent background with a solid fallback.
+   Use class `panel` on cards/banners that use glassmorphism. This keeps contrast predictable. */
+.panel {
+  background-color: rgba(255,255,255,var(--panel-alpha));
+  backdrop-filter: blur(.4rem);
+  -webkit-backdrop-filter: blur(.4rem);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel {
+    background-color: rgba(15,23,42,var(--panel-alpha));
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+}
+
+/* Respect users who request reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global styles */
 body {
   color: var(--foreground);
   background: var(--background);
@@ -24,3 +54,6 @@ body {
 * {
   box-sizing: border-box;
 }
+
+/* NOTE: prefer Tailwind's `motion-safe:` and `motion-reduce:` utilities in markup.
+   The CSS above ensures a robust fallback for browsers and non-Tailwind usage. */

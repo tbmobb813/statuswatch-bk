@@ -67,15 +67,28 @@ export function UptimeChart() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-white rounded-lg shadow p-6" role="region" aria-labelledby="uptime-overview-heading">
+      <h2 id="uptime-overview-heading" className="sr-only">90 day uptime overview</h2>
       <div className="space-y-6">
+        {/* Screen-reader summary: list average uptimes per service for accessibility */}
+  <div className="sr-only">
+          <ul>
+            {Object.entries(uptimeData).map(([serviceName, data]) => {
+              const avgUptime = data.reduce((sum, d) => sum + d.uptime, 0) / data.length;
+              return (
+                <li key={serviceName}>{serviceName}: average uptime {avgUptime.toFixed(2)} percent</li>
+              );
+            })}
+          </ul>
+        </div>
+
         {Object.entries(uptimeData).map(([serviceName, data]) => {
           const avgUptime = data.reduce((sum, d) => sum + d.uptime, 0) / data.length;
           
           return (
             <div key={serviceName}>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-medium text-gray-900">{serviceName}</h3>
+                <h3 className="text-sm font-medium text-gray-900" id={`uptime-${serviceName}-label`}>{serviceName}</h3>
                 <span className="text-sm font-semibold text-gray-900">
                   {avgUptime.toFixed(2)}% uptime
                 </span>
@@ -87,6 +100,7 @@ export function UptimeChart() {
                     key={index}
                     className={`flex-1 h-8 rounded ${getUptimeColor(day.uptime)} tooltip`}
                     title={`${new Date(day.date).toLocaleDateString()}: ${day.uptime.toFixed(2)}%`}
+                    aria-hidden="true"
                   />
                 ))}
               </div>
