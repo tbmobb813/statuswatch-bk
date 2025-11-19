@@ -14,20 +14,20 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="h-9 w-20 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse" />
+      <div className="h-9 w-20 rounded-md bg-gray-200 dark:bg-slate-700 animate-pulse" />
     );
   }
 
   return (
-    <div className="flex items-center gap-2 p-1 bg-gray-200 dark:bg-gray-700 rounded-lg">
+    <div className="flex items-center gap-2 p-1 bg-gray-200 dark:bg-slate-700 rounded-lg">
       <button
         onClick={() => setTheme('light')}
         className={`
           px-3 py-1.5 rounded-md text-sm font-medium transition-all
           ${
             effectiveTheme === 'light'
-              ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              ? 'bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-50 shadow-sm'
+              : 'text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-50'
           }
         `}
         title="Light mode"
@@ -54,8 +54,8 @@ export function ThemeToggle() {
           px-3 py-1.5 rounded-md text-sm font-medium transition-all
           ${
             effectiveTheme === 'dark'
-              ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              ? 'bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-50 shadow-sm'
+              : 'text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-50'
           }
         `}
         title="Dark mode"
@@ -82,8 +82,8 @@ export function ThemeToggle() {
           px-3 py-1.5 rounded-md text-sm font-medium transition-all
           ${
             theme === 'system'
-              ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              ? 'bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-50 shadow-sm'
+              : 'text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-50'
           }
         `}
         title="System preference"
@@ -118,7 +118,7 @@ export function ThemeToggleSimple() {
   }, []);
 
   if (!mounted) {
-    return <div className="h-9 w-9 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse" />;
+    return <div className="h-9 w-9 rounded-md bg-gray-200 dark:bg-slate-700 animate-pulse" />;
   }
 
   const toggleTheme = () => {
@@ -130,10 +130,10 @@ export function ThemeToggleSimple() {
       onClick={toggleTheme}
       className="
         p-2 rounded-lg
-        bg-gray-200 dark:bg-gray-700
-        text-gray-700 dark:text-gray-300
-        hover:bg-gray-300 dark:hover:bg-gray-600
-        transition-colors
+        bg-gray-200 dark:bg-slate-700
+        text-gray-700 dark:text-slate-300
+        hover:bg-gray-300 dark:hover:bg-slate-600
+        transition-all duration-200
       "
       title={effectiveTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-label={effectiveTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}

@@ -58,16 +58,16 @@ export function UptimeChart() {
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200/50 dark:border-slate-700/50">
         <div className="animate-pulse">
-          <div className="h-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          <div className="h-32 bg-gray-200 dark:bg-slate-700 rounded"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200/50 dark:border-slate-700/50">
       <div className="space-y-6">
         {Object.entries(uptimeData).map(([serviceName, data]) => {
           const avgUptime = data.reduce((sum, d) => sum + d.uptime, 0) / data.length;
@@ -75,8 +75,8 @@ export function UptimeChart() {
           return (
             <div key={serviceName}>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white">{serviceName}</h3>
-                <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-sm font-medium text-gray-900 dark:text-slate-50">{serviceName}</h3>
+                <span className="text-sm font-semibold text-gray-900 dark:text-slate-50">
                   {avgUptime.toFixed(2)}% uptime
                 </span>
               </div>
@@ -95,7 +95,7 @@ export function UptimeChart() {
         })}
       </div>
 
-      <div className="mt-6 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+      <div className="mt-6 flex items-center justify-between text-xs text-gray-500 dark:text-slate-400">
         <span>90 days ago</span>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
