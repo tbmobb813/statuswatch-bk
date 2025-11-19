@@ -1,0 +1,4 @@
+
+> statuswatch@0.1.0 dev:backend:log
+> mkdir -p logs && npx dotenv-cli -e .env -- tsx src/server.ts >> logs/backend.log 2>&1
+

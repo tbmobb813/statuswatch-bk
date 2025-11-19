@@ -165,12 +165,12 @@ router.put('/alerts', async (req: AuthRequest, res) => {
       },
       create: {
         userId: req.userId!,
-        notifyOnDegraded,
-        notifyOnOutage,
-        notifyOnRecovery,
-        emailEnabled,
-        discordWebhook,
-        slackWebhook
+        ...(typeof notifyOnDegraded === 'boolean' && { notifyOnDegraded }),
+        ...(typeof notifyOnOutage === 'boolean' && { notifyOnOutage }),
+        ...(typeof notifyOnRecovery === 'boolean' && { notifyOnRecovery }),
+        ...(typeof emailEnabled === 'boolean' && { emailEnabled }),
+        ...(discordWebhook !== undefined && { discordWebhook }),
+        ...(slackWebhook !== undefined && { slackWebhook })
       }
     });
 

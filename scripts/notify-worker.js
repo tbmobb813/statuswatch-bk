@@ -8,7 +8,7 @@ const sendgrid = require('@sendgrid/mail');
 
 const prisma = new PrismaClient();
 
-async function sendEmailDryRun(to, subject, _html) {
+async function sendEmailDryRun(to, subject) {
   console.log(`DRY-RUN email to=${to} subject=${subject}`);
 }
 

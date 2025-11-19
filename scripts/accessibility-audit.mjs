@@ -28,7 +28,7 @@ async function run() {
 
       // Run axe
       const result = await page.evaluate(async () => {
-        // eslint-disable-next-line no-undef
+         
         return await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2aa', 'best-practice'] } });
       });
 
@@ -48,7 +48,7 @@ async function run() {
   try {
     const page = await context.newPage();
     await page.goto(seedUrl, { waitUntil: 'networkidle' });
-    const hrefs = await page.$$eval('a[href^="/"]', (els) => Array.from(new Set(els.map(e => (e as HTMLAnchorElement).href))));
+    const hrefs = await page.$$eval('a[href^="/"]', (els) => Array.from(new Set(els.map(e => e.href))));
     await page.close();
 
     const toVisit = hrefs.slice(0, 10).filter(u => !pages.includes(u));
@@ -62,7 +62,7 @@ async function run() {
         }
         await page2.addScriptTag({ url: AXE_CDN });
         const result = await page2.evaluate(async () => {
-          return await (window as any).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2aa', 'best-practice'] } });
+          return await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2aa', 'best-practice'] } });
         });
         const name = new URL(u).pathname.replace(/\//g, '_') || 'home';
         const outPath = path.join(OUTDIR, `accessibility-${name || 'page'}.json`);
@@ -86,7 +86,7 @@ async function run() {
       const content = JSON.parse(fs.readFileSync(path.join(OUTDIR, f)));
       const failures = content.violations || [];
       if (failures.length > 0) {
-        summary.push({ file: f, count: failures.length, top: failures.slice(0,3).map((v:any)=>({ id: v.id, impact: v.impact, help: v.help })) });
+        summary.push({ file: f, count: failures.length, top: failures.slice(0,3).map(v => ({ id: v.id, impact: v.impact, help: v.help })) });
       }
     }
     const md = ['# Accessibility Audit Summary', '', `Generated: ${new Date().toISOString()}`, ''];

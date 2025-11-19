@@ -1,8 +1,28 @@
 #!/usr/bin/env bash
+# Start the backend by exporting variables from .env into the environment and running tsx.
 set -euo pipefail
-# Ensure logs directory exists
-mkdir -p "$(dirname "$0")/../logs" || true
-cd "$(dirname "$0")/.."
-# Start backend with dotenv and tsx, append stdout/stderr to logs/backend.log
-echo "Starting backend (logs -> logs/backend.log)"
-dotenv -e .env -- npx tsx src/server.ts >> logs/backend.log 2>&1
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT_DIR"
+if [ -f .env ]; then
+  # Export environment variables from .env safely (ignore comments and empty lines)
+  set -a
+  # shellcheck disable=SC1091
+  . .env || true
+  set +a
+fi
+
+# Run tsx directly via npx so we don't rely on any global binaries.
+npx tsx src/server.ts
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT_DIR"
+if [ -f .env ]; then
+  set -a
+  # shellcheck disable=SC1091
+  . .env || true
+  set +a
+fi
+
+# Run tsx directly via npx so we don't rely on any global binaries.
+exec npx tsx src/server.ts

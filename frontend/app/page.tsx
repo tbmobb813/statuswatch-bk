@@ -24,65 +24,65 @@ export default function Dashboard() {
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
-  fetchStatuses();
-    
-    // Refresh every 30 seconds
-    const interval = setInterval(fetchStatuses, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    const fetchStatuses = async () => {
+      try {
+        // Use same-origin proxy to avoid client-side cross-origin issues
+        const response = await fetch('/api/proxy/dashboard');
 
-  const fetchStatuses = async () => {
-    try {
-  // Use same-origin proxy to avoid client-side cross-origin issues
-  const response = await fetch('/api/proxy/dashboard');
-      // If we get a 503 from the server, flag DB unavailable in the global context
-      if (response.status === 503) {
-        try {
-          const err = await response.json();
-          if (err && (err.code === 'db_unavailable' || err.error?.includes('Database unavailable'))) {
+        // If we get a 503 from the server, flag DB unavailable in the global context
+        if (response.status === 503) {
+          try {
+            const err = await response.json();
+            if (err && (err.code === 'db_unavailable' || err.error?.includes('Database unavailable'))) {
+              setDbUnavailable(true);
+            }
+          } catch {
             setDbUnavailable(true);
           }
-        } catch (_) {
-          setDbUnavailable(true);
+          // stop further processing when DB is unavailable
+          return;
         }
+
+        const data = await response.json();
+
+        if (data && data.success) {
+          // Map dashboard summary into the shape expected by this component
+          type DashboardItem = {
+            slug: string;
+            name: string;
+            status?: string;
+            isUp?: boolean;
+            lastChecked?: string | null;
+          };
+
+          const items = data.data as DashboardItem[];
+          const mapped = items.map((s) => ({
+            slug: s.slug,
+            name: s.name,
+            status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
+            message: undefined,
+            lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
+            responseTime: undefined
+          }));
+
+          setServices(mapped);
+          setLastUpdate(new Date());
+          setErrorMessage(null);
+        }
+      } catch (error) {
+        console.error('Error fetching statuses:', error);
+        setErrorMessage(String(error));
+        // If fetch itself failed (network or CORS), treat as DB unavailable indicator
+        try {
+          setDbUnavailable(true);
+        } catch {}
+      } finally {
+        setLoading(false);
       }
-      const data = await response.json();
+    };
 
-  if (data.success) {
-        // Map dashboard summary into the shape expected by this component
-        type DashboardItem = {
-          slug: string;
-          name: string;
-          status?: string;
-          isUp?: boolean;
-          lastChecked?: string | null;
-        };
-
-        const items = data.data as DashboardItem[];
-        const mapped = items.map((s) => ({
-          slug: s.slug,
-          name: s.name,
-          status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
-          message: undefined,
-          lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
-          responseTime: undefined
-        }));
-
-        setServices(mapped);
-        setLastUpdate(new Date());
-        setErrorMessage(null);
-      }
-    } catch (error) {
-      console.error('Error fetching statuses:', error);
-      setErrorMessage(String(error));
-      // If fetch itself failed (network or CORS), treat as DB unavailable indicator
-      try {
-        setDbUnavailable(true);
-      } catch (_) {}
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchStatuses();
+  }, [setDbUnavailable]);
 
   const getOverallStatus = () => {
     if (services.length === 0) return 'unknown';

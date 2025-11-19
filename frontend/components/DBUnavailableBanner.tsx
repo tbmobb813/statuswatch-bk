@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDbStatus } from './DbStatusContext';
 
 export function DBUnavailableBanner() {
   const { dbUnavailable, setDbUnavailable } = useDbStatus();
-  const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    const s = localStorage.getItem('dbBannerDismissed');
-    setDismissed(s === '1');
-  }, []);
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem('dbBannerDismissed') === '1';
+    } catch {
+      return false;
+    }
+  });
+  const [retrying, setRetrying] = useState(false);
 
   if (!dbUnavailable || dismissed) return null;
 
@@ -19,8 +21,26 @@ export function DBUnavailableBanner() {
     localStorage.setItem('dbBannerDismissed', '1');
   };
 
+  const onRetry = async () => {
+    setRetrying(true);
+    try {
+      const resp = await fetch('/api/proxy/dashboard');
+      if (resp.ok) {
+        // Backend recovered
+        setDbUnavailable(false);
+        try {
+          localStorage.removeItem('dbBannerDismissed');
+        } catch {}
+      }
+    } catch {
+      // ignore - we'll leave banner visible
+    } finally {
+      setRetrying(false);
+    }
+  };
+
   return (
-    <div className="bg-yellow-50 border-b border-yellow-200">
+    <div className="bg-yellow-50 border-b border-yellow-200" role="status" aria-live="polite">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="inline-block w-3 h-3 rounded-full bg-yellow-500" />
@@ -29,8 +49,23 @@ export function DBUnavailableBanner() {
             <p className="text-xs text-yellow-700">Live data is currently unavailable. You may still view cached content.</p>
           </div>
         </div>
-        <div>
-          <button className="text-sm text-yellow-700 underline" onClick={onClose}>Dismiss</button>
+        <div className="flex items-center gap-3">
+          <button
+            className="text-sm text-yellow-700 underline"
+            onClick={onRetry}
+            disabled={retrying}
+            aria-label="Retry fetching live data"
+          >
+            {retrying ? 'Retrying…' : 'Retry'}
+          </button>
+
+          <button
+            className="text-sm text-yellow-700 underline"
+            onClick={onClose}
+            aria-label="Dismiss database unavailable banner"
+          >
+            Dismiss
+          </button>
         </div>
       </div>
     </div>
