@@ -40,7 +40,67 @@ function getMaxServicesForUser(user: { stripePriceId?: string | null }): number 
   return MAX_CUSTOM_SERVICES_FREE;
 }
 
-// Test service connectivity
+/**
+ * @swagger
+ * /api/custom-services/test:
+ *   post:
+ *     tags: [Custom Services]
+ *     summary: Test service connectivity
+ *     description: Test if a custom service URL is reachable before adding it
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - url
+ *             properties:
+ *               url:
+ *                 type: string
+ *                 example: https://api.example.com/health
+ *               checkType:
+ *                 type: string
+ *                 enum: [http, https]
+ *                 default: http
+ *               expectedStatusCode:
+ *                 type: integer
+ *                 default: 200
+ *               timeout:
+ *                 type: integer
+ *                 default: 5000
+ *     responses:
+ *       200:
+ *         description: Test result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     isReachable:
+ *                       type: boolean
+ *                     isUp:
+ *                       type: boolean
+ *                     statusCode:
+ *                       type: integer
+ *                     responseTime:
+ *                       type: integer
+ *                     message:
+ *                       type: string
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 router.post('/test', authMiddleware, validate(testServiceSchema), async (req: AuthRequest, res) => {
   try {
     const { url, checkType, expectedStatusCode, timeout } = req.body;
@@ -97,7 +157,42 @@ router.post('/test', authMiddleware, validate(testServiceSchema), async (req: Au
   }
 });
 
-// Get all custom services for current user
+/**
+ * @swagger
+ * /api/custom-services:
+ *   get:
+ *     tags: [Custom Services]
+ *     summary: Get all custom services
+ *     description: Retrieve all custom services for the authenticated user with uptime statistics
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of custom services
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     allOf:
+ *                       - $ref: '#/components/schemas/CustomService'
+ *                       - type: object
+ *                         properties:
+ *                           uptime:
+ *                             type: number
+ *                             example: 99.5
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 router.get('/', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const userId = req.userId!;
