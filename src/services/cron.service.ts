@@ -8,7 +8,7 @@ const statusService = new StatusService();
 const notificationService = new NotificationService();
 
 export class CronService {
-  private tasks: ScheduledTask[] = [];
+  private tasks: Array<ReturnType<typeof cron.schedule>> = [];
   private retryAttempts: number = Number(process.env.DB_RETRY_ATTEMPTS ?? process.env.RETRY_ATTEMPTS ?? 5);
   private retryDelayMs: number = Number(process.env.DB_RETRY_DELAY_MS ?? process.env.RETRY_DELAY_MS ?? 300);
 

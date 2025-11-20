@@ -98,13 +98,13 @@ export class MonitoringService {
             status: incidentData.status,
             severity: incidentData.severity,
             startedAt: incidentData.startedAt,
-            updates: {
-              create: incidentData.updates.map((upd: { message: string; createdAt: Date }) => ({
+              updates: {
+                create: incidentData.updates.map((upd) => ({
                   message: upd.message,
                   status: incidentData.status,
                   createdAt: upd.createdAt
                 }))
-            }
+              }
           }
         });
         

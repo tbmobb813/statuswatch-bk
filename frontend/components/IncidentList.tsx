@@ -90,10 +90,10 @@ export function IncidentList() {
 
   if (loading) {
     return (
-      <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200/50 dark:border-slate-700/50">
-        <div className="animate-pulse space-y-4">
-          <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-3/4"></div>
-          <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-1/2"></div>
+      <div className="bg-white rounded-lg shadow p-6">
+        <div className="motion-safe:animate-pulse space-y-4">
+          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
         </div>
       </div>
     );
@@ -107,84 +107,48 @@ export function IncidentList() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h3 className="text-lg font-medium text-gray-900 dark:text-slate-50 mb-1">No incidents reported</h3>
-        <p className="text-sm text-gray-500 dark:text-slate-400">All services are running smoothly!</p>
+        <h3 className="text-lg font-medium text-gray-900 mb-1">No incidents reported</h3>
+  <p className="text-sm text-gray-600">All services are running smoothly!</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-200/50 dark:border-slate-700/50">
-      <div className="divide-y divide-gray-200/50 dark:divide-slate-700/50">
-        {incidents.map((incident) => {
-          const isExpanded = expandedIncidents.has(incident.id);
-          return (
-            <div
-              key={incident.id}
-              className="transition-all duration-300 hover:bg-gray-50/50 dark:hover:bg-slate-700/30"
-            >
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-50">
-                        {incident.title}
-                      </h3>
-                      <span className="text-sm text-gray-500 dark:text-slate-400">
-                        • {incident.service.name}
-                      </span>
-                    </div>
-
-                    {/* Progressive Disclosure */}
-                    {incident.description && (
-                      <button
-                        onClick={() => toggleIncident(incident.id)}
-                        className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                      >
-                        {isExpanded ? (
-                          <>
-                            <ChevronUp className="w-4 h-4" />
-                            <span>Hide details</span>
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-4 h-4" />
-                            <span>Show details</span>
-                          </>
-                        )}
-                      </button>
-                    )}
-                  </div>
+    <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="divide-y divide-gray-200">
+        {incidents.map((incident) => (
+          <div key={incident.id} className="p-6 hover:bg-gray-50 motion-safe:transition-colors">
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {incident.title}
+                  </h3>
+                  <span className="text-sm text-gray-600">
+                    • {incident.service.name}
+                  </span>
                 </div>
-
-                {/* Expandable Description */}
-                {incident.description && isExpanded && (
-                  <div className="mb-3 overflow-hidden">
-                    <div className="animate-in slide-in-from-top duration-300">
-                      <p className="text-sm text-gray-600 dark:text-slate-300 bg-gray-50/50 dark:bg-slate-900/30 p-3 rounded-lg border-l-4 border-blue-500">
-                        {incident.description}
-                      </p>
-                    </div>
-                  </div>
+                {incident.description && (
+                  <p className="text-sm text-gray-700 mb-3">
+                    {incident.description}
+                  </p>
                 )}
 
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)} backdrop-blur-sm`}>
-                    {incident.status.charAt(0).toUpperCase() + incident.status.slice(1)}
-                  </span>
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getImpactColor(incident.impact)} backdrop-blur-sm`}>
-                    {incident.impact.charAt(0).toUpperCase() + incident.impact.slice(1)} Impact
-                  </span>
-                  <span className="text-xs text-gray-500 dark:text-slate-400">
-                    {new Date(incident.startedAt).toLocaleString()}
-                  </span>
-                  {incident.resolvedAt && (
-                    <span className="text-xs text-green-600 dark:text-green-400 font-medium">
-                      ✓ Resolved {new Date(incident.resolvedAt).toLocaleString()}
-                    </span>
-                  )}
-                </div>
-              </div>
+            <div className="flex items-center gap-3">
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)}`}>
+                {incident.status.charAt(0).toUpperCase() + incident.status.slice(1)}
+              </span>
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getImpactColor(incident.impact)}`}>
+                {incident.impact.charAt(0).toUpperCase() + incident.impact.slice(1)} Impact
+              </span>
+              <span className="text-xs text-gray-600">
+                {new Date(incident.startedAt).toLocaleString()}
+              </span>
+              {incident.resolvedAt && (
+                <span className="text-xs text-gray-600">
+                  → Resolved {new Date(incident.resolvedAt).toLocaleString()}
+                </span>
+              )}
             </div>
           );
         })}

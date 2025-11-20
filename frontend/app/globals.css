@@ -1,19 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
+/* Design tokens and accessibility helpers */
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --foreground: #171717;
+  --panel-alpha: 0.6; /* default panel opacity */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --panel-alpha: 0.4;
   }
 }
 
+/* Panel utility that provides a tokenized translucent background with a solid fallback.
+   Use class `panel` on cards/banners that use glassmorphism. This keeps contrast predictable. */
+.panel {
+  background-color: rgba(255,255,255,var(--panel-alpha));
+  -webkit-backdrop-filter: blur(.4rem);
+  backdrop-filter: blur(.4rem);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel {
+    background-color: rgba(15,23,42,var(--panel-alpha));
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+}
+
+/* Respect users who request reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global styles */
 body {
   color: var(--foreground);
   background: var(--background);
@@ -23,3 +54,6 @@ body {
 * {
   box-sizing: border-box;
 }
+
+/* NOTE: prefer Tailwind's `motion-safe:` and `motion-reduce:` utilities in markup.
+   The CSS above ensures a robust fallback for browsers and non-Tailwind usage. */

@@ -85,11 +85,24 @@ app.use((req, res) => {
 });
 
 // Error handler
+import { isPrismaUnavailable } from './lib/error-utils';
+
 app.use((err: Error, req: express.Request, res: express.Response, _next: express.NextFunction) => {
   // Mark `_next` as used to satisfy unused-var lint rule (we intentionally
   // don't call it here because we handle the error response directly).
   void _next;
-  console.error('Error:', err);
+  console.error('Error:', err && err.message ? err.message : err);
+
+  if (isPrismaUnavailable(err)) {
+    // The database is unavailable — return a structured 503 so the frontend
+    // can surface a consistent banner or fallback UI instead of an opaque 500.
+    return res.status(503).json({
+      success: false,
+      code: 'db_unavailable',
+      error: 'Database unavailable (check connection)'
+    });
+  }
+
   res.status(500).json({
     success: false,
     error: err.message || 'Internal server error'

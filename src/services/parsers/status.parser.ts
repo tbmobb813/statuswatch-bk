@@ -31,7 +31,7 @@ export class StatusParser {
     }
   }
 
-  private parseGitHub($: cheerio.CheerioAPI): ParsedStatus {
+  private parseGitHub($: cheerio.Root): ParsedStatus {
     // GitHub uses statuspage.io
     const status = $('.status').first().text().trim().toLowerCase();
     const message = $('.page-status .status').text().trim();
@@ -68,7 +68,7 @@ export class StatusParser {
     };
   }
 
-  private parseAWS($: cheerio.CheerioAPI): ParsedStatus {
+  private parseAWS($: cheerio.Root): ParsedStatus {
     // AWS Health Dashboard
     const statusText = $('body').text().toLowerCase();
     
@@ -96,7 +96,7 @@ export class StatusParser {
     };
   }
 
-  private parseVercel($: cheerio.CheerioAPI): ParsedStatus {
+  private parseVercel($: cheerio.Root): ParsedStatus {
     // Vercel uses statuspage.io
     const indicator = $('.page-status-indicator').text().trim().toLowerCase();
     const message = $('.status-description').text().trim();
@@ -119,7 +119,7 @@ export class StatusParser {
     };
   }
 
-  private parseStripe($: cheerio.CheerioAPI): ParsedStatus {
+  private parseStripe($: cheerio.Root): ParsedStatus {
     // Stripe's status page
     const statusText = $('.current-status').text().trim().toLowerCase();
     
@@ -146,7 +146,7 @@ export class StatusParser {
     };
   }
 
-  private parseOpenAI($: cheerio.CheerioAPI): ParsedStatus {
+  private parseOpenAI($: cheerio.Root): ParsedStatus {
     // OpenAI status page
     const indicator = $('.page-status span').text().trim().toLowerCase();
     
@@ -178,7 +178,7 @@ export class StatusParser {
     };
   }
 
-  private parseGeneric($: cheerio.CheerioAPI): ParsedStatus {
+  private parseGeneric($: cheerio.Root): ParsedStatus {
     // Generic parser for unknown status pages
     const bodyText = $('body').text().toLowerCase();
     

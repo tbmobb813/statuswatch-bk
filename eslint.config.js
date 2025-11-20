@@ -3,6 +3,7 @@
 // consume. It keeps per-package configs operational by not forcing heavy
 // rule sets for `frontend` (which uses `eslint-config-next`).
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 // Pull in the TypeScript plugin and use its flat-compatible recommended
 // presets. The plugin exports `flat/*` configs which are intended for use
 // with the flat config system.

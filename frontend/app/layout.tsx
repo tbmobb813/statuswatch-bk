@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { ThemeProvider } from '@/contexts/ThemeContext'
+import Providers from '@/components/Providers'
 
 export const metadata: Metadata = {
   title: 'StatusWatch - Real-time Service Monitoring',
@@ -13,11 +13,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    // suppressHydrationWarning prevents React from logging a hydration mismatch
+    // when the HTML <html> class is toggled by the inline script before hydration.
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-colors">
-        <ThemeProvider>
+      <body>
+        {/* Accessible skip link for keyboard users - becomes visible on focus */}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white p-2 rounded border">Skip to main content</a>
+        <Providers>
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

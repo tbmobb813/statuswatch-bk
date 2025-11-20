@@ -76,45 +76,29 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const uptimePercentage = getUptimePercentage();
 
   return (
-    <div className={`
-      ${config.bg} ${config.border} border rounded-xl p-6
-      backdrop-blur-sm bg-opacity-60 dark:bg-opacity-40
-      transition-all duration-300 ease-out
-      hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03]
-      hover:border-opacity-100
-      dark:hover:shadow-2xl dark:hover:shadow-blue-500/10
-      cursor-pointer
-      group
-      relative overflow-hidden
-    `}>
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-white/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
+    <div className={`${config.bg} ${config.border} border rounded-lg p-6 transition-shadow`}>
+      <div className="flex items-start justify-between mb-4">
+        <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+        <div className={`w-3 h-3 rounded-full ${config.dot}`} />
+      </div>
 
-      <div className="relative z-10">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              {service.name}
-            </h3>
-            {uptimePercentage !== null && (
-              <p className="text-xs text-gray-500 dark:text-slate-400 mt-1 font-medium">
-                {uptimePercentage.toFixed(2)}% uptime
-              </p>
-            )}
-          </div>
-          <div className={`w-3 h-3 rounded-full ${config.dot} transition-all duration-300 group-hover:scale-125 group-hover:shadow-lg`} />
+  <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <span className={`text-sm font-medium ${config.text}`}>
+            {config.label}
+          </span>
         </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <StatusIcon className={`w-4 h-4 ${config.text} transition-transform duration-300 group-hover:scale-110`} />
-            <span className={`text-sm font-medium ${config.text}`}>
-              {config.label}
-            </span>
-          </div>
+        {service.message && (
+          <p className="text-sm text-gray-700">{service.message}</p>
+        )}
 
-          {service.message && (
-            <p className="text-sm text-gray-600 dark:text-slate-400">{service.message}</p>
+        <div className="flex items-center justify-between text-xs text-gray-600 pt-2 border-t border-gray-200">
+          <span>
+            Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
+          </span>
+          {service.responseTime && (
+            <span>{service.responseTime}ms</span>
           )}
 
           <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-2 border-t border-gray-200/50 dark:border-slate-700/50">

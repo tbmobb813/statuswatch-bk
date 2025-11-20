@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { toast, Toaster } from 'sonner';
+import { useDbStatus } from '@/components/DbStatusContext';
 import { ServiceCard } from '@/components/ServiceCard';
 import { IncidentList } from '@/components/IncidentList';
 import { UptimeChart } from '@/components/UptimeChart';
@@ -18,6 +18,7 @@ interface ServiceStatus {
 }
 
 export default function Dashboard() {
+  const { setDbUnavailable } = useDbStatus();
   const [services, setServices] = useState<ServiceStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -25,65 +26,65 @@ export default function Dashboard() {
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
-  fetchStatuses();
-    
-    // Refresh every 30 seconds
-    const interval = setInterval(fetchStatuses, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    const fetchStatuses = async () => {
+      try {
+        // Use same-origin proxy to avoid client-side cross-origin issues
+        const response = await fetch('/api/proxy/dashboard');
 
-  const fetchStatuses = async () => {
-    try {
-  // Use same-origin proxy to avoid client-side cross-origin issues
-  const response = await fetch('/api/proxy/dashboard');
-      const data = await response.json();
-
-  if (data.success) {
-        // Map dashboard summary into the shape expected by this component
-        type DashboardItem = {
-          slug: string;
-          name: string;
-          status?: string;
-          isUp?: boolean;
-          lastChecked?: string | null;
-        };
-
-        const items = data.data as DashboardItem[];
-        const mapped = items.map((s) => ({
-          slug: s.slug,
-          name: s.name,
-          status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
-          message: undefined,
-          lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
-          responseTime: undefined
-        }));
-
-        setServices(mapped);
-        setLastUpdate(new Date());
-        setErrorMessage(null);
-
-        // Show toast on successful refresh (but not on initial load)
-        if (!loading) {
-          toast.success('Status updated', {
-            duration: 3000,
-            position: 'bottom-right'
-          });
+        // If we get a 503 from the server, flag DB unavailable in the global context
+        if (response.status === 503) {
+          try {
+            const err = await response.json();
+            if (err && (err.code === 'db_unavailable' || err.error?.includes('Database unavailable'))) {
+              setDbUnavailable(true);
+            }
+          } catch {
+            setDbUnavailable(true);
+          }
+          // stop further processing when DB is unavailable
+          return;
         }
-      }
-    } catch (error) {
-      console.error('Error fetching statuses:', error);
-      setErrorMessage(String(error));
 
-      // Show error toast
-      toast.error('Failed to update status', {
-        description: 'Retrying automatically...',
-        duration: 4000,
-        position: 'bottom-right'
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+        const data = await response.json();
+
+        if (data && data.success) {
+          // Map dashboard summary into the shape expected by this component
+          type DashboardItem = {
+            slug: string;
+            name: string;
+            status?: string;
+            isUp?: boolean;
+            lastChecked?: string | null;
+          };
+
+          const items = data.data as DashboardItem[];
+          const mapped = items.map((s) => ({
+            slug: s.slug,
+            name: s.name,
+            status: (s.status || (s.isUp ? 'operational' : 'major_outage')) as ServiceStatus['status'],
+            message: undefined,
+            lastChecked: s.lastChecked ? new Date(s.lastChecked) : new Date(),
+            responseTime: undefined
+          }));
+
+          setServices(mapped);
+          setLastUpdate(new Date());
+          setErrorMessage(null);
+        }
+      } catch (error) {
+        console.error('Error fetching statuses:', error);
+        setErrorMessage(String(error));
+        // If fetch itself failed (network or CORS), treat as DB unavailable indicator
+        try {
+          setDbUnavailable(true);
+        } catch {}
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatuses();
+  }, [setDbUnavailable]);
 
   const getOverallStatus = () => {
     if (services.length === 0) return 'unknown';
@@ -103,27 +104,20 @@ export default function Dashboard() {
       {/* Header with Glassmorphism */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
-                StatusWatch
-              </h1>
-              <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
-                Real-time status monitoring for your favorite developer tools
-              </p>
-            </div>
-            <ThemeToggleSimple />
-          </div>
+          <h1 className="text-3xl font-bold text-gray-900">StatusWatch</h1>
+          <p className="mt-2 text-sm text-gray-700">
+            Real-time status monitoring for your favorite developer tools
+          </p>
         </div>
       </header>
 
-      {/* Overall Status Banner with Glassmorphism */}
-      <div className={`${
-        overallStatus === 'operational' ? 'bg-green-50/80 dark:bg-green-900/10 border-green-200/50 dark:border-green-800/50' :
-        overallStatus === 'degraded' ? 'bg-yellow-50/80 dark:bg-yellow-900/10 border-yellow-200/50 dark:border-yellow-800/50' :
-        overallStatus === 'outage' ? 'bg-red-50/80 dark:bg-red-900/10 border-red-200/50 dark:border-red-800/50' :
-        'bg-gray-50/80 dark:bg-slate-800/50 border-gray-200/50 dark:border-slate-700/50'
-      } border-b backdrop-blur-sm`}>
+      {/* Overall Status Banner */}
+      <div className={`$${
+        overallStatus === 'operational' ? 'bg-green-50 border-green-200' :
+        overallStatus === 'degraded' ? 'bg-yellow-50 border-yellow-200' :
+        overallStatus === 'outage' ? 'bg-red-50 border-red-200' :
+        'bg-gray-50 border-gray-200'
+      } border-b`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -140,7 +134,7 @@ export default function Dashboard() {
                 {overallStatus === 'unknown' && 'Loading...'}
               </span>
             </div>
-            <span className="text-sm text-gray-500 dark:text-slate-400">
+            <span className="text-sm text-gray-600">
               Last updated: {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
             </span>
           </div>
@@ -148,49 +142,10 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" role="main" aria-label="Primary content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
-          <div className="space-y-10">
-            {/* Service Status Grid Skeleton */}
-            <section>
-              <div className="h-8 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 rounded-lg w-32 mb-6 animate-pulse"></div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-slate-700/50 p-6 shadow-lg">
-                    <div className="animate-pulse space-y-4">
-                      <div className="flex justify-between items-start">
-                        <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-2/3"></div>
-                        <div className="h-3 w-3 bg-gray-200 dark:bg-slate-700 rounded-full"></div>
-                      </div>
-                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-1/2"></div>
-                      <div className="h-px bg-gray-200/50 dark:bg-slate-700/50"></div>
-                      <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded w-3/4"></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Uptime Chart Skeleton */}
-            <section>
-              <div className="h-8 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 rounded-lg w-48 mb-6 animate-pulse"></div>
-              <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-slate-700/50 p-6 shadow-lg">
-                <div className="animate-pulse">
-                  <div className="h-32 bg-gray-200 dark:bg-slate-700 rounded"></div>
-                </div>
-              </div>
-            </section>
-
-            {/* Incidents Skeleton */}
-            <section>
-              <div className="h-8 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 rounded-lg w-40 mb-6 animate-pulse"></div>
-              <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-slate-700/50 p-6 shadow-lg">
-                <div className="animate-pulse space-y-4">
-                  <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-3/4"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-1/2"></div>
-                </div>
-              </div>
-            </section>
+          <div className="flex items-center justify-center h-64">
+            <div className="motion-safe:animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
         ) : (
           <div className="space-y-10">
@@ -239,19 +194,12 @@ export default function Dashboard() {
         )}
       </main>
 
-      {/* Footer with Glassmorphism */}
-      <footer className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-t border-gray-200/50 dark:border-slate-700/50 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-sm text-gray-600 dark:text-slate-400">
-              StatusWatch - Monitoring the tools you rely on
-            </p>
-            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-slate-500">
-              <span>Built with</span>
-              <span className="text-red-500">♥</span>
-              <span>using Next.js & TypeScript</span>
-            </div>
-          </div>
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <p className="text-center text-sm text-gray-600">
+            StatusWatch - Monitoring the tools you rely on
+          </p>
         </div>
       </footer>
 
