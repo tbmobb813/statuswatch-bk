@@ -1,0 +1,170 @@
+name: CI - parity smoke check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - consolidation/migrate-src-app
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: statuswatch
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install frontend deps
+        run: npm --prefix frontend ci
+
+      - name: Provide DATABASE_URL for backend
+        run: echo "DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/statuswatch?schema=public" >> $GITHUB_ENV
+
+      - name: Prisma generate
+        run: npm run prisma:generate
+
+      - name: Prisma push (create schema)
+        run: npm run prisma:db:push
+
+      - name: Seed database (if seed script exists)
+        run: |
+          if [ -f prisma/seed.ts ]; then
+            npx ts-node prisma/seed.ts || true
+          else
+            echo 'No prisma/seed.ts found; skipping'
+          fi
+
+      - name: Build frontend
+        run: npm --prefix frontend run build
+
+      - name: Start backend (background)
+        run: |
+          nohup bash scripts/start-backend.sh > backend.log 2>&1 &
+          echo $! > backend.pid
+
+      - name: Start frontend (background)
+        run: |
+          nohup npm --prefix frontend run start -- -p 3001 > frontend.log 2>&1 &
+          echo $! > frontend.pid
+
+      - name: Wait for backend health endpoint
+        run: |
+          # Wait for the lightweight /health endpoint to return a 200. This endpoint
+          # is fast and does not touch DB or scrapers, so it's a reliable readiness probe.
+          REQUIRED_SUCCESS_IN_A_ROW=3
+          success_in_a_row=0
+          for i in {1..60}; do
+            if curl -sSf http://localhost:5555/health > /dev/null; then
+              success_in_a_row=$((success_in_a_row+1))
+              echo "health returned success ($success_in_a_row/$REQUIRED_SUCCESS_IN_A_ROW)"
+              if [ "$success_in_a_row" -ge "$REQUIRED_SUCCESS_IN_A_ROW" ]; then
+                echo "backend healthy and ready"
+                break
+              fi
+            else
+              success_in_a_row=0
+            fi
+            sleep 2
+          done
+          if [ "$success_in_a_row" -lt "$REQUIRED_SUCCESS_IN_A_ROW" ]; then
+            echo "backend health endpoint did not become stable after timeout"
+            exit 1
+          fi
+
+      - name: Wait for dashboard summary (DB ready)
+        run: |
+          # After the lightweight health probe, wait for the dashboard API to respond.
+          # This ensures the DB schema/migrations are applied and the app can build a real payload.
+          MAX_ATTEMPTS=24
+          SLEEP_SECONDS=5
+          for i in $(seq 1 $MAX_ATTEMPTS); do
+            if curl -sSf http://localhost:5555/api/dashboard/summary > /dev/null; then
+              echo "dashboard summary responded (attempt $i)"
+              break
+            fi
+            echo "dashboard summary not ready yet (attempt $i/$MAX_ATTEMPTS), sleeping ${SLEEP_SECONDS}s"
+            sleep $SLEEP_SECONDS
+            if [ "$i" -eq "$MAX_ATTEMPTS" ]; then
+              echo "dashboard summary did not become ready after $((MAX_ATTEMPTS*SLEEP_SECONDS))s"
+              exit 1
+            fi
+          done
+
+      - name: Wait for frontend
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3001/dashboard > /dev/null; then
+              echo "frontend ready"; break
+            fi
+            sleep 2
+          done
+
+      - name: Run parity smoke check (with retries)
+        run: |
+          set -euo pipefail
+          MAX_ATTEMPTS=3
+          SLEEP_SECONDS=5
+          ATTEMPT=1
+          until [ $ATTEMPT -gt $MAX_ATTEMPTS ]; do
+            echo "Parity attempt #$ATTEMPT"
+            if node scripts/verify-parity.mjs; then
+              echo "Parity check passed on attempt #$ATTEMPT"
+              exit 0
+            fi
+            ATTEMPT=$((ATTEMPT+1))
+            echo "Parity check failed; sleeping ${SLEEP_SECONDS}s before retry..."
+            sleep $SLEEP_SECONDS
+          done
+          echo "Parity check failed after ${MAX_ATTEMPTS} attempts"
+          exit 1
+
+      - name: Collect logs
+        if: failure()
+        run: |
+          echo '--- backend log ---'
+          tail -n +1 backend.log || true
+          echo '--- frontend log ---'
+          tail -n +1 frontend.log || true
+          echo '--- parity logs (./logs/) ---'
+          if [ -d ./logs ]; then
+            for f in ./logs/*; do
+              echo "=== $f ==="
+              sed -n '1,400p' "$f" || true
+            done
+          else
+            echo './logs not present'
+          fi
+
+      - name: Upload parity logs artifact
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parity-logs
+          path: |
+            ./logs/**
+            backend.log
+            frontend.log
+
+      - name: Cleanup
+        if: always()
+        run: |
+          kill $(cat backend.pid) || true
+          kill $(cat frontend.pid) || true
+          rm -f backend.pid frontend.pid || true

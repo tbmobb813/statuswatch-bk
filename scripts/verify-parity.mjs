@@ -1,0 +1,168 @@
+#!/usr/bin/env node
+import fs from 'fs';
+import { load as cheerioLoad } from 'cheerio';
+
+function formatLocalTime(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  try {
+    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  } catch {
+    return d.toLocaleTimeString();
+  }
+}
+
+function humanizeStatus(status) {
+  if (!status) return '';
+  const map = { operational: 'Operational', major_outage: 'Major Outage', partial_outage: 'Partial Outage' };
+  return map[status] || status;
+}
+
+async function fetchBackend(url) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`backend fetch failed: ${res.status} ${res.statusText}`);
+  return res.json();
+}
+
+async function fetchFrontendHtml(url) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`frontend fetch failed: ${res.status} ${res.statusText}`);
+  return res.text();
+}
+
+async function fetchWithRetries(name, fn, attempts = 3, backoffMs = 500) {
+  let attempt = 1;
+  while (attempt <= attempts) {
+    try {
+      return await fn();
+    } catch (err) {
+      console.error(`${name} fetch attempt ${attempt} failed:`, err.message || err);
+      if (attempt === attempts) throw err;
+      const wait = backoffMs * Math.pow(2, attempt - 1);
+      console.log(`Waiting ${wait}ms before retrying ${name} (attempt ${attempt + 1}/${attempts})`);
+      await new Promise(r => setTimeout(r, wait));
+      attempt++;
+    }
+  }
+}
+
+function parseFrontendServices(html) {
+  const $ = cheerioLoad(html);
+  const services = [];
+  // Each card is a direct child of the grid
+  $('.grid > div').each((i, el) => {
+    const card = $(el);
+    const name = card.find('h3').first().text().trim();
+    const statusLabel = card.find('span.text-sm').first().text().trim();
+    const lastCheckedText = card.find('div.text-xs').text().trim() || card.find('div.text-xs span').text().trim();
+    // extract a time like '10:38:01 PM' from the text
+    const timeMatch = lastCheckedText.match(/(\d{1,2}:\d{2}:\d{2}\s*(?:AM|PM))/i);
+    const lastMatch = timeMatch ? timeMatch[1].trim() : '';
+    // dot may use various Tailwind color classes: bg-green, bg-emerald, bg-lime, bg-red, bg-rose, etc.
+    const dot = (card.find('div.w-3.h-3').first().attr('class') || '') + ' ' + (card.find('svg[data-status-dot]').attr('class') || '');
+    const isUp = /bg-(?:green|emerald|lime|teal|blue)-(?:\d{3})?|bg-green|bg-emerald|bg-lime/i.test(dot);
+    services.push({ name, statusLabel, lastCheckedText: lastMatch, isUp });
+  });
+  return services;
+}
+
+function compare(backendList, frontendList) {
+  const byName = new Map(frontendList.map(s => [s.name, s]));
+  const diffs = [];
+  for (const b of backendList) {
+    const f = byName.get(b.name);
+    if (!f) {
+      diffs.push({ type: 'missing_frontend', name: b.name });
+      continue;
+    }
+    const expectedStatus = humanizeStatus(b.status);
+    if ((f.statusLabel || '').toLowerCase() !== (expectedStatus || '').toLowerCase()) {
+      diffs.push({ type: 'status_mismatch', name: b.name, backend: expectedStatus, frontend: f.statusLabel });
+    }
+    const expectedTime = formatLocalTime(b.lastChecked);
+    // Allow second-level tolerance: exact string compare
+    if (expectedTime) {
+      if (f.lastCheckedText !== expectedTime) {
+        diffs.push({ type: 'time_mismatch', name: b.name, backend: expectedTime, frontend: f.lastCheckedText });
+      }
+      if (Boolean(b.isUp) !== Boolean(f.isUp)) {
+        diffs.push({ type: 'isUp_mismatch', name: b.name, backend: b.isUp, frontend: f.isUp });
+      }
+    } else {
+      // If backend has no lastChecked (null/unknown), skip strict time/isUp comparisons
+      // Frontend will substitute current time and a default isUp value; these are noisy for parity.
+      // Still compare statusLabel below.
+    }
+  }
+  return diffs;
+}
+
+async function main() {
+  const backendUrl = process.env.BACKEND_API || 'http://localhost:5555/api/dashboard/summary';
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001/dashboard';
+  console.log(`Fetching backend: ${backendUrl}`);
+  let backendJson;
+  try {
+    backendJson = await fetchWithRetries('backend', () => fetchBackend(backendUrl), 4, 500);
+  } catch (err) {
+    console.error('Error fetching backend:', err.message || err);
+    try {
+      fs.mkdirSync('./logs', { recursive: true });
+      fs.writeFileSync('./logs/backend-fetch-error.txt', String(err.stack || err));
+    } catch {
+      // ignore filesystem write errors
+    }
+    process.exit(2);
+  }
+  if (!backendJson || !backendJson.data) {
+    console.error('Backend returned unexpected payload');
+    try { fs.mkdirSync('./logs', { recursive: true }); fs.writeFileSync('./logs/backend-raw.json', JSON.stringify(backendJson)); } catch {}
+    process.exit(2);
+  }
+  console.log(`Fetching frontend: ${frontendUrl}`);
+  let html;
+  try {
+    html = await fetchWithRetries('frontend', () => fetchFrontendHtml(frontendUrl), 3, 400);
+  } catch (err) {
+    console.error('Error fetching frontend:', err.message || err);
+    try {
+      fs.mkdirSync('./logs', { recursive: true });
+      fs.writeFileSync('./logs/frontend-fetch-error.txt', String(err.stack || err));
+  } catch {}
+    process.exit(2);
+  }
+
+  // persist raw responses to help CI debugging
+  try {
+    fs.mkdirSync('./logs', { recursive: true });
+    fs.writeFileSync('./logs/backend-raw.json', JSON.stringify(backendJson, null, 2));
+    fs.writeFileSync('./logs/frontend-raw.html', String(html));
+  } catch {
+    // ignore write errors
+  }
+
+  const frontendServices = parseFrontendServices(html);
+  const diffs = compare(backendJson.data, frontendServices);
+
+  const out = { backendCount: backendJson.data.length, frontendCount: frontendServices.length, diffs };
+  const reportPath = './logs/parity-report.json';
+  try { fs.mkdirSync('./logs', { recursive: true }); fs.writeFileSync(reportPath, JSON.stringify(out, null, 2)); } catch {
+    // ignore
+  }
+  console.log('\nParity report written to', reportPath);
+  if (diffs.length === 0) {
+    console.log('\nPARITY OK ✅ — no differences found.');
+    process.exit(0);
+  }
+  console.log('\nPARITY ISSUES ❌');
+  for (const d of diffs) {
+    if (d.type === 'missing_frontend') console.log(`- missing in frontend: ${d.name}`);
+    if (d.type === 'status_mismatch') console.log(`- status mismatch ${d.name}: backend='${d.backend}' frontend='${d.frontend}'`);
+    if (d.type === 'time_mismatch') console.log(`- time mismatch ${d.name}: backend='${d.backend}' frontend='${d.frontend}'`);
+    if (d.type === 'isUp_mismatch') console.log(`- isUp mismatch ${d.name}: backend=${d.backend} frontend=${d.frontend}`);
+  }
+  process.exit(3);
+}
+
+main();
