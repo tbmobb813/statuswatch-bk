@@ -67,6 +67,23 @@ npm run dev
 cd frontend && npm run dev
 ```
 
+### Notes about multiple Next apps in this repo
+
+This repository contains two Next.js apps: a root app (served from the repository root) and a `frontend/` app. To avoid port conflicts and make the local dev flow deterministic, use the explicit npm scripts added to `package.json`:
+
+```bash
+# Run the root Next app on :3000
+npm run dev:root
+
+# Run the frontend Next app on :3001 (use this if you prefer the frontend folder's app)
+npm run dev:frontend:3001
+
+# Run both apps together locally (root on 3000, frontend on 3001)
+npm run dev:both:local
+```
+
+If you already have a Next dev process running on `:3000`, start the other app on `:3001` to avoid collisions. The accessibility audit script writes logs to the repository `logs/` directory by default and accepts `A11Y_BASE` to target a different base URL.
+
 ### Step 6: Open Dashboard
 
 Visit: **<http://localhost:3000>**

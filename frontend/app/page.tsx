@@ -134,7 +134,7 @@ export default function Dashboard() {
                 {overallStatus === 'unknown' && 'Loading...'}
               </span>
             </div>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-gray-700">
               Last updated: {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
             </span>
           </div>
@@ -197,7 +197,7 @@ export default function Dashboard() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-sm text-gray-700">
             StatusWatch - Monitoring the tools you rely on
           </p>
         </div>

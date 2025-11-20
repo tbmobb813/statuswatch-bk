@@ -3,7 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { chromium } from 'playwright';
 
-const OUTDIR = path.resolve('logs');
+// Prefer writing logs to the repository root `logs/` directory regardless of cwd.
+const scriptDir = path.dirname(new URL(import.meta.url).pathname);
+const repoRoot = path.resolve(scriptDir, '..');
+const OUTDIR = process.env.A11Y_OUTDIR ? path.resolve(process.env.A11Y_OUTDIR) : path.resolve(repoRoot, 'logs');
 if (!fs.existsSync(OUTDIR)) fs.mkdirSync(OUTDIR, { recursive: true });
 
 const BASE = process.env.A11Y_BASE || process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';

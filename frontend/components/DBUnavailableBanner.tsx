@@ -40,7 +40,7 @@ export function DBUnavailableBanner() {
   };
 
   return (
-    <div className="bg-yellow-50 border-b border-yellow-200" role="status" aria-live="polite">
+    <div className="bg-yellow-50 border-b border-yellow-200" role="status" aria-live="polite" aria-atomic="true">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="inline-block w-3 h-3 rounded-full bg-yellow-500" />
@@ -55,6 +55,7 @@ export function DBUnavailableBanner() {
             onClick={onRetry}
             disabled={retrying}
             aria-label="Retry fetching live data"
+            aria-disabled={retrying}
           >
             {retrying ? 'Retrying…' : 'Retry'}
           </button>
