@@ -88,6 +88,25 @@ jobs:
             exit 1
           fi
 
+      - name: Wait for dashboard summary (DB ready)
+        run: |
+          # After the lightweight health probe, wait for the dashboard API to respond.
+          # This ensures the DB schema/migrations are applied and the app can build a real payload.
+          MAX_ATTEMPTS=24
+          SLEEP_SECONDS=5
+          for i in $(seq 1 $MAX_ATTEMPTS); do
+            if curl -sSf http://localhost:5555/api/dashboard/summary > /dev/null; then
+              echo "dashboard summary responded (attempt $i)"
+              break
+            fi
+            echo "dashboard summary not ready yet (attempt $i/$MAX_ATTEMPTS), sleeping ${SLEEP_SECONDS}s"
+            sleep $SLEEP_SECONDS
+            if [ "$i" -eq "$MAX_ATTEMPTS" ]; then
+              echo "dashboard summary did not become ready after $((MAX_ATTEMPTS*SLEEP_SECONDS))s"
+              exit 1
+            fi
+          done
+
       - name: Wait for frontend
         run: |
           for i in {1..30}; do
