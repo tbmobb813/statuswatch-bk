@@ -64,17 +64,18 @@ jobs:
           nohup npm --prefix frontend run start -- -p 3001 > frontend.log 2>&1 &
           echo $! > frontend.pid
 
-      - name: Wait for backend API (stable)
+      - name: Wait for backend health endpoint
         run: |
-          # Wait for backend to return a successful response N times in a row to reduce flakiness
+          # Wait for the lightweight /health endpoint to return a 200. This endpoint
+          # is fast and does not touch DB or scrapers, so it's a reliable readiness probe.
           REQUIRED_SUCCESS_IN_A_ROW=3
           success_in_a_row=0
           for i in {1..60}; do
-            if curl -sSf http://localhost:5555/api/dashboard/summary > /dev/null; then
+            if curl -sSf http://localhost:5555/health > /dev/null; then
               success_in_a_row=$((success_in_a_row+1))
-              echo "backend returned success ($success_in_a_row/$REQUIRED_SUCCESS_IN_A_ROW)"
+              echo "health returned success ($success_in_a_row/$REQUIRED_SUCCESS_IN_A_ROW)"
               if [ "$success_in_a_row" -ge "$REQUIRED_SUCCESS_IN_A_ROW" ]; then
-                echo "backend stable and ready"
+                echo "backend healthy and ready"
                 break
               fi
             else
@@ -83,7 +84,7 @@ jobs:
             sleep 2
           done
           if [ "$success_in_a_row" -lt "$REQUIRED_SUCCESS_IN_A_ROW" ]; then
-            echo "backend did not become stable after timeout"
+            echo "backend health endpoint did not become stable after timeout"
             exit 1
           fi
 
