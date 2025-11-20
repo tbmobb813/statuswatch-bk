@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Incident {
   id: string;
@@ -18,6 +19,7 @@ interface Incident {
 export function IncidentList() {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedIncidents, setExpandedIncidents] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchIncidents();
@@ -57,21 +59,33 @@ export function IncidentList() {
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'critical': return 'bg-red-100 text-red-800';
-      case 'major': return 'bg-orange-100 text-orange-800';
-      case 'minor': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'critical': return 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300';
+      case 'major': return 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300';
+      case 'minor': return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300';
+      default: return 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'resolved': return 'bg-green-100 text-green-800';
-      case 'monitoring': return 'bg-blue-100 text-blue-800';
-      case 'identified': return 'bg-yellow-100 text-yellow-800';
-      case 'investigating': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'resolved': return 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300';
+      case 'monitoring': return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300';
+      case 'identified': return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300';
+      case 'investigating': return 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300';
+      default: return 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300';
     }
+  };
+
+  const toggleIncident = (id: string) => {
+    setExpandedIncidents(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
   };
 
   if (loading) {
@@ -87,8 +101,8 @@ export function IncidentList() {
 
   if (incidents.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow p-8 text-center">
-        <div className="text-green-600 mb-2">
+      <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-8 text-center border border-gray-200/50 dark:border-slate-700/50">
+        <div className="text-green-600 dark:text-green-400 mb-2">
           <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -119,8 +133,6 @@ export function IncidentList() {
                     {incident.description}
                   </p>
                 )}
-              </div>
-            </div>
 
             <div className="flex items-center gap-3">
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)}`}>
@@ -138,8 +150,8 @@ export function IncidentList() {
                 </span>
               )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
