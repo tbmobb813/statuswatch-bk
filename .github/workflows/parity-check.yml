@@ -1,0 +1,90 @@
+name: CI - parity smoke check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - consolidation/migrate-src-app
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: statuswatch
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install frontend deps
+        run: npm --prefix frontend ci
+
+      - name: Provide DATABASE_URL for backend
+        run: echo "DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/statuswatch?schema=public" >> $GITHUB_ENV
+
+      - name: Prisma generate
+        run: npm run prisma:generate
+
+      - name: Build frontend
+        run: npm --prefix frontend run build
+
+      - name: Start backend (background)
+        run: |
+          nohup bash scripts/start-backend.sh > backend.log 2>&1 &
+          echo $! > backend.pid
+
+      - name: Start frontend (background)
+        run: |
+          nohup npm --prefix frontend run start -- -p 3001 > frontend.log 2>&1 &
+          echo $! > frontend.pid
+
+      - name: Wait for backend API
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:5555/api/dashboard/summary > /dev/null; then
+              echo "backend ready"; break
+            fi
+            sleep 2
+          done
+
+      - name: Wait for frontend
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3001/dashboard > /dev/null; then
+              echo "frontend ready"; break
+            fi
+            sleep 2
+          done
+
+      - name: Run parity smoke check
+        run: node scripts/verify-parity.mjs
+
+      - name: Collect logs
+        if: failure()
+        run: |
+          echo '--- backend log ---'
+          tail -n +1 backend.log || true
+          echo '--- frontend log ---'
+          tail -n +1 frontend.log || true
+
+      - name: Cleanup
+        if: always()
+        run: |
+          kill $(cat backend.pid) || true
+          kill $(cat frontend.pid) || true
+          rm -f backend.pid frontend.pid || true
