@@ -135,10 +135,10 @@ export function IncidentList() {
                 )}
 
             <div className="flex items-center gap-3">
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)}`}>
+              <span className={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " + getStatusColor(incident.status)}>
                 {incident.status.charAt(0).toUpperCase() + incident.status.slice(1)}
               </span>
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getImpactColor(incident.impact)}`}>
+              <span className={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " + getImpactColor(incident.impact)}>
                 {incident.impact.charAt(0).toUpperCase() + incident.impact.slice(1)} Impact
               </span>
               <span className="text-xs text-gray-700">
