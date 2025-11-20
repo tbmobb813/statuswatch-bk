@@ -133,6 +133,8 @@ export function IncidentList() {
                     {incident.description}
                   </p>
                 )}
+              </div>
+            </div>
 
             <div className="flex items-center gap-3">
               <span className={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " + getStatusColor(incident.status)}>
@@ -150,8 +152,8 @@ export function IncidentList() {
                 </span>
               )}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
