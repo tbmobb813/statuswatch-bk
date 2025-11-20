@@ -29,6 +29,22 @@ async function fetchFrontendHtml(url) {
   return res.text();
 }
 
+async function fetchWithRetries(name, fn, attempts = 3, backoffMs = 500) {
+  let attempt = 1;
+  while (attempt <= attempts) {
+    try {
+      return await fn();
+    } catch (err) {
+      console.error(`${name} fetch attempt ${attempt} failed:`, err.message || err);
+      if (attempt === attempts) throw err;
+      const wait = backoffMs * Math.pow(2, attempt - 1);
+      console.log(`Waiting ${wait}ms before retrying ${name} (attempt ${attempt + 1}/${attempts})`);
+      await new Promise(r => setTimeout(r, wait));
+      attempt++;
+    }
+  }
+}
+
 function parseFrontendServices(html) {
   const $ = cheerioLoad(html);
   const services = [];
@@ -78,7 +94,7 @@ async function main() {
   console.log(`Fetching backend: ${backendUrl}`);
   let backendJson;
   try {
-    backendJson = await fetchBackend(backendUrl);
+    backendJson = await fetchWithRetries('backend', () => fetchBackend(backendUrl), 4, 500);
   } catch (err) {
     console.error('Error fetching backend:', err.message || err);
     try {
@@ -97,7 +113,7 @@ async function main() {
   console.log(`Fetching frontend: ${frontendUrl}`);
   let html;
   try {
-    html = await fetchFrontendHtml(frontendUrl);
+    html = await fetchWithRetries('frontend', () => fetchFrontendHtml(frontendUrl), 3, 400);
   } catch (err) {
     console.error('Error fetching frontend:', err.message || err);
     try {

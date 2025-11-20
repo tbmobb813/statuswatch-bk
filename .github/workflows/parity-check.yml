@@ -111,6 +111,15 @@ jobs:
           tail -n +1 backend.log || true
           echo '--- frontend log ---'
           tail -n +1 frontend.log || true
+          echo '--- parity logs (./logs/) ---'
+          if [ -d ./logs ]; then
+            for f in ./logs/*; do
+              echo "=== $f ==="
+              sed -n '1,400p' "$f" || true
+            done
+          else
+            echo './logs not present'
+          fi
 
       - name: Cleanup
         if: always()
