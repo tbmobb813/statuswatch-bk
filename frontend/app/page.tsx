@@ -6,6 +6,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { IncidentList } from '@/components/IncidentList';
 import { UptimeChart } from '@/components/UptimeChart';
 import { ThemeToggleSimple } from '@/components/ui/ThemeToggle';
+import { Toaster } from 'sonner';
 
 interface ServiceStatus {
   slug: string;
