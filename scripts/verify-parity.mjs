@@ -3,7 +3,9 @@ import fs from 'fs';
 import { load as cheerioLoad } from 'cheerio';
 
 function formatLocalTime(iso) {
+  if (!iso) return '';
   const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
   try {
     return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' });
   } catch {
@@ -53,11 +55,13 @@ function parseFrontendServices(html) {
     const card = $(el);
     const name = card.find('h3').first().text().trim();
     const statusLabel = card.find('span.text-sm').first().text().trim();
-    const lastCheckedText = card.find('div.text-xs span').text().trim();
-    // lastCheckedText often like 'Last checked: 10:38:01 PM'
-    const lastMatch = lastCheckedText.replace(/\s+/g, ' ').trim().replace(/^Last checked:\s*/i, '');
-    const dot = card.find('div.w-3.h-3').first().attr('class') || '';
-    const isUp = dot.includes('bg-green');
+    const lastCheckedText = card.find('div.text-xs').text().trim() || card.find('div.text-xs span').text().trim();
+    // extract a time like '10:38:01 PM' from the text
+    const timeMatch = lastCheckedText.match(/(\d{1,2}:\d{2}:\d{2}\s*(?:AM|PM))/i);
+    const lastMatch = timeMatch ? timeMatch[1].trim() : '';
+    // dot may use various Tailwind color classes: bg-green, bg-emerald, bg-lime, bg-red, bg-rose, etc.
+    const dot = (card.find('div.w-3.h-3').first().attr('class') || '') + ' ' + (card.find('svg[data-status-dot]').attr('class') || '');
+    const isUp = /bg-(?:green|emerald|lime|teal|blue)-(?:\d{3})?|bg-green|bg-emerald|bg-lime/i.test(dot);
     services.push({ name, statusLabel, lastCheckedText: lastMatch, isUp });
   });
   return services;
