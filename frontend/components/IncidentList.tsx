@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Incident {
   id: string;
@@ -19,7 +18,7 @@ interface Incident {
 export function IncidentList() {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expandedIncidents, setExpandedIncidents] = useState<Set<string>>(new Set());
+  // expandedIncidents removed: not used in current UI; kept simple for now
 
   useEffect(() => {
     fetchIncidents();
@@ -76,17 +75,7 @@ export function IncidentList() {
     }
   };
 
-  const toggleIncident = (id: string) => {
-    setExpandedIncidents(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
+  // toggleIncident removed because incident expansion isn't used in migrated UI
 
   if (loading) {
     return (
