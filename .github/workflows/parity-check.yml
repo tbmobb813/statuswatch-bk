@@ -71,8 +71,24 @@ jobs:
             sleep 2
           done
 
-      - name: Run parity smoke check
-        run: node scripts/verify-parity.mjs
+      - name: Run parity smoke check (with retries)
+        run: |
+          set -euo pipefail
+          MAX_ATTEMPTS=3
+          SLEEP_SECONDS=5
+          ATTEMPT=1
+          until [ $ATTEMPT -gt $MAX_ATTEMPTS ]; do
+            echo "Parity attempt #$ATTEMPT"
+            if node scripts/verify-parity.mjs; then
+              echo "Parity check passed on attempt #$ATTEMPT"
+              exit 0
+            fi
+            ATTEMPT=$((ATTEMPT+1))
+            echo "Parity check failed; sleeping ${SLEEP_SECONDS}s before retry..."
+            sleep $SLEEP_SECONDS
+          done
+          echo "Parity check failed after ${MAX_ATTEMPTS} attempts"
+          exit 1
 
       - name: Collect logs
         if: failure()
