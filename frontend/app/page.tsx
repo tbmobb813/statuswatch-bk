@@ -5,6 +5,7 @@ import { useDbStatus } from '@/components/DbStatusContext';
 import { ServiceCard } from '@/components/ServiceCard';
 import { IncidentList } from '@/components/IncidentList';
 import { UptimeChart } from '@/components/UptimeChart';
+import { ThemeToggleSimple } from '@/components/ui/ThemeToggle';
 
 interface ServiceStatus {
   slug: string;
@@ -13,6 +14,7 @@ interface ServiceStatus {
   message?: string;
   lastChecked: Date;
   responseTime?: number;
+  uptime?: number;
 }
 
 export default function Dashboard() {
@@ -98,9 +100,9 @@ export default function Dashboard() {
   const overallStatus = getOverallStatus();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+      {/* Header with Glassmorphism */}
+      <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <h1 className="text-3xl font-bold text-gray-900">StatusWatch</h1>
           <p className="mt-2 text-sm text-gray-700">
@@ -119,13 +121,13 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={`w-3 h-3 rounded-full ${
-                overallStatus === 'operational' ? 'bg-green-500' :
-                overallStatus === 'degraded' ? 'bg-yellow-500' :
-                overallStatus === 'outage' ? 'bg-red-500' :
-                'bg-gray-500'
+              <div className={`w-3 h-3 rounded-full animate-pulse ${
+                overallStatus === 'operational' ? 'bg-green-500 dark:bg-green-400 shadow-lg shadow-green-500/50' :
+                overallStatus === 'degraded' ? 'bg-yellow-500 dark:bg-yellow-400 shadow-lg shadow-yellow-500/50' :
+                overallStatus === 'outage' ? 'bg-red-500 dark:bg-red-400 shadow-lg shadow-red-500/50' :
+                'bg-gray-500 dark:bg-slate-400'
               }`} />
-              <span className="font-medium text-gray-900">
+              <span className="font-medium text-gray-900 dark:text-slate-100">
                 {overallStatus === 'operational' && 'All Systems Operational'}
                 {overallStatus === 'degraded' && 'Some Systems Experiencing Issues'}
                 {overallStatus === 'outage' && 'Service Disruption Detected'}
@@ -146,18 +148,21 @@ export default function Dashboard() {
             <div className="motion-safe:animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* If an error occurred fetching statuses show it */}
             {errorMessage && (
-              <div className="bg-white p-4 rounded shadow-sm">
-                <h3 className="font-medium">Error</h3>
-                <pre className="text-xs text-red-600">{errorMessage}</pre>
+              <div className="bg-red-50/80 dark:bg-red-900/20 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-red-200/50 dark:border-red-800/50">
+                <h3 className="font-medium text-gray-900 dark:text-slate-50">Error</h3>
+                <pre className="text-xs text-red-600 dark:text-red-400 mt-2">{errorMessage}</pre>
               </div>
             )}
             {/* Service Status Grid */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Services</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-1 w-1 rounded-full bg-blue-500"></div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-50">Services</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map(service => (
                   <ServiceCard key={service.slug} service={service} />
                 ))}
@@ -166,17 +171,23 @@ export default function Dashboard() {
 
             {/* Uptime Chart */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                90-Day Uptime History
-              </h2>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-1 w-1 rounded-full bg-blue-500"></div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-50">
+                  90-Day Uptime History
+                </h2>
+              </div>
               <UptimeChart />
             </section>
 
             {/* Recent Incidents */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Recent Incidents
-              </h2>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-1 w-1 rounded-full bg-blue-500"></div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-50">
+                  Recent Incidents
+                </h2>
+              </div>
               <IncidentList />
             </section>
           </div>
@@ -191,6 +202,9 @@ export default function Dashboard() {
           </p>
         </div>
       </footer>
+
+      {/* Toast Notifications */}
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 }

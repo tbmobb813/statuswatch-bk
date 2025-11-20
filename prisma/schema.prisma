@@ -9,47 +9,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User roles enum
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
 // User Management
 model User {
   id            String    @id @default(cuid())
   email         String    @unique
   name          String?
+  password      String    // Hashed password
+  role          Role      @default(USER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  
+
   // Subscription info
   stripeCustomerId       String?   @unique
   stripeSubscriptionId   String?   @unique
   stripePriceId          String?
   stripeCurrentPeriodEnd DateTime?
-  
+
   // Relations
   monitoredServices MonitoredService[]
   alertPreferences  AlertPreference?
   notifications     Notification[]
-  
+  customServices    Service[]  // Custom services created by user
+
   @@map("users")
 }
 
-// Services we can monitor (master list)
+// Services we can monitor (master list + custom user services)
 model Service {
   id          String   @id @default(cuid())
-  name        String   // "AWS", "GitHub", "Vercel"
-  slug        String   @unique // "aws", "github", "vercel"
-  category    String   // "Cloud", "Version Control", "Hosting"
-  statusUrl   String   // URL to their status page
+  name        String   // "AWS", "GitHub", "Vercel" or custom name
+  slug        String   @unique // "aws", "github", "vercel" or generated slug
+  category    String   // "Cloud", "Version Control", "Hosting", "Custom"
+  statusUrl   String   // URL to check
   logoUrl     String?  // Service logo
   color       String   @default("#3B82F6") // Brand color
   isActive    Boolean  @default(true)
-  
+
+  // Custom service fields
+  isCustom               Boolean  @default(false) // Is this a user-defined service?
+  userId                 String?  // Owner of custom service (null for predefined)
+  checkInterval          Int      @default(2) // Minutes between checks
+  expectedStatusCode     Int      @default(200) // Expected HTTP status code
+  responseTimeThreshold  Int      @default(5000) // Max response time in ms
+  checkType              String   @default("http") // "http", "https", "tcp"
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
   // Relations
+  owner             User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   incidents         Incident[]
   monitoredServices MonitoredService[]
   statusChecks      StatusCheck[]
-  
+
+  @@index([userId])
+  @@index([isCustom])
   @@map("services")
 }
 

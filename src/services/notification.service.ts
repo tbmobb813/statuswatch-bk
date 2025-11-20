@@ -1,7 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
+import { Resend } from 'resend';
 
 const prisma = new PrismaClient();
+// Only initialize Resend if API key is provided
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 interface NotificationPayload {
   userId: string;
@@ -146,7 +151,7 @@ export class NotificationService {
     }
   }
 
-  // Send email notification (implement with your email service)
+  // Send email notification
   private async sendEmail(payload: NotificationPayload) {
     try {
       // Get user email
@@ -154,29 +159,73 @@ export class NotificationService {
         where: { id: payload.userId }
       }), this.retryAttempts, this.retryDelayMs);
 
-      if (!user || !user.email) return;
+      if (!user || !user.email) {
+        console.log('No user email found, skipping email notification');
+        return;
+      }
 
-      // TODO: Implement with Resend, SendGrid, or your email service
-      console.log(`📧 Would send email to ${user.email}: ${payload.title}`);
-      
-      // Example with Resend:
-      /*
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: 'StatusWatch <notifications@statuswatch.com>',
-          to: user.email,
-          subject: payload.title,
-          html: `<p>${payload.message}</p>`
-        })
+      // Skip if no API key is configured
+      if (!resend) {
+        console.log(`📧 Email would be sent to ${user.email}: ${payload.title} (Resend API key not configured)`);
+        return;
+      }
+
+      // Send email with Resend
+      const emailHtml = this.generateEmailHtml(payload);
+
+      await resend.emails.send({
+        from: process.env.EMAIL_FROM || 'StatusWatch <notifications@statuswatch.com>',
+        to: user.email,
+        subject: payload.title,
+        html: emailHtml,
       });
-      */
+
+      console.log(`✅ Email sent to ${user.email}: ${payload.title}`);
     } catch (error) {
       console.error('Error sending email:', error);
+    }
+  }
+
+  // Generate HTML email template
+  private generateEmailHtml(payload: NotificationPayload): string {
+    const color = this.getEmailColorForType(payload.type);
+    const emoji = this.getEmojiForType(payload.type);
+
+    return `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>${payload.title}</title>
+        </head>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="background-color: ${color}; color: white; padding: 20px; border-radius: 8px 8px 0 0;">
+            <h1 style="margin: 0; font-size: 24px;">${emoji} ${payload.title}</h1>
+          </div>
+          <div style="background-color: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+            <p style="font-size: 16px; margin: 0 0 20px 0;">${payload.message}</p>
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+            <p style="font-size: 12px; color: #6b7280; margin: 0;">
+              This notification was sent by StatusWatch<br>
+              ${new Date().toLocaleString()}
+            </p>
+          </div>
+        </body>
+      </html>
+    `;
+  }
+
+  private getEmailColorForType(type: string): string {
+    switch (type) {
+      case 'status_change':
+        return '#f59e0b'; // Orange
+      case 'incident_update':
+        return '#ef4444'; // Red
+      case 'incident_resolved':
+        return '#10b981'; // Green
+      default:
+        return '#3b82f6'; // Blue
     }
   }
 
