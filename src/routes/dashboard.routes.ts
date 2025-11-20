@@ -11,24 +11,44 @@ router.get('/summary', async (req, res) => {
 
     const data = await Promise.all(
       services.map(async (s) => {
-        const uptime = await monitoringService.calculateUptime(s.slug, 30);
-        const recentChecks = await prisma.statusCheck.findMany({
-          where: { serviceId: s.id },
-          orderBy: { checkedAt: 'desc' },
-          take: 1,
-        });
+        try {
+          const uptime = await monitoringService.calculateUptime(s.slug, 30);
+          const recentChecks = await prisma.statusCheck.findMany({
+            where: { serviceId: s.id },
+            orderBy: { checkedAt: 'desc' },
+            take: 1,
+          });
 
-        return {
-          id: s.id,
-          slug: s.slug,
-          name: s.name,
-          category: s.category,
-          uptime: Number(uptime.toFixed(2)),
-          isUp: recentChecks[0]?.isUp ?? true,
-          lastChecked: recentChecks[0]?.checkedAt ?? null,
-          // derive a simple status string for the frontend
-          status: recentChecks[0]?.isUp ? 'operational' : 'major_outage'
-        };
+          return {
+            id: s.id,
+            slug: s.slug,
+            name: s.name,
+            category: s.category,
+            uptime: Number(uptime.toFixed(2)),
+            isUp: recentChecks[0]?.isUp ?? true,
+            lastChecked: recentChecks[0]?.checkedAt ?? null,
+            // derive a simple status string for the frontend
+            status: recentChecks[0]?.isUp ? 'operational' : 'major_outage'
+          };
+        } catch (e) {
+          console.error(`Error for service ${s.slug} in dashboard summary:`, e?.message ?? e);
+          // Fail the individual service gracefully and continue with other services
+          const recentChecks = await prisma.statusCheck.findMany({
+            where: { serviceId: s.id },
+            orderBy: { checkedAt: 'desc' },
+            take: 1,
+          });
+          return {
+            id: s.id,
+            slug: s.slug,
+            name: s.name,
+            category: s.category,
+            uptime: null,
+            isUp: recentChecks[0]?.isUp ?? null,
+            lastChecked: recentChecks[0]?.checkedAt ?? null,
+            status: recentChecks[0] ? (recentChecks[0].isUp ? 'operational' : 'major_outage') : 'unknown'
+          };
+        }
       })
     );
 
