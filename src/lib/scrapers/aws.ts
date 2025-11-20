@@ -1,5 +1,5 @@
 import { StatusScraper, StatusData, IncidentData } from './base';
-import axios from 'axios';
+import { fetchWithRetries } from './fetchWithRetries';
 
 export class AWSStatusScraper extends StatusScraper {
   serviceName = 'AWS';
@@ -7,7 +7,7 @@ export class AWSStatusScraper extends StatusScraper {
   
   async scrape(): Promise<StatusData> {
     try {
-      const response = await axios.get(this.serviceUrl);
+    const response = await fetchWithRetries(this.serviceUrl, { timeout: 10000 }, { retries: 3, backoffMs: 400 });
   const data: unknown = response.data;
 
   // AWS has complex JSON structure

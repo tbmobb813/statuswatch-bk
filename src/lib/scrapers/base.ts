@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchWithRetries } from './fetchWithRetries';
 
 // Base scraper interface
 export interface StatusData {
@@ -27,12 +28,12 @@ export abstract class StatusScraper {
   abstract scrape(): Promise<StatusData>;
   
   protected async fetchPage(url: string): Promise<string> {
-    const response = await axios.get(url, {
+    const response = await fetchWithRetries(url, {
       timeout: 10000,
       headers: {
         'User-Agent': 'StatusWatch/1.0'
       }
-    });
+    }, { retries: 3, backoffMs: 400 });
     return response.data as string;
   }
 }

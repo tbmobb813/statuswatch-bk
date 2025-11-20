@@ -1,5 +1,5 @@
 import { StatusScraper, StatusData, IncidentData } from './base';
-import axios from 'axios';
+import { fetchWithRetries } from './fetchWithRetries';
 
 export class OpenAIStatusScraper extends StatusScraper {
   serviceName = 'OpenAI';
@@ -7,8 +7,8 @@ export class OpenAIStatusScraper extends StatusScraper {
 
   async scrape(): Promise<StatusData> {
     try {
-      const response = await axios.get(this.serviceUrl);
-      const data: unknown = response.data;
+  const response = await fetchWithRetries(this.serviceUrl, { timeout: 8000 }, { retries: 3, backoffMs: 400 });
+  const data: unknown = response.data;
 
   const dd = data as { status?: { indicator?: string } } | undefined;
   const isUp = !!(dd && dd.status && dd.status.indicator === 'none');
@@ -16,8 +16,8 @@ export class OpenAIStatusScraper extends StatusScraper {
 
       const incidents: IncidentData[] = [];
       try {
-        const incidentsRes = await axios.get('https://status.openai.com/api/v2/incidents.json');
-        const list = Array.isArray(incidentsRes.data?.incidents) ? incidentsRes.data.incidents : [];
+  const incidentsRes = await fetchWithRetries('https://status.openai.com/api/v2/incidents.json', { timeout: 8000 }, { retries: 2, backoffMs: 300 });
+  const list = Array.isArray(incidentsRes.data?.incidents) ? incidentsRes.data.incidents : [];
         for (const inc of list) {
           if (inc.status === 'resolved') continue;
           const updatesRaw = Array.isArray(inc.incident_updates) ? inc.incident_updates : [];

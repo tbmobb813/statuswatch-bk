@@ -1,5 +1,5 @@
 import { StatusScraper, StatusData, IncidentData } from './base';
-import axios from 'axios';
+import { fetchWithRetries } from './fetchWithRetries';
 import { load } from 'cheerio';
 
 export class StripeStatusScraper extends StatusScraper {
@@ -11,7 +11,7 @@ export class StripeStatusScraper extends StatusScraper {
       // Try JSON status API first
       let data: unknown = null;
       try {
-        const response = await axios.get(this.serviceUrl, { timeout: 8000 });
+        const response = await fetchWithRetries(this.serviceUrl, { timeout: 8000 }, { retries: 3, backoffMs: 400 });
         // If content-type is JSON, parse it
         const ct = response.headers['content-type'] || '';
         if (ct.includes('application/json') || ct.includes('application/vnd')) {
@@ -34,7 +34,7 @@ export class StripeStatusScraper extends StatusScraper {
         // Try incidents JSON, if available
         const incidents: IncidentData[] = [];
         try {
-          const incidentsRes = await axios.get('https://status.stripe.com/api/v2/incidents.json');
+    const incidentsRes = await fetchWithRetries('https://status.stripe.com/api/v2/incidents.json', { timeout: 8000 }, { retries: 2, backoffMs: 300 });
           const list = Array.isArray(incidentsRes.data?.incidents) ? incidentsRes.data.incidents : [];
           for (const inc of list) {
             if (inc.status === 'resolved') continue;
@@ -65,7 +65,7 @@ export class StripeStatusScraper extends StatusScraper {
       }
 
       // Fallback: scrape HTML status page
-  const htmlRes = await axios.get('https://status.stripe.com', { timeout: 8000 });
+  const htmlRes = await fetchWithRetries('https://status.stripe.com', { timeout: 8000 }, { retries: 3, backoffMs: 400 });
   const html = String(htmlRes.data || '');
   const $ = load(html);
 

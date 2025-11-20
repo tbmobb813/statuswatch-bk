@@ -1,5 +1,5 @@
 import { StatusScraper, StatusData, IncidentData } from './base';
-import axios from 'axios';
+import { fetchWithRetries } from './fetchWithRetries';
 
 export class GitHubStatusScraper extends StatusScraper {
   serviceName = 'GitHub';
@@ -7,7 +7,7 @@ export class GitHubStatusScraper extends StatusScraper {
   
   async scrape(): Promise<StatusData> {
     try {
-      const response = await axios.get(this.serviceUrl);
+  const response = await fetchWithRetries(this.serviceUrl, { timeout: 8000 }, { retries: 3, backoffMs: 400 });
       const data: unknown = response.data;
 
       const d = data as { status?: { indicator?: string } } | undefined;
@@ -18,8 +18,8 @@ export class GitHubStatusScraper extends StatusScraper {
       // Fetch recent incidents
       const incidents: IncidentData[] = [];
       try {
-        const incidentsResponse = await axios.get('https://www.githubstatus.com/api/v2/incidents.json');
-        const list = Array.isArray(incidentsResponse.data?.incidents) ? incidentsResponse.data.incidents : [];
+  const incidentsResponse = await fetchWithRetries('https://www.githubstatus.com/api/v2/incidents.json', { timeout: 8000 }, { retries: 2, backoffMs: 300 });
+  const list = Array.isArray(incidentsResponse.data?.incidents) ? incidentsResponse.data.incidents : [];
         for (const inc of list) {
           if (inc.status === 'resolved') continue;
           const updatesRaw = Array.isArray(inc.incident_updates) ? inc.incident_updates : [];
