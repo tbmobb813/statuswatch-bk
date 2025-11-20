@@ -81,10 +81,17 @@ async function main() {
     backendJson = await fetchBackend(backendUrl);
   } catch (err) {
     console.error('Error fetching backend:', err.message || err);
+    try {
+      fs.mkdirSync('./logs', { recursive: true });
+      fs.writeFileSync('./logs/backend-fetch-error.txt', String(err.stack || err));
+    } catch {
+      // ignore filesystem write errors
+    }
     process.exit(2);
   }
   if (!backendJson || !backendJson.data) {
     console.error('Backend returned unexpected payload');
+    try { fs.mkdirSync('./logs', { recursive: true }); fs.writeFileSync('./logs/backend-raw.json', JSON.stringify(backendJson)); } catch {}
     process.exit(2);
   }
   console.log(`Fetching frontend: ${frontendUrl}`);
@@ -93,7 +100,20 @@ async function main() {
     html = await fetchFrontendHtml(frontendUrl);
   } catch (err) {
     console.error('Error fetching frontend:', err.message || err);
+    try {
+      fs.mkdirSync('./logs', { recursive: true });
+      fs.writeFileSync('./logs/frontend-fetch-error.txt', String(err.stack || err));
+  } catch {}
     process.exit(2);
+  }
+
+  // persist raw responses to help CI debugging
+  try {
+    fs.mkdirSync('./logs', { recursive: true });
+    fs.writeFileSync('./logs/backend-raw.json', JSON.stringify(backendJson, null, 2));
+    fs.writeFileSync('./logs/frontend-raw.html', String(html));
+  } catch {
+    // ignore write errors
   }
 
   const frontendServices = parseFrontendServices(html);
