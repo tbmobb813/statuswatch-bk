@@ -40,6 +40,17 @@ jobs:
       - name: Prisma generate
         run: npm run prisma:generate
 
+      - name: Prisma push (create schema)
+        run: npm run prisma:db:push
+
+      - name: Seed database (if seed script exists)
+        run: |
+          if [ -f prisma/seed.ts ]; then
+            npx ts-node prisma/seed.ts || true
+          else
+            echo 'No prisma/seed.ts found; skipping'
+          fi
+
       - name: Build frontend
         run: npm --prefix frontend run build
 
