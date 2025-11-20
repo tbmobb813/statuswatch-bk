@@ -93,8 +93,8 @@ export function IncidentList() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-1">No incidents reported</h3>
-  <p className="text-sm text-gray-600">All services are running smoothly!</p>
+    <h3 className="text-lg font-medium text-gray-900 mb-1">No incidents reported</h3>
+  <p className="text-sm text-gray-700">All services are running smoothly!</p>
       </div>
     );
   }
@@ -110,7 +110,7 @@ export function IncidentList() {
                   <h3 className="text-lg font-semibold text-gray-900">
                     {incident.title}
                   </h3>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-gray-700">
                     • {incident.service.name}
                   </span>
                 </div>
@@ -129,11 +129,11 @@ export function IncidentList() {
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getImpactColor(incident.impact)}`}>
                 {incident.impact.charAt(0).toUpperCase() + incident.impact.slice(1)} Impact
               </span>
-              <span className="text-xs text-gray-600">
+              <span className="text-xs text-gray-700">
                 {new Date(incident.startedAt).toLocaleString()}
               </span>
               {incident.resolvedAt && (
-                <span className="text-xs text-gray-600">
+                <span className="text-xs text-gray-700">
                   → Resolved {new Date(incident.resolvedAt).toLocaleString()}
                 </span>
               )}

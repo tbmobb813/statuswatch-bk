@@ -68,7 +68,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <p className="text-sm text-gray-700">{service.message}</p>
         )}
 
-        <div className="flex items-center justify-between text-xs text-gray-600 pt-2 border-t border-gray-200">
+        <div className="flex items-center justify-between text-xs text-gray-700 pt-2 border-t border-gray-200">
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>

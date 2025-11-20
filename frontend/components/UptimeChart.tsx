@@ -109,7 +109,7 @@ export function UptimeChart() {
         })}
       </div>
 
-  <div className="mt-6 flex items-center justify-between text-xs text-gray-600">
+  <div className="mt-6 flex items-center justify-between text-xs text-gray-700">
         <span>90 days ago</span>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
