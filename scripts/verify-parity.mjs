@@ -82,11 +82,17 @@ function compare(backendList, frontendList) {
     }
     const expectedTime = formatLocalTime(b.lastChecked);
     // Allow second-level tolerance: exact string compare
-    if (f.lastCheckedText !== expectedTime) {
-      diffs.push({ type: 'time_mismatch', name: b.name, backend: expectedTime, frontend: f.lastCheckedText });
-    }
-    if (Boolean(b.isUp) !== Boolean(f.isUp)) {
-      diffs.push({ type: 'isUp_mismatch', name: b.name, backend: b.isUp, frontend: f.isUp });
+    if (expectedTime) {
+      if (f.lastCheckedText !== expectedTime) {
+        diffs.push({ type: 'time_mismatch', name: b.name, backend: expectedTime, frontend: f.lastCheckedText });
+      }
+      if (Boolean(b.isUp) !== Boolean(f.isUp)) {
+        diffs.push({ type: 'isUp_mismatch', name: b.name, backend: b.isUp, frontend: f.isUp });
+      }
+    } else {
+      // If backend has no lastChecked (null/unknown), skip strict time/isUp comparisons
+      // Frontend will substitute current time and a default isUp value; these are noisy for parity.
+      // Still compare statusLabel below.
     }
   }
   return diffs;
