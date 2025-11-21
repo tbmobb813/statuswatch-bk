@@ -78,7 +78,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <div className={`${config.bg} ${config.border} border rounded-lg p-6 transition-shadow`}>
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+        <div className="flex items-center gap-3">
+          <StatusIcon className={`w-5 h-5 ${config.text}`} />
+          <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+        </div>
         <div className={`w-3 h-3 rounded-full ${config.dot}`} />
       </div>
 
@@ -93,24 +96,20 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <p className="text-sm text-gray-700">{service.message}</p>
         )}
 
-        <div className="flex items-center justify-between text-xs text-gray-700 pt-2 border-t border-gray-200">
+        <div className="flex items-center gap-3 text-xs text-gray-700 pt-2 border-t border-gray-200">
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>
           {service.responseTime && (
-            <span>{service.responseTime}ms</span>
-          )}
-
-          <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-2 border-t border-gray-200/50 dark:border-slate-700/50">
-            <span>
-              Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
+            <span className="font-mono bg-gray-100 dark:bg-slate-800/50 px-2 py-0.5 rounded">
+              {service.responseTime}ms
             </span>
-            {service.responseTime && (
-              <span className="font-mono bg-gray-100 dark:bg-slate-800/50 px-2 py-0.5 rounded">
-                {service.responseTime}ms
-              </span>
-            )}
-          </div>
+          )}
+          {uptimePercentage !== null && uptimePercentage !== undefined && (
+            <span className="text-sm text-gray-600 dark:text-slate-300">
+              Uptime: {uptimePercentage}%
+            </span>
+          )}
         </div>
       </div>
     </div>
