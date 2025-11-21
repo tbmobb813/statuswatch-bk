@@ -2,6 +2,11 @@
 'use strict'
 import path from 'path';
 
+if (!process.env.DATABASE_URL) {
+  console.error('Missing DATABASE_URL. In CI set the secret DATABASE_URL or create a .env and load it (e.g. npx dotenv-cli -e .env -- npm run monitor:run).');
+  process.exit(1);
+}
+
 async function main() {
   try {
     const mod = await import(path.join(process.cwd(), 'src', 'lib', 'monitoring'));

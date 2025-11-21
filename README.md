@@ -319,7 +319,61 @@ NEXT_PUBLIC_API_URL=http://localhost:5555
 3. Set NEXT_PUBLIC_API_URL
 4. Deploy!
 
+## CI / GitHub Actions: Monitoring workflow
+
+If you run the monitoring job in CI (GitHub Actions), ensure the runner has a non-empty `DATABASE_URL`.
+
+1. Add a repository secret named `DATABASE_URL` (Settings → Secrets → Actions) with your Postgres connection string.
+
+2. The repository includes a sample workflow at `.github/workflows/monitor.yml` which uses that secret:
+
+```yaml
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+steps:
+  - uses: actions/checkout@v4
+  - uses: actions/setup-node@v4
+    with:
+      node-version: '22'
+  - run: npm ci
+  - run: npm run monitor:run
+```
+
+Notes:
+
+- The workflow injects `DATABASE_URL` so Prisma's `env("DATABASE_URL")` resolves correctly.
+- If you prefer not to store the DB URL as a secret, you can write it into a `.env` file in a job step from another secret and use `dotenv-cli`, but using Secrets is recommended for security.
+
 ## Contributing
+
+## Run the monitor locally with tmux
+
+If you want the monitoring job to keep running detached from your terminal, use `tmux` so it survives disconnects and accidental Ctrl-C.
+
+1. Create a detached tmux session that runs the monitor:
+
+```bash
+# start a detached session named 'statuswatch' and run the monitor
+tmux new-session -d -s statuswatch "npm run monitor:run"
+```
+
+2. Attach to the session to watch logs or interact:
+
+```bash
+tmux attach -t statuswatch
+# Detach without stopping: Ctrl-B then D
+```
+
+3. When finished, stop the session (kills the monitor):
+
+```bash
+tmux kill-session -t statuswatch
+```
+
+Notes:
+- `monitor:run` already loads `.env` via `dotenv-cli` (see `package.json`), so ensure your `.env` contains `DATABASE_URL` before starting tmux.
+- For long-term runs consider using a process manager like `pm2` or a system service instead of tmux.
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
