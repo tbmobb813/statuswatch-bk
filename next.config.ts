@@ -7,9 +7,10 @@ const nextConfig: NextConfig = {
       // add your hostnames here
     ],
   },
-  turbopack: {
-    root: __dirname + "/frontend", // adjust path if needed
-  },
+  // Note: Turbopack root is intentionally omitted here to avoid
+  // configuring a dist/output directory outside of the project root.
+  // The `frontend` folder includes its own Next config and should be
+  // used when running the frontend dev server (see README / package.json).
 };
 
 export default nextConfig;

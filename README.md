@@ -356,20 +356,17 @@ If you want the monitoring job to keep running detached from your terminal, use 
 ```bash
 # start a detached session named 'statuswatch' and run the monitor
 tmux new-session -d -s statuswatch "npm run monitor:run"
-```
 
 2. Attach to the session to watch logs or interact:
 
 ```bash
 tmux attach -t statuswatch
 # Detach without stopping: Ctrl-B then D
-```
 
 3. When finished, stop the session (kills the monitor):
 
 ```bash
 tmux kill-session -t statuswatch
-```
 
 Notes:
 - `monitor:run` already loads `.env` via `dotenv-cli` (see `package.json`), so ensure your `.env` contains `DATABASE_URL` before starting tmux.
