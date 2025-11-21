@@ -26,7 +26,7 @@
     "check-env": "node scripts/check-env.js",
     "prisma:db:push:check": "bash scripts/check-env.sh && npm run prisma:db:push:envlocal",
     "prisma:generate:check": "bash scripts/check-env.sh && npm run prisma:generate:envlocal",
-    "monitor:run": "npx tsx scripts/run-monitoring.js",
+  "monitor:run": "npx dotenv-cli -e .env -- npx tsx scripts/run-monitoring.js",
     "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
     "db:seed": "npm run db:up && npm run prisma:db:push:envlocal && npx ts-node prisma/seed.ts",
