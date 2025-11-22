@@ -113,7 +113,7 @@ export default function Dashboard() {
       </header>
 
       {/* Overall Status Banner */}
-      <div className={`$${
+      <div className={`${
         overallStatus === 'operational' ? 'bg-green-50 border-green-200' :
         overallStatus === 'degraded' ? 'bg-yellow-50 border-yellow-200' :
         overallStatus === 'outage' ? 'bg-red-50 border-red-200' :

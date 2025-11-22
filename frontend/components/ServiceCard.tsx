@@ -80,7 +80,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <StatusIcon className={`w-5 h-5 ${config.text}`} />
-          <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{service.name}</h3>
         </div>
         <div className={`w-3 h-3 rounded-full ${config.dot}`} />
       </div>
@@ -93,10 +93,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         {service.message && (
-          <p className="text-sm text-gray-700">{service.message}</p>
+          <p className="text-sm text-gray-700 dark:text-slate-300">{service.message}</p>
         )}
 
-        <div className="flex items-center gap-3 text-xs text-gray-700 pt-2 border-t border-gray-200">
+        <div className="flex items-center gap-3 text-xs text-gray-700 dark:text-gray-300 pt-2 border-t border-gray-200 dark:border-gray-700">
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>

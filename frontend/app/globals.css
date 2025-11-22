@@ -1,4 +1,4 @@
-@import "tailwindcss/preflight";
+@import "tailwindcss";
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 /* stylelint-enable at-rule-no-unknown */
