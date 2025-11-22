@@ -1,0 +1,18 @@
+
+> statuswatch-frontend@0.1.0 start
+> next start -p 3001
+
+   ▲ Next.js 16.0.3
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.0.158:3001
+
+ ✓ Starting...
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+ ✓ Ready in 903ms

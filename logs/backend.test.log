@@ -1,0 +1,1659 @@
+✅ Server running on http://localhost:5555
+📊 API endpoints:
+   - GET  /api/status          - Check all services
+   - GET  /api/status/:slug    - Check specific service
+   - POST /api/status/:slug/refresh - Force refresh
+
+🔎 Resolving database host from DATABASE_URL: not-a-host
+✅ Status monitoring cron job started (every 2 minutes)
+✅ Incident monitoring cron job started (every 5 minutes)
+✅ Cleanup cron job started (daily at 2 AM)
+
+⏰ Automated monitoring started
+Could not resolve DB host: getaddrinfo EAI_AGAIN not-a-host
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+nohup: ignoring input
+✅ Server running on http://localhost:5555
+📊 API endpoints:
+   - GET  /api/status          - Check all services
+   - GET  /api/status/:slug    - Check specific service
+   - POST /api/status/:slug/refresh - Force refresh
+
+🔎 Resolving database host from DATABASE_URL: not-a-host
+✅ Status monitoring cron job started (every 2 minutes)
+✅ Incident monitoring cron job started (every 5 minutes)
+✅ Cleanup cron job started (daily at 2 AM)
+
+⏰ Automated monitoring started
+Could not resolve DB host: getaddrinfo EAI_AGAIN not-a-host
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+🔍 Running scheduled status checks...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error checking all statuses: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/status.routes.ts:26:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+🔍 Checking for unresolved incidents...
+🔍 Checking for unresolved incidents...
+Failed to fetch unresolved incidents after retries: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:78
+
+  57 console.log('🔍 Checking for unresolved incidents...');
+  58 try {
+  59   try {
+→ 60     const unresolvedIncidents = await this.retry(() => prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async CronService.retry (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:21:16)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:39)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Failed to fetch unresolved incidents after retries: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:78
+
+  57 console.log('🔍 Checking for unresolved incidents...');
+  58 try {
+  59   try {
+→ 60     const unresolvedIncidents = await this.retry(() => prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async CronService.retry (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:21:16)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:39)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+🔍 Running scheduled status checks...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+🔍 Running scheduled status checks...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching uptime data: PrismaClientInitializationError: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:26) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.statusCheck.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/uptime.routes.ts:35:51
+
+  32       }
+  33     };
+  34 
+→ 35 const statusChecks = await prisma.statusCheck.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error fetching incidents: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:23) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Error: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/incidents.routes.ts:14:45
+
+  11 
+  12 const where = status ? { status: status as string } : {};
+  13 
+→ 14 const incidents = await prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+🔍 Checking for unresolved incidents...
+🔍 Running scheduled status checks...
+🔍 Checking for unresolved incidents...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Failed to fetch unresolved incidents after retries: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:78
+
+  57 console.log('🔍 Checking for unresolved incidents...');
+  58 try {
+  59   try {
+→ 60     const unresolvedIncidents = await this.retry(() => prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async CronService.retry (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:21:16)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:39)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+Failed to fetch unresolved incidents after retries: PrismaClientInitializationError: 
+Invalid `prisma.incident.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:78
+
+  57 console.log('🔍 Checking for unresolved incidents...');
+  58 try {
+  59   try {
+→ 60     const unresolvedIncidents = await this.retry(() => prisma.incident.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async CronService.retry (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:21:16)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:60:39)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+🔍 Running scheduled status checks...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+🔍 Running scheduled status checks...
+🔍 Running scheduled status checks...
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+❌ Error in scheduled status check: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:43
+
+  126 }
+  127 
+  128 async checkAllServices(): Promise<ServiceStatus[]> {
+→ 129   const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async StatusService.checkAllServices (/home/nixstation-remote/statuswatch/src/services/status.service.ts:129:22)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/services/cron.service.ts:38:26)
+    at async Timeout._onTimeout (/home/nixstation-remote/statuswatch/node_modules/node-cron/src/scheduler/runner.ts:100:30) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+prisma:error 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+Error building dashboard summary: PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:43
+
+   7 // GET /api/dashboard/summary
+   8 router.get('/summary', async (req, res) => {
+   9   try {
+→ 10     const services = await prisma.service.findMany(
+Can't reach database server at `not-a-host:5432`
+
+Please make sure your database server is running at `not-a-host:5432`.
+    at ei.handleRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/home/nixstation-remote/statuswatch/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async <anonymous> (/home/nixstation-remote/statuswatch/src/routes/dashboard.routes.ts:10:22) {
+  clientVersion: '6.19.0',
+  errorCode: undefined,
+  retryable: undefined
+}

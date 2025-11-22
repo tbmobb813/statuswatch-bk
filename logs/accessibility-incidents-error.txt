@@ -1,0 +1,3 @@
+Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/incidents
+Call log:
+[2m  - navigating to "http://localhost:3001/incidents", waiting until "networkidle"[22m

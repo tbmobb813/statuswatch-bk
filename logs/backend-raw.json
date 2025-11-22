@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "cmi37c2y00000ys2iberg96xj",
+      "slug": "github",
+      "name": "GitHub",
+      "category": "Version Control",
+      "uptime": 1.22,
+      "isUp": false,
+      "lastChecked": "2025-11-20T15:00:02.186Z",
+      "status": "major_outage"
+    },
+    {
+      "id": "cmi37c2yl0001ys2ixx0s9g64",
+      "slug": "aws",
+      "name": "AWS",
+      "category": "Cloud Provider",
+      "uptime": 98.68,
+      "isUp": true,
+      "lastChecked": "2025-11-20T15:00:01.244Z",
+      "status": "operational"
+    },
+    {
+      "id": "cmi37c2yy0002ys2i3ol0o0jc",
+      "slug": "vercel",
+      "name": "Vercel",
+      "category": "Hosting",
+      "uptime": 97.56,
+      "isUp": true,
+      "lastChecked": "2025-11-20T15:00:02.158Z",
+      "status": "operational"
+    },
+    {
+      "id": "cmi37c2z90003ys2ifquf9zh5",
+      "slug": "stripe",
+      "name": "Stripe",
+      "category": "Payments",
+      "uptime": 98.97,
+      "isUp": true,
+      "lastChecked": "2025-11-20T15:00:00.599Z",
+      "status": "operational"
+    },
+    {
+      "id": "cmi37c2zk0004ys2ix2c0zqzo",
+      "slug": "openai",
+      "name": "OpenAI",
+      "category": "AI/ML",
+      "uptime": 98.02,
+      "isUp": true,
+      "lastChecked": "2025-11-20T15:00:02.304Z",
+      "status": "operational"
+    }
+  ]
+}

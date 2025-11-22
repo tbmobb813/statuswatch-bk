@@ -1,0 +1,3890 @@
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.2s
+ ○ Compiling / ...
+ GET / 200 in 8.7s (compile: 8.2s, render: 511ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ○ Compiling / ...
+ GET / 200 in 9.9s (compile: 9.1s, render: 833ms)
+ GET / 200 in 635ms (compile: 131ms, render: 504ms)
+ GET /debug 200 in 5.2s (compile: 1523ms, render: 3.7s)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1874ms
+ ○ Compiling / ...
+ GET / 200 in 9.5s (compile: 9.1s, render: 470ms)
+ GET /api/proxy/dashboard 200 in 3.2s (compile: 1130ms, render: 2.1s)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1647ms
+ ○ Compiling / ...
+ GET / 200 in 9.7s (compile: 9.2s, render: 516ms)
+ GET /api/proxy/dashboard 200 in 3.8s (compile: 1072ms, render: 2.7s)
+ GET /api/proxy/dashboard 200 in 539ms (compile: 8ms, render: 531ms)
+ GET /api/incidents?limit=10 404 in 1523ms (compile: 1035ms, render: 487ms)
+ GET /api/uptime?days=90 404 in 1535ms (compile: 1183ms, render: 352ms)
+ GET /api/incidents?limit=10 404 in 220ms (compile: 20ms, render: 201ms)
+ GET /api/uptime?days=90 404 in 210ms (compile: 85ms, render: 125ms)
+ GET /api/proxy/dashboard 200 in 887ms (compile: 16ms, render: 871ms)
+ GET /api/proxy/dashboard 200 in 524ms (compile: 14ms, render: 510ms)
+ GET /api/proxy/dashboard 200 in 548ms (compile: 9ms, render: 539ms)
+ GET /api/proxy/dashboard 200 in 626ms (compile: 9ms, render: 617ms)
+ GET /api/proxy/dashboard 200 in 556ms (compile: 7ms, render: 548ms)
+ GET /api/proxy/dashboard 200 in 1404ms (compile: 9ms, render: 1396ms)
+ GET /api/proxy/dashboard 200 in 774ms (compile: 7ms, render: 767ms)
+ ✓ Compiled in 215ms
+ GET /api/proxy/dashboard 200 in 228ms (compile: 10ms, render: 218ms)
+ GET /api/uptime?days=90 404 in 794ms (compile: 20ms, render: 775ms)
+ GET /api/incidents?limit=10 404 in 789ms (compile: 119ms, render: 671ms)
+ GET /api/uptime?days=90 404 in 327ms (compile: 23ms, render: 304ms)
+ GET /api/incidents?limit=10 404 in 341ms (compile: 105ms, render: 236ms)
+ GET /api/proxy/dashboard 200 in 1050ms (compile: 10ms, render: 1040ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1372ms
+ ○ Compiling / ...
+ GET / 200 in 11.0s (compile: 10.5s, render: 515ms)
+ GET /api/proxy/dashboard 200 in 2.0s (compile: 1343ms, render: 696ms)
+ GET /api/uptime?days=90 404 in 1844ms (compile: 1213ms, render: 631ms)
+ GET /api/incidents?limit=10 404 in 1834ms (compile: 1356ms, render: 478ms)
+ GET /api/uptime?days=90 404 in 332ms (compile: 33ms, render: 299ms)
+ GET /api/incidents?limit=10 404 in 316ms (compile: 140ms, render: 176ms)
+ GET / 200 in 104ms (compile: 8ms, render: 96ms)
+ GET /api/proxy/dashboard 200 in 227ms (compile: 7ms, render: 220ms)
+ GET /api/proxy/dashboard 200 in 198ms (compile: 9ms, render: 189ms)
+ GET /api/proxy/dashboard 200 in 2.8s (compile: 9ms, render: 2.8s)
+ GET /api/proxy/dashboard 200 in 225ms (compile: 10ms, render: 215ms)
+ ✓ Compiled in 255ms
+ GET /api/proxy/dashboard 200 in 285ms (compile: 7ms, render: 278ms)
+ ✓ Compiled in 233ms
+ GET /api/proxy/dashboard 200 in 183ms (compile: 8ms, render: 174ms)
+ GET /api/proxy/dashboard 200 in 383ms (compile: 8ms, render: 375ms)
+ GET /api/proxy/dashboard 200 in 449ms (compile: 7ms, render: 442ms)
+ GET /api/proxy/dashboard 200 in 532ms (compile: 7ms, render: 525ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1605ms
+ ○ Compiling / ...
+ GET / 200 in 17.1s (compile: 16.1s, render: 968ms)
+ GET /api/proxy/dashboard 200 in 3.0s (compile: 1963ms, render: 1063ms)
+ GET /api/uptime?days=90 404 in 2.5s (compile: 1785ms, render: 706ms)
+ GET /api/incidents?limit=10 404 in 2.5s (compile: 1945ms, render: 541ms)
+ GET /api/uptime?days=90 404 in 331ms (compile: 25ms, render: 306ms)
+ GET /api/incidents?limit=10 404 in 330ms (compile: 112ms, render: 219ms)
+ GET /api/proxy/dashboard 200 in 402ms (compile: 13ms, render: 389ms)
+ GET /api/proxy/dashboard 200 in 630ms (compile: 16ms, render: 614ms)
+ GET /api/proxy/dashboard 200 in 835ms (compile: 12ms, render: 824ms)
+ GET /api/proxy/dashboard 200 in 2.4s (compile: 7ms, render: 2.4s)
+ GET / 200 in 1208ms (compile: 497ms, render: 711ms)
+ GET / 200 in 179ms (compile: 20ms, render: 159ms)
+ GET / 200 in 110ms (compile: 14ms, render: 96ms)
+ GET / 200 in 134ms (compile: 15ms, render: 118ms)
+ GET / 200 in 202ms (compile: 17ms, render: 185ms)
+ GET / 200 in 143ms (compile: 18ms, render: 125ms)
+ GET / 200 in 176ms (compile: 14ms, render: 161ms)
+ GET / 200 in 158ms (compile: 17ms, render: 141ms)
+ GET / 200 in 190ms (compile: 20ms, render: 170ms)
+ GET / 200 in 358ms (compile: 31ms, render: 327ms)
+ GET / 200 in 101ms (compile: 14ms, render: 86ms)
+ GET / 200 in 85ms (compile: 11ms, render: 74ms)
+ GET /api/proxy/dashboard 200 in 398ms (compile: 50ms, render: 348ms)
+ GET / 200 in 384ms (compile: 169ms, render: 215ms)
+ GET / 200 in 84ms (compile: 7ms, render: 77ms)
+ GET / 200 in 120ms (compile: 10ms, render: 111ms)
+ GET / 200 in 81ms (compile: 10ms, render: 70ms)
+ GET / 200 in 62ms (compile: 9ms, render: 53ms)
+ GET / 200 in 294ms (compile: 141ms, render: 153ms)
+ GET / 200 in 138ms (compile: 12ms, render: 126ms)
+ GET / 200 in 195ms (compile: 21ms, render: 174ms)
+ GET / 200 in 91ms (compile: 25ms, render: 66ms)
+ GET / 200 in 75ms (compile: 13ms, render: 62ms)
+ GET / 200 in 62ms (compile: 8ms, render: 53ms)
+ GET / 200 in 69ms (compile: 7ms, render: 62ms)
+ GET / 200 in 65ms (compile: 7ms, render: 58ms)
+ GET / 200 in 78ms (compile: 12ms, render: 66ms)
+ GET /api/proxy/dashboard 200 in 842ms (compile: 48ms, render: 794ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1686ms
+ ○ Compiling / ...
+ GET / 200 in 15.9s (compile: 14.8s, render: 1110ms)
+ GET /api/proxy/dashboard 200 in 4.0s (compile: 3.2s, render: 833ms)
+ GET /api/incidents?limit=10 404 in 2.0s (compile: 1209ms, render: 816ms)
+ GET /api/uptime?days=90 404 in 2.1s (compile: 1339ms, render: 738ms)
+ GET /api/incidents?limit=10 404 in 447ms (compile: 79ms, render: 368ms)
+ GET /api/uptime?days=90 404 in 423ms (compile: 223ms, render: 200ms)
+ ✓ Compiled in 138ms
+ GET /api/proxy/dashboard 200 in 680ms (compile: 16ms, render: 664ms)
+ GET /api/proxy/dashboard 200 in 2.4s (compile: 8ms, render: 2.4s)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1454ms
+ ○ Compiling /api/proxy/dashboard ...
+ GET /api/proxy/dashboard 200 in 5.5s (compile: 4.5s, render: 1086ms)
+ GET / 200 in 16.4s (compile: 15.9s, render: 551ms)
+ GET /api/proxy/dashboard 200 in 736ms (compile: 18ms, render: 718ms)
+ GET /api/proxy/incidents?limit=10 500 in 1872ms (compile: 460ms, render: 1412ms)
+ GET /api/proxy/incidents?limit=10 500 in 98ms (compile: 18ms, render: 80ms)
+ GET /api/proxy/uptime?days=90 200 in 3.4s (compile: 601ms, render: 2.8s)
+ GET /api/proxy/uptime?days=90 200 in 1101ms (compile: 11ms, render: 1090ms)
+ GET /api/proxy/dashboard 200 in 276ms (compile: 10ms, render: 266ms)
+ GET /api/proxy/dashboard 200 in 256ms (compile: 15ms, render: 241ms)
+ GET /api/proxy/dashboard 200 in 926ms (compile: 16ms, render: 910ms)
+ GET / 200 in 637ms (compile: 282ms, render: 355ms)
+ GET / 200 in 100ms (compile: 13ms, render: 87ms)
+ GET / 200 in 110ms (compile: 10ms, render: 101ms)
+ GET / 200 in 224ms (compile: 14ms, render: 210ms)
+ GET / 200 in 206ms (compile: 92ms, render: 114ms)
+ GET / 200 in 106ms (compile: 13ms, render: 93ms)
+ GET / 200 in 87ms (compile: 10ms, render: 76ms)
+ GET / 200 in 74ms (compile: 11ms, render: 62ms)
+ GET / 200 in 93ms (compile: 11ms, render: 82ms)
+ GET / 200 in 168ms (compile: 23ms, render: 145ms)
+ GET / 200 in 237ms (compile: 20ms, render: 217ms)
+ GET / 200 in 165ms (compile: 28ms, render: 137ms)
+ GET / 200 in 123ms (compile: 53ms, render: 70ms)
+ GET / 200 in 86ms (compile: 7ms, render: 78ms)
+ GET / 200 in 116ms (compile: 8ms, render: 109ms)
+ GET / 200 in 99ms (compile: 9ms, render: 90ms)
+ GET /api/proxy/dashboard 200 in 1118ms (compile: 54ms, render: 1064ms)
+ GET / 200 in 386ms (compile: 193ms, render: 194ms)
+ GET / 200 in 134ms (compile: 16ms, render: 118ms)
+ GET / 200 in 89ms (compile: 12ms, render: 77ms)
+ GET / 200 in 113ms (compile: 13ms, render: 100ms)
+ GET / 200 in 122ms (compile: 13ms, render: 108ms)
+ GET / 200 in 236ms (compile: 88ms, render: 147ms)
+ GET / 200 in 162ms (compile: 23ms, render: 138ms)
+ GET / 200 in 85ms (compile: 9ms, render: 76ms)
+ GET / 200 in 85ms (compile: 13ms, render: 72ms)
+ GET / 200 in 59ms (compile: 11ms, render: 48ms)
+ GET / 200 in 118ms (compile: 8ms, render: 110ms)
+ GET / 200 in 79ms (compile: 9ms, render: 70ms)
+ GET / 200 in 61ms (compile: 6ms, render: 55ms)
+ GET / 200 in 65ms (compile: 6ms, render: 59ms)
+ GET / 200 in 87ms (compile: 7ms, render: 80ms)
+ GET / 200 in 99ms (compile: 11ms, render: 88ms)
+ GET / 200 in 94ms (compile: 13ms, render: 81ms)
+ GET / 200 in 91ms (compile: 7ms, render: 84ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1302ms
+ ○ Compiling / ...
+ GET /api/proxy/dashboard 200 in 4.2s (compile: 3.9s, render: 317ms)
+ GET / 200 in 11.9s (compile: 11.4s, render: 481ms)
+ GET /api/proxy/dashboard 200 in 300ms (compile: 25ms, render: 276ms)
+ GET /api/proxy/uptime?days=90 200 in 601ms (compile: 362ms, render: 239ms)
+ GET /api/proxy/incidents?limit=10 500 in 695ms (compile: 389ms, render: 306ms)
+ GET /api/proxy/uptime?days=90 200 in 129ms (compile: 8ms, render: 121ms)
+ GET /api/proxy/incidents?limit=10 500 in 35ms (compile: 7ms, render: 28ms)
+ GET /api/proxy/dashboard 200 in 480ms (compile: 8ms, render: 472ms)
+ GET /api/proxy/dashboard 200 in 258ms (compile: 17ms, render: 241ms)
+ GET /api/proxy/dashboard 200 in 216ms (compile: 8ms, render: 207ms)
+ GET /api/proxy/dashboard 200 in 794ms (compile: 9ms, render: 785ms)
+ GET /api/proxy/dashboard 200 in 689ms (compile: 7ms, render: 682ms)
+ GET /api/proxy/dashboard 200 in 760ms (compile: 7ms, render: 753ms)
+ GET /api/proxy/dashboard 200 in 537ms (compile: 6ms, render: 531ms)
+ GET /api/proxy/dashboard 200 in 540ms (compile: 7ms, render: 533ms)
+ GET /api/proxy/dashboard 200 in 1916ms (compile: 7ms, render: 1909ms)
+ GET /api/proxy/dashboard 200 in 1615ms (compile: 7ms, render: 1608ms)
+ GET /api/proxy/dashboard 200 in 1066ms (compile: 7ms, render: 1059ms)
+ GET /api/proxy/dashboard 200 in 1092ms (compile: 11ms, render: 1082ms)
+ GET /api/incidents?limit=1 500 in 1010ms (compile: 254ms, render: 756ms)
+ GET /api/proxy/dashboard 200 in 564ms (compile: 7ms, render: 557ms)
+ GET / 200 in 131ms (compile: 10ms, render: 122ms)
+ GET /api/proxy/dashboard 200 in 872ms (compile: 30ms, render: 842ms)
+ GET /api/proxy/incidents?limit=10 500 in 98ms (compile: 20ms, render: 78ms)
+ GET /api/proxy/incidents?limit=10 500 in 57ms (compile: 11ms, render: 46ms)
+ GET /api/proxy/uptime?days=90 200 in 1483ms (compile: 12ms, render: 1471ms)
+ GET /api/proxy/uptime?days=90 200 in 225ms (compile: 10ms, render: 215ms)
+ GET /api/proxy/dashboard 200 in 5.3s (compile: 6ms, render: 5.3s)
+ GET /api/proxy/dashboard 200 in 651ms (compile: 11ms, render: 640ms)
+ GET /api/incidents?limit=1 200 in 1639ms (compile: 6ms, render: 1633ms)
+ GET /api/proxy/dashboard 200 in 795ms (compile: 8ms, render: 787ms)
+ GET /api/proxy/dashboard 200 in 432ms (compile: 8ms, render: 424ms)
+ GET /api/proxy/dashboard 200 in 689ms (compile: 14ms, render: 675ms)
+ GET / 200 in 289ms (compile: 27ms, render: 262ms)
+ GET /api/proxy/dashboard 200 in 608ms (compile: 24ms, render: 584ms)
+ GET /api/proxy/incidents?limit=10 200 in 278ms (compile: 33ms, render: 245ms)
+ GET /api/proxy/incidents?limit=10 200 in 101ms (compile: 7ms, render: 94ms)
+ GET /api/proxy/uptime?days=90 200 in 790ms (compile: 15ms, render: 775ms)
+ GET /api/proxy/uptime?days=90 200 in 254ms (compile: 12ms, render: 242ms)
+ GET /api/proxy/dashboard 200 in 232ms (compile: 8ms, render: 224ms)
+ GET /api/proxy/dashboard 200 in 1052ms (compile: 10ms, render: 1042ms)
+ GET /api/proxy/dashboard 200 in 417ms (compile: 11ms, render: 406ms)
+ GET /api/proxy/dashboard 200 in 349ms (compile: 8ms, render: 341ms)
+ GET /api/proxy/dashboard 200 in 883ms (compile: 6ms, render: 877ms)
+ GET /api/proxy/dashboard 500 in 5.1s (compile: 9ms, render: 5.1s)
+ ✓ Compiled in 275ms
+ ✓ Compiled in 175ms
+ GET /api/proxy/dashboard 200 in 1910ms (compile: 6ms, render: 1904ms)
+ ✓ Compiled in 211ms
+ GET /api/proxy/dashboard 200 in 552ms (compile: 13ms, render: 539ms)
+ GET /api/uptime?days=90 200 in 608ms (compile: 392ms, render: 217ms)
+ GET /api/uptime?days=90 200 in 210ms (compile: 12ms, render: 198ms)
+ GET /api/incidents?limit=10 200 in 903ms (compile: 14ms, render: 889ms)
+ GET /api/incidents?limit=10 200 in 92ms (compile: 10ms, render: 83ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.3:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ○ Compiling / ...
+ GET / 200 in 11.7s (compile: 11.2s, render: 515ms)
+ GET /api/proxy/dashboard 200 in 1950ms (compile: 1636ms, render: 313ms)
+ GET /api/incidents?limit=10 200 in 589ms (compile: 398ms, render: 191ms)
+ GET /api/uptime?days=90 200 in 854ms (compile: 349ms, render: 506ms)
+ GET /api/incidents?limit=10 200 in 387ms (compile: 12ms, render: 375ms)
+ GET /api/uptime?days=90 200 in 147ms (compile: 7ms, render: 140ms)
+ GET / 200 in 145ms (compile: 10ms, render: 135ms)
+ GET /api/proxy/dashboard 200 in 196ms (compile: 15ms, render: 180ms)
+ GET /api/uptime?days=90 200 in 220ms (compile: 16ms, render: 205ms)
+ GET /api/uptime?days=90 200 in 243ms (compile: 11ms, render: 232ms)
+ GET /api/incidents?limit=10 200 in 1176ms (compile: 10ms, render: 1167ms)
+ GET /api/incidents?limit=10 200 in 396ms (compile: 10ms, render: 386ms)
+ GET /api/proxy/dashboard 200 in 1079ms (compile: 5ms, render: 1074ms)
+ GET /api/proxy/dashboard 200 in 243ms (compile: 11ms, render: 232ms)
+ GET /api/proxy/dashboard 200 in 980ms (compile: 6ms, render: 974ms)
+ GET /api/proxy/dashboard 200 in 188ms (compile: 6ms, render: 182ms)
+ GET /api/proxy/dashboard 200 in 203ms (compile: 8ms, render: 195ms)
+ GET /api/proxy/dashboard 200 in 270ms (compile: 28ms, render: 242ms)
+ GET /api/proxy/dashboard 200 in 188ms (compile: 10ms, render: 179ms)
+ GET /api/proxy/dashboard 200 in 697ms (compile: 9ms, render: 687ms)
+ GET /api/proxy/dashboard 200 in 229ms (compile: 9ms, render: 220ms)
+ GET /api/proxy/dashboard 200 in 231ms (compile: 7ms, render: 224ms)
+ GET /api/proxy/dashboard 200 in 199ms (compile: 28ms, render: 171ms)
+ GET /api/proxy/dashboard 200 in 210ms (compile: 8ms, render: 203ms)
+ GET /api/proxy/dashboard 200 in 236ms (compile: 17ms, render: 219ms)
+ GET /api/proxy/dashboard 200 in 132ms (compile: 6ms, render: 126ms)
+ GET / 200 in 154ms (compile: 9ms, render: 144ms)
+ GET /api/proxy/dashboard 200 in 198ms (compile: 9ms, render: 189ms)
+ GET /api/incidents?limit=10 200 in 348ms (compile: 17ms, render: 332ms)
+ GET /api/uptime?days=90 200 in 413ms (compile: 10ms, render: 403ms)
+ GET /api/incidents?limit=10 200 in 92ms (compile: 13ms, render: 79ms)
+ GET /api/uptime?days=90 200 in 85ms (compile: 6ms, render: 79ms)
+ GET /api/proxy/dashboard 200 in 160ms (compile: 4ms, render: 156ms)
+ GET /api/proxy/dashboard 200 in 177ms (compile: 7ms, render: 170ms)
+ GET /api/proxy/dashboard 200 in 203ms (compile: 11ms, render: 193ms)
+ GET /api/proxy/dashboard 200 in 700ms (compile: 5ms, render: 695ms)
+ GET /api/proxy/dashboard 200 in 1534ms (compile: 15ms, render: 1519ms)
+ GET /api/proxy/dashboard 200 in 189ms (compile: 6ms, render: 183ms)
+ GET /api/proxy/dashboard 200 in 2.8s (compile: 4ms, render: 2.8s)
+ GET /api/proxy/dashboard 200 in 195ms (compile: 7ms, render: 188ms)
+ GET /api/proxy/dashboard 200 in 467ms (compile: 6ms, render: 461ms)
+ GET /api/proxy/dashboard 200 in 2.1s (compile: 8ms, render: 2.1s)
+ GET / 200 in 120ms (compile: 9ms, render: 111ms)
+ GET /api/proxy/dashboard 200 in 1732ms (compile: 23ms, render: 1710ms)
+ GET /api/uptime?days=90 500 in 5.0s (compile: 10ms, render: 5.0s)
+ GET /api/incidents?limit=10 500 in 5.1s (compile: 12ms, render: 5.0s)
+ GET /api/incidents?limit=10 200 in 1505ms (compile: 9ms, render: 1496ms)
+ GET /api/uptime?days=90 200 in 1579ms (compile: 14ms, render: 1566ms)
+ GET / 200 in 150ms (compile: 12ms, render: 138ms)
+ GET /api/proxy/dashboard 200 in 217ms (compile: 20ms, render: 197ms)
+ GET /api/uptime?days=90 200 in 170ms (compile: 16ms, render: 154ms)
+ GET /api/incidents?limit=10 200 in 187ms (compile: 37ms, render: 150ms)
+ GET /api/incidents?limit=10 200 in 81ms (compile: 5ms, render: 76ms)
+ GET /api/uptime?days=90 200 in 112ms (compile: 8ms, render: 104ms)
+ GET /api/proxy/dashboard 200 in 2.2s (compile: 7ms, render: 2.2s)
+ GET /api/proxy/dashboard 200 in 311ms (compile: 4ms, render: 307ms)
+ GET /api/proxy/dashboard 200 in 681ms (compile: 10ms, render: 671ms)
+ GET /api/proxy/dashboard 200 in 203ms (compile: 7ms, render: 196ms)
+ GET /api/proxy/dashboard 200 in 216ms (compile: 8ms, render: 209ms)
+ GET /api/proxy/dashboard 200 in 212ms (compile: 15ms, render: 197ms)
+ GET /api/proxy/dashboard 200 in 166ms (compile: 6ms, render: 160ms)
+ GET /api/proxy/dashboard 200 in 175ms (compile: 7ms, render: 168ms)
+ GET /api/proxy/dashboard 200 in 192ms (compile: 11ms, render: 181ms)
+ GET /api/proxy/dashboard 200 in 168ms (compile: 4ms, render: 164ms)
+ GET /api/proxy/dashboard 200 in 203ms (compile: 6ms, render: 196ms)
+ GET /api/proxy/dashboard 200 in 165ms (compile: 8ms, render: 157ms)
+ GET /api/proxy/dashboard 200 in 714ms (compile: 7ms, render: 707ms)
+ GET /api/proxy/dashboard 200 in 709ms (compile: 6ms, render: 702ms)
+ GET /api/proxy/dashboard 200 in 212ms (compile: 6ms, render: 206ms)
+ GET /api/proxy/dashboard 200 in 221ms (compile: 7ms, render: 215ms)
+ GET /api/proxy/dashboard 200 in 176ms (compile: 8ms, render: 168ms)
+ GET /api/proxy/dashboard 200 in 957ms (compile: 6ms, render: 951ms)
+ GET /api/proxy/dashboard 200 in 215ms (compile: 7ms, render: 208ms)
+ GET /api/proxy/dashboard 200 in 170ms (compile: 6ms, render: 163ms)
+ GET /api/proxy/dashboard 200 in 171ms (compile: 7ms, render: 164ms)
+ GET /api/proxy/dashboard 200 in 2.3s (compile: 6ms, render: 2.3s)
+ GET /api/proxy/dashboard 200 in 170ms (compile: 8ms, render: 162ms)
+ GET /api/proxy/dashboard 200 in 175ms (compile: 7ms, render: 168ms)
+ GET /api/proxy/dashboard 200 in 5.1s (compile: 7ms, render: 5.1s)
+ GET /api/proxy/dashboard 200 in 237ms (compile: 6ms, render: 231ms)
+ GET /api/proxy/dashboard 200 in 1702ms (compile: 7ms, render: 1695ms)
+ GET /api/proxy/dashboard 200 in 192ms (compile: 6ms, render: 186ms)
+ GET /api/proxy/dashboard 200 in 198ms (compile: 6ms, render: 192ms)
+ GET /api/proxy/dashboard 200 in 202ms (compile: 6ms, render: 197ms)
+ GET /api/proxy/dashboard 200 in 213ms (compile: 6ms, render: 207ms)
+ GET /api/proxy/dashboard 200 in 180ms (compile: 6ms, render: 173ms)
+ GET /api/proxy/dashboard 200 in 344ms (compile: 8ms, render: 336ms)
+ GET /api/proxy/dashboard 200 in 184ms (compile: 7ms, render: 177ms)
+ GET /api/proxy/dashboard 200 in 171ms (compile: 6ms, render: 165ms)
+ GET /api/proxy/dashboard 200 in 717ms (compile: 6ms, render: 711ms)
+ GET /api/proxy/dashboard 200 in 498ms (compile: 8ms, render: 490ms)
+ GET /api/proxy/dashboard 200 in 971ms (compile: 7ms, render: 964ms)
+ GET /api/proxy/dashboard 200 in 235ms (compile: 6ms, render: 229ms)
+ GET /api/proxy/dashboard 200 in 473ms (compile: 6ms, render: 467ms)
+ GET /api/proxy/dashboard 200 in 194ms (compile: 6ms, render: 188ms)
+ GET /api/proxy/dashboard 200 in 665ms (compile: 7ms, render: 658ms)
+ GET /api/proxy/dashboard 200 in 1921ms (compile: 7ms, render: 1915ms)
+ GET /api/proxy/dashboard 200 in 4.2s (compile: 7ms, render: 4.2s)
+ GET /api/proxy/dashboard 200 in 1542ms (compile: 10ms, render: 1533ms)
+ GET /api/proxy/dashboard 200 in 730ms (compile: 6ms, render: 723ms)
+ GET /api/proxy/dashboard 200 in 2.8s (compile: 6ms, render: 2.8s)
+ GET /api/proxy/dashboard 200 in 229ms (compile: 7ms, render: 222ms)
+ GET /api/proxy/dashboard 200 in 183ms (compile: 8ms, render: 175ms)
+ GET /api/proxy/dashboard 200 in 226ms (compile: 8ms, render: 218ms)
+ GET /api/proxy/dashboard 200 in 178ms (compile: 6ms, render: 172ms)
+ GET /api/proxy/dashboard 200 in 172ms (compile: 6ms, render: 166ms)
+ GET /api/proxy/dashboard 200 in 1019ms (compile: 6ms, render: 1013ms)
+ GET /api/proxy/dashboard 200 in 790ms (compile: 6ms, render: 784ms)
+ GET /api/proxy/dashboard 200 in 681ms (compile: 8ms, render: 674ms)
+ GET /api/proxy/dashboard 200 in 218ms (compile: 6ms, render: 212ms)
+ GET /api/proxy/dashboard 200 in 201ms (compile: 7ms, render: 194ms)
+ GET /api/proxy/dashboard 200 in 701ms (compile: 7ms, render: 693ms)
+ GET /api/proxy/dashboard 200 in 299ms (compile: 7ms, render: 292ms)
+ GET /api/proxy/dashboard 200 in 245ms (compile: 6ms, render: 239ms)
+ GET /api/proxy/dashboard 200 in 169ms (compile: 6ms, render: 163ms)
+ GET /api/proxy/dashboard 200 in 224ms (compile: 8ms, render: 216ms)
+ GET /api/proxy/dashboard 200 in 196ms (compile: 8ms, render: 188ms)
+ GET /api/proxy/dashboard 200 in 246ms (compile: 5ms, render: 242ms)
+ GET /api/proxy/dashboard 200 in 198ms (compile: 9ms, render: 189ms)
+ GET /api/proxy/dashboard 200 in 169ms (compile: 7ms, render: 162ms)
+ GET /api/proxy/dashboard 200 in 966ms (compile: 7ms, render: 959ms)
+ GET /api/proxy/dashboard 200 in 3.6s (compile: 6ms, render: 3.6s)
+ GET /api/proxy/dashboard 200 in 227ms (compile: 6ms, render: 221ms)
+ GET /api/proxy/dashboard 200 in 250ms (compile: 9ms, render: 240ms)
+ GET /api/proxy/dashboard 200 in 367ms (compile: 7ms, render: 360ms)
+ GET /api/proxy/dashboard 200 in 205ms (compile: 6ms, render: 199ms)
+ GET /api/proxy/dashboard 200 in 183ms (compile: 10ms, render: 173ms)
+ GET /api/proxy/dashboard 200 in 3.1s (compile: 10ms, render: 3.0s)
+ GET /api/proxy/dashboard 200 in 292ms (compile: 8ms, render: 284ms)
+ GET /api/proxy/dashboard 200 in 828ms (compile: 7ms, render: 820ms)
+ GET /api/proxy/dashboard 200 in 674ms (compile: 7ms, render: 668ms)
+ GET /api/proxy/dashboard 200 in 440ms (compile: 9ms, render: 431ms)
+ GET /api/proxy/dashboard 200 in 3.2s (compile: 10ms, render: 3.2s)
+ GET /api/proxy/dashboard 200 in 225ms (compile: 8ms, render: 216ms)
+ GET /api/proxy/dashboard 200 in 1522ms (compile: 6ms, render: 1516ms)
+ GET /api/proxy/dashboard 200 in 179ms (compile: 6ms, render: 173ms)
+ GET / 200 in 176ms (compile: 8ms, render: 168ms)
+ GET /api/proxy/dashboard 200 in 201ms (compile: 8ms, render: 193ms)
+ GET /api/proxy/dashboard 200 in 194ms (compile: 8ms, render: 186ms)
+ GET /api/incidents?limit=1 200 in 1920ms (compile: 6ms, render: 1915ms)
+ GET /api/uptime?days=90 200 in 344ms (compile: 4ms, render: 339ms)
+ GET /api/proxy/dashboard 200 in 172ms (compile: 7ms, render: 164ms)
+ GET /api/proxy/dashboard 200 in 177ms (compile: 6ms, render: 171ms)
+ GET /api/proxy/dashboard 200 in 2.2s (compile: 6ms, render: 2.2s)
+ GET /api/proxy/dashboard 200 in 245ms (compile: 6ms, render: 239ms)
+ GET /api/proxy/dashboard 200 in 1822ms (compile: 7ms, render: 1814ms)
+ GET /api/proxy/dashboard 200 in 749ms (compile: 7ms, render: 742ms)
+ GET /api/proxy/dashboard 200 in 206ms (compile: 7ms, render: 199ms)
+ GET /api/proxy/dashboard 200 in 229ms (compile: 7ms, render: 222ms)
+ GET / 200 in 116ms (compile: 7ms, render: 109ms)
+ GET /api/proxy/dashboard 200 in 226ms (compile: 19ms, render: 207ms)
+ GET /api/uptime?days=90 200 in 163ms (compile: 9ms, render: 154ms)
+ GET /api/incidents?limit=10 200 in 220ms (compile: 5ms, render: 215ms)
+ GET /api/uptime?days=90 200 in 87ms (compile: 12ms, render: 75ms)
+ GET /api/incidents?limit=10 200 in 77ms (compile: 6ms, render: 71ms)
+ GET /api/proxy/dashboard 200 in 176ms (compile: 6ms, render: 170ms)
+ GET /api/proxy/dashboard 200 in 202ms (compile: 7ms, render: 195ms)
+ GET /api/proxy/dashboard 200 in 222ms (compile: 7ms, render: 215ms)
+ GET /api/proxy/dashboard 200 in 978ms (compile: 9ms, render: 969ms)
+ GET /api/proxy/dashboard 500 in 10.0s (compile: 8ms, render: 10.0s)
+ GET /api/proxy/dashboard 500 in 10.0s (compile: 6ms, render: 10.0s)
+ GET /api/proxy/dashboard 500 in 10.0s (compile: 6ms, render: 10.0s)
+ GET /api/proxy/dashboard 500 in 107ms (compile: 7ms, render: 100ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 6ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 105ms (compile: 10ms, render: 95ms)
+ GET /api/proxy/dashboard 500 in 115ms (compile: 7ms, render: 109ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 120ms (compile: 5ms, render: 116ms)
+ GET /api/proxy/dashboard 500 in 109ms (compile: 6ms, render: 104ms)
+ GET /api/proxy/dashboard 500 in 230ms (compile: 5ms, render: 225ms)
+ GET /api/proxy/dashboard 500 in 63ms (compile: 6ms, render: 57ms)
+ GET /api/proxy/dashboard 500 in 135ms (compile: 7ms, render: 128ms)
+ GET /api/proxy/dashboard 500 in 63ms (compile: 8ms, render: 55ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 8ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 59ms (compile: 6ms, render: 53ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 5ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 7ms, render: 51ms)
+ GET /api/proxy/dashboard 500 in 129ms (compile: 6ms, render: 123ms)
+ GET /api/proxy/dashboard 500 in 154ms (compile: 6ms, render: 148ms)
+ GET /api/proxy/dashboard 500 in 59ms (compile: 6ms, render: 53ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 7ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 6ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 74ms (compile: 7ms, render: 66ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 8ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 127ms (compile: 5ms, render: 122ms)
+ GET /api/proxy/dashboard 500 in 49ms (compile: 6ms, render: 43ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 7ms, render: 46ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 6ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 96ms (compile: 8ms, render: 89ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 5ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 109ms (compile: 7ms, render: 101ms)
+ GET /api/proxy/dashboard 500 in 110ms (compile: 8ms, render: 102ms)
+ GET /api/proxy/dashboard 500 in 116ms (compile: 8ms, render: 109ms)
+ GET /api/proxy/dashboard 500 in 59ms (compile: 6ms, render: 54ms)
+ GET /api/proxy/dashboard 500 in 121ms (compile: 5ms, render: 116ms)
+ GET /api/proxy/dashboard 500 in 125ms (compile: 8ms, render: 117ms)
+ GET /api/proxy/dashboard 500 in 127ms (compile: 6ms, render: 121ms)
+ GET /api/proxy/dashboard 500 in 99ms (compile: 6ms, render: 93ms)
+ GET /api/proxy/dashboard 500 in 129ms (compile: 8ms, render: 121ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 7ms, render: 51ms)
+ GET /api/proxy/dashboard 500 in 79ms (compile: 14ms, render: 64ms)
+ GET /api/proxy/dashboard 500 in 78ms (compile: 12ms, render: 66ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 6ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 6ms, render: 47ms)
+ GET / 200 in 112ms (compile: 6ms, render: 106ms)
+ GET /api/proxy/dashboard 500 in 153ms (compile: 6ms, render: 146ms)
+ GET /api/incidents?limit=10 500 in 131ms (compile: 12ms, render: 119ms)
+ GET /api/uptime?days=90 500 in 165ms (compile: 6ms, render: 159ms)
+ GET /api/incidents?limit=10 500 in 124ms (compile: 9ms, render: 115ms)
+ GET /api/uptime?days=90 500 in 116ms (compile: 26ms, render: 90ms)
+ GET /api/proxy/dashboard 500 in 48ms (compile: 4ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 62ms (compile: 7ms, render: 54ms)
+ GET /api/proxy/dashboard 500 in 65ms (compile: 8ms, render: 57ms)
+ GET /api/proxy/dashboard 500 in 60ms (compile: 6ms, render: 54ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 6ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 71ms (compile: 6ms, render: 65ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 86ms (compile: 6ms, render: 80ms)
+ GET /api/proxy/dashboard 500 in 88ms (compile: 7ms, render: 81ms)
+ GET /api/proxy/dashboard 500 in 65ms (compile: 4ms, render: 60ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 5ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 143ms (compile: 8ms, render: 135ms)
+ GET /api/proxy/dashboard 500 in 148ms (compile: 5ms, render: 143ms)
+ GET /api/proxy/dashboard 500 in 57ms (compile: 6ms, render: 51ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 7ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 8ms, render: 50ms)
+ GET /api/proxy/dashboard 500 in 67ms (compile: 7ms, render: 59ms)
+ GET /api/proxy/dashboard 500 in 171ms (compile: 8ms, render: 163ms)
+ GET /api/proxy/dashboard 500 in 173ms (compile: 9ms, render: 164ms)
+ GET /api/proxy/dashboard 500 in 52ms (compile: 7ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 71ms (compile: 7ms, render: 64ms)
+ GET /api/proxy/dashboard 500 in 45ms (compile: 4ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 7ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 145ms (compile: 5ms, render: 140ms)
+ GET /api/proxy/dashboard 500 in 158ms (compile: 6ms, render: 153ms)
+ GET /api/proxy/dashboard 500 in 73ms (compile: 4ms, render: 69ms)
+ GET /api/proxy/dashboard 500 in 89ms (compile: 8ms, render: 81ms)
+ GET /api/proxy/dashboard 500 in 96ms (compile: 5ms, render: 92ms)
+ GET /api/proxy/dashboard 500 in 106ms (compile: 8ms, render: 98ms)
+ GET /api/proxy/dashboard 500 in 82ms (compile: 12ms, render: 70ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 7ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 121ms (compile: 7ms, render: 114ms)
+ GET /api/proxy/dashboard 500 in 122ms (compile: 6ms, render: 116ms)
+ GET /api/proxy/dashboard 500 in 128ms (compile: 6ms, render: 122ms)
+ GET /api/proxy/dashboard 500 in 130ms (compile: 7ms, render: 123ms)
+ GET /api/proxy/dashboard 500 in 134ms (compile: 6ms, render: 128ms)
+ GET /api/proxy/dashboard 500 in 60ms (compile: 8ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 141ms (compile: 6ms, render: 135ms)
+ GET /api/proxy/dashboard 500 in 121ms (compile: 6ms, render: 115ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 8ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 7ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 46ms (compile: 5ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 163ms (compile: 8ms, render: 155ms)
+ GET /api/proxy/dashboard 500 in 159ms (compile: 5ms, render: 154ms)
+ GET /api/proxy/dashboard 500 in 67ms (compile: 6ms, render: 61ms)
+ GET /api/proxy/dashboard 500 in 108ms (compile: 6ms, render: 102ms)
+ GET /api/proxy/dashboard 500 in 129ms (compile: 10ms, render: 120ms)
+ GET /api/proxy/dashboard 500 in 78ms (compile: 7ms, render: 70ms)
+ GET /api/proxy/dashboard 500 in 46ms (compile: 6ms, render: 40ms)
+ GET /api/proxy/dashboard 500 in 66ms (compile: 8ms, render: 58ms)
+ GET /api/proxy/dashboard 500 in 84ms (compile: 4ms, render: 80ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 50ms)
+ GET /api/proxy/dashboard 500 in 46ms (compile: 5ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 89ms (compile: 8ms, render: 81ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 12ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 48ms (compile: 7ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 47ms (compile: 5ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 83ms (compile: 7ms, render: 76ms)
+ GET /api/proxy/dashboard 500 in 47ms (compile: 5ms, render: 42ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 10ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 63ms (compile: 6ms, render: 57ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 5ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 70ms (compile: 5ms, render: 65ms)
+ GET /api/proxy/dashboard 500 in 84ms (compile: 13ms, render: 71ms)
+ GET /api/proxy/dashboard 500 in 108ms (compile: 5ms, render: 102ms)
+ GET /api/proxy/dashboard 500 in 48ms (compile: 5ms, render: 43ms)
+ GET /api/proxy/dashboard 500 in 113ms (compile: 12ms, render: 100ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 7ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 26ms (compile: 4ms, render: 22ms)
+ GET /api/proxy/dashboard 500 in 61ms (compile: 8ms, render: 54ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 8ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 48ms (compile: 5ms, render: 43ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 49ms (compile: 4ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 91ms (compile: 6ms, render: 85ms)
+ GET /api/proxy/dashboard 500 in 47ms (compile: 7ms, render: 40ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 46ms (compile: 5ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 7ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 149ms (compile: 32ms, render: 117ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 113ms (compile: 5ms, render: 108ms)
+ GET /api/proxy/dashboard 500 in 116ms (compile: 6ms, render: 110ms)
+ GET /api/proxy/dashboard 500 in 81ms (compile: 8ms, render: 72ms)
+ GET /api/proxy/dashboard 500 in 45ms (compile: 5ms, render: 40ms)
+ GET /api/proxy/dashboard 500 in 129ms (compile: 5ms, render: 123ms)
+ GET /api/proxy/dashboard 500 in 69ms (compile: 6ms, render: 64ms)
+ GET /api/proxy/dashboard 500 in 130ms (compile: 6ms, render: 125ms)
+ GET /api/proxy/dashboard 500 in 141ms (compile: 6ms, render: 135ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 6ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 151ms (compile: 7ms, render: 144ms)
+ GET / 200 in 158ms (compile: 10ms, render: 148ms)
+ GET /api/proxy/dashboard 500 in 119ms (compile: 16ms, render: 103ms)
+ GET /api/uptime?days=90 500 in 59ms (compile: 13ms, render: 46ms)
+ GET /api/incidents?limit=10 500 in 69ms (compile: 19ms, render: 50ms)
+ GET /api/uptime?days=90 500 in 47ms (compile: 8ms, render: 38ms)
+ GET /api/incidents?limit=10 500 in 56ms (compile: 14ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 5ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 5ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 52ms (compile: 6ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 67ms (compile: 8ms, render: 59ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 6ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 7ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 5ms, render: 46ms)
+ GET /api/proxy/dashboard 500 in 47ms (compile: 6ms, render: 41ms)
+ GET /api/proxy/dashboard 500 in 79ms (compile: 8ms, render: 71ms)
+ GET /api/proxy/dashboard 500 in 64ms (compile: 5ms, render: 59ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 99ms (compile: 6ms, render: 93ms)
+ GET /api/proxy/dashboard 500 in 62ms (compile: 8ms, render: 54ms)
+ GET /api/proxy/dashboard 500 in 59ms (compile: 7ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 45ms (compile: 6ms, render: 39ms)
+ GET /api/proxy/dashboard 500 in 62ms (compile: 6ms, render: 56ms)
+ GET /api/proxy/dashboard 500 in 135ms (compile: 7ms, render: 128ms)
+ GET /api/proxy/dashboard 500 in 56ms (compile: 6ms, render: 50ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 4ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 155ms (compile: 6ms, render: 149ms)
+   Reload env: .env.local
+ GET / 200 in 557ms (compile: 277ms, render: 281ms)
+ GET /api/proxy/dashboard 500 in 138ms (compile: 76ms, render: 63ms)
+   Reload env: .env.local
+ GET / 200 in 329ms (compile: 206ms, render: 124ms)
+   Reload env: .env.local
+ GET / 200 in 303ms (compile: 173ms, render: 130ms)
+ GET /api/proxy/dashboard 500 in 259ms (compile: 82ms, render: 176ms)
+   Reload env: .env.local
+ GET / 200 in 334ms (compile: 185ms, render: 149ms)
+   Reload env: .env.local
+ GET / 200 in 250ms (compile: 149ms, render: 101ms)
+ GET /api/proxy/dashboard 500 in 146ms (compile: 83ms, render: 62ms)
+ GET /api/proxy/dashboard 500 in 121ms (compile: 9ms, render: 111ms)
+   Reload env: .env.local
+ GET / 200 in 386ms (compile: 184ms, render: 202ms)
+   Reload env: .env.local
+ GET / 200 in 465ms (compile: 240ms, render: 225ms)
+ GET /api/proxy/dashboard 500 in 156ms (compile: 88ms, render: 68ms)
+ GET /api/proxy/dashboard 500 in 123ms (compile: 9ms, render: 114ms)
+ GET /api/proxy/dashboard 500 in 92ms (compile: 10ms, render: 82ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 60ms (compile: 5ms, render: 55ms)
+ GET /api/incidents?limit=1 500 in 153ms (compile: 55ms, render: 98ms)
+ GET /api/uptime?days=90 500 in 94ms (compile: 49ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 66ms (compile: 9ms, render: 57ms)
+ GET /api/proxy/dashboard 500 in 70ms (compile: 7ms, render: 63ms)
+ GET /api/proxy/dashboard 500 in 52ms (compile: 7ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 8ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 50ms)
+ GET /api/proxy/dashboard 500 in 80ms (compile: 7ms, render: 73ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 7ms, render: 43ms)
+ GET /api/proxy/dashboard 500 in 62ms (compile: 7ms, render: 55ms)
+ GET /api/proxy/dashboard 500 in 60ms (compile: 7ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 6ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 51ms (compile: 6ms, render: 45ms)
+ GET / 200 in 173ms (compile: 7ms, render: 165ms)
+ GET /api/proxy/dashboard 500 in 57ms (compile: 12ms, render: 45ms)
+ GET /api/uptime?days=90 500 in 65ms (compile: 12ms, render: 53ms)
+ GET /api/incidents?limit=10 500 in 80ms (compile: 18ms, render: 62ms)
+ GET /api/uptime?days=90 500 in 67ms (compile: 8ms, render: 59ms)
+ GET /api/incidents?limit=10 500 in 94ms (compile: 8ms, render: 86ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 6ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 61ms (compile: 5ms, render: 56ms)
+ GET / 200 in 114ms (compile: 6ms, render: 108ms)
+ GET /api/proxy/dashboard 500 in 73ms (compile: 13ms, render: 60ms)
+ GET /api/uptime?days=90 500 in 129ms (compile: 15ms, render: 114ms)
+ GET /api/incidents?limit=10 500 in 139ms (compile: 11ms, render: 128ms)
+ GET /api/uptime?days=90 500 in 69ms (compile: 8ms, render: 61ms)
+ GET /api/incidents?limit=10 500 in 89ms (compile: 21ms, render: 69ms)
+ GET /api/proxy/dashboard 500 in 91ms (compile: 6ms, render: 85ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 7ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 66ms (compile: 6ms, render: 60ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 6ms, render: 44ms)
+ GET /api/proxy/dashboard 500 in 65ms (compile: 13ms, render: 52ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 9ms, render: 42ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 5ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 4ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 148ms (compile: 6ms, render: 143ms)
+ GET /api/proxy/dashboard 500 in 89ms (compile: 10ms, render: 79ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 9ms, render: 46ms)
+ GET /api/proxy/dashboard 500 in 157ms (compile: 6ms, render: 150ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 5ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 7ms, render: 51ms)
+ GET /api/proxy/dashboard 500 in 58ms (compile: 12ms, render: 46ms)
+ GET /api/proxy/dashboard 500 in 85ms (compile: 12ms, render: 73ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 8ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 76ms (compile: 8ms, render: 68ms)
+ GET /api/proxy/dashboard 500 in 69ms (compile: 7ms, render: 62ms)
+ GET /api/proxy/dashboard 500 in 104ms (compile: 8ms, render: 96ms)
+ GET /api/proxy/dashboard 500 in 67ms (compile: 6ms, render: 61ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 5ms, render: 44ms)
+ GET / 200 in 127ms (compile: 7ms, render: 120ms)
+ GET /api/proxy/dashboard 500 in 63ms (compile: 9ms, render: 55ms)
+ GET /api/uptime?days=90 500 in 99ms (compile: 18ms, render: 81ms)
+ GET /api/incidents?limit=10 500 in 118ms (compile: 52ms, render: 66ms)
+ GET /api/uptime?days=90 500 in 80ms (compile: 12ms, render: 68ms)
+ GET /api/incidents?limit=10 500 in 62ms (compile: 11ms, render: 51ms)
+ GET /api/proxy/dashboard 404 in 1725ms (compile: 1474ms, render: 251ms)
+ GET / 200 in 106ms (compile: 8ms, render: 98ms)
+ GET /api/proxy/dashboard 500 in 252ms (compile: 26ms, render: 226ms)
+ GET /api/uptime?days=90 500 in 204ms (compile: 23ms, render: 180ms)
+ GET /api/incidents?limit=10 500 in 210ms (compile: 38ms, render: 172ms)
+ GET /api/uptime?days=90 500 in 137ms (compile: 33ms, render: 103ms)
+ GET /api/incidents?limit=10 500 in 181ms (compile: 63ms, render: 117ms)
+ GET /api/proxy/dashboard 500 in 59ms (compile: 5ms, render: 53ms)
+ GET /api/proxy/dashboard 500 in 54ms (compile: 7ms, render: 48ms)
+ GET /api/proxy/dashboard 500 in 89ms (compile: 4ms, render: 85ms)
+ GET /api/proxy/dashboard 500 in 52ms (compile: 6ms, render: 46ms)
+ GET /api/proxy/dashboard 500 in 50ms (compile: 5ms, render: 45ms)
+ GET /api/proxy/dashboard 500 in 53ms (compile: 6ms, render: 47ms)
+ GET /api/proxy/dashboard 500 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/proxy/dashboard 500 in 47ms (compile: 4ms, render: 43ms)
+ GET /api/proxy/dashboard 500 in 73ms (compile: 6ms, render: 67ms)
+ GET /api/proxy/dashboard 500 in 134ms (compile: 20ms, render: 113ms)
+ GET /api/proxy/dashboard 500 in 127ms (compile: 6ms, render: 122ms)
+ GET /api/proxy/dashboard 500 in 72ms (compile: 10ms, render: 62ms)
+ GET /api/proxy/dashboard 200 in 1252ms (compile: 8ms, render: 1244ms)
+ GET /api/proxy/dashboard 200 in 958ms (compile: 5ms, render: 953ms)
+ ○ Compiling /_error ...
+ GET /api/proxy/dashboard 404 in 4.6s (compile: 4.5s, render: 94ms)
+ GET /api/proxy/dashboard 404 in 60ms (compile: 25ms, render: 34ms)
+ GET /api/proxy/dashboard 404 in 56ms (compile: 27ms, render: 29ms)
+ GET /api/proxy/dashboard 404 in 68ms (compile: 28ms, render: 40ms)
+ GET /api/proxy/dashboard 404 in 57ms (compile: 28ms, render: 29ms)
+ GET /api/proxy/dashboard 404 in 60ms (compile: 28ms, render: 31ms)
+ GET /api/proxy/dashboard 404 in 58ms (compile: 24ms, render: 34ms)
+ GET /api/proxy/dashboard 404 in 60ms (compile: 29ms, render: 32ms)
+ GET /api/proxy/dashboard 404 in 65ms (compile: 26ms, render: 39ms)
+ GET /api/proxy/dashboard 404 in 64ms (compile: 28ms, render: 36ms)
+ GET /api/proxy/dashboard 404 in 67ms (compile: 28ms, render: 38ms)
+ GET /api/proxy/dashboard 404 in 58ms (compile: 27ms, render: 30ms)
+ GET /api/proxy/dashboard 404 in 67ms (compile: 27ms, render: 39ms)
+ GET /api/proxy/dashboard 404 in 66ms (compile: 29ms, render: 37ms)
+ GET /api/proxy/dashboard 404 in 65ms (compile: 28ms, render: 37ms)
+ GET /api/proxy/dashboard 404 in 67ms (compile: 30ms, render: 37ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.6.115:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ GET /api/proxy/dashboard 200 in 3.4s (compile: 2.7s, render: 737ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.7.247:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1403ms
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.7.247:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⨯ Unable to acquire lock at /home/nixstation-remote/statuswatch/frontend/.next/dev/lock, is another instance of next dev running?
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.0.158:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ○ Compiling / ...
+ GET / 200 in 12.6s (compile: 12.0s, render: 561ms)
+ GET /api/proxy/dashboard 200 in 2.2s (compile: 1659ms, render: 521ms)
+ GET / 200 in 151ms (compile: 15ms, render: 137ms)
+ GET /api/proxy/dashboard 200 in 559ms (compile: 37ms, render: 522ms)
+[?25h
+
+> statuswatch-frontend@0.1.0 dev
+> next dev
+
+ ⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.js to protect your application from malicious users.
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/nixstation-remote/statuswatch/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/nixstation-remote/statuswatch/frontend/package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.0.158:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1475ms
+ ○ Compiling / ...
+ GET / 200 in 9.1s (compile: 8.4s, render: 737ms)
+ GET /api/proxy/dashboard 200 in 1672ms (compile: 1308ms, render: 364ms)
+ GET / 200 in 165ms (compile: 17ms, render: 148ms)
+ GET /api/proxy/dashboard 200 in 347ms (compile: 11ms, render: 336ms)
+ GET / 200 in 118ms (compile: 9ms, render: 109ms)
+ GET /api/proxy/dashboard 200 in 1731ms (compile: 79ms, render: 1652ms)
+ GET / 200 in 115ms (compile: 8ms, render: 107ms)
+ GET /api/proxy/dashboard 200 in 370ms (compile: 27ms, render: 343ms)
+ GET / 200 in 137ms (compile: 14ms, render: 123ms)
+ GET /api/proxy/dashboard 200 in 377ms (compile: 10ms, render: 367ms)
+ GET / 200 in 131ms (compile: 9ms, render: 122ms)
+ GET /api/proxy/dashboard 200 in 559ms (compile: 16ms, render: 543ms)
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:31 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:31 -05:00: > next start -p 3001
+2025-11-21 19:31 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:32 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:32 -05:00: > next start -p 3001
+2025-11-21 19:32 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:33 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:33 -05:00: > next start -p 3001
+2025-11-21 19:33 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:34 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:34 -05:00: > next start -p 3001
+2025-11-21 19:34 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+ GET / 200 in 140ms (compile: 9ms, render: 131ms)
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+ GET /api/proxy/dashboard 200 in 473ms (compile: 21ms, render: 453ms)
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:35 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:35 -05:00: > next start -p 3001
+2025-11-21 19:35 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+ GET / 200 in 254ms (compile: 42ms, render: 212ms)
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+ GET /api/proxy/dashboard 200 in 303ms (compile: 11ms, render: 292ms)
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:36 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:36 -05:00: > next start -p 3001
+2025-11-21 19:36 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:37 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:37 -05:00: > next start -p 3001
+2025-11-21 19:37 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:38 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:38 -05:00: > next start -p 3001
+2025-11-21 19:38 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:39 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:39 -05:00: > next start -p 3001
+2025-11-21 19:39 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:40 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:40 -05:00: > next start -p 3001
+2025-11-21 19:40 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:41 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:41 -05:00: > next start -p 3001
+2025-11-21 19:41 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:42 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:42 -05:00: > next start -p 3001
+2025-11-21 19:42 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:43 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:43 -05:00: > next start -p 3001
+2025-11-21 19:43 -05:00: 
+2025-11-21 19:44 -05:00: 
+2025-11-21 19:44 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 19:44 -05:00: > next start -p 3001
+2025-11-21 19:44 -05:00: 
+2025-11-21 19:44 -05:00:    ▲ Next.js 16.0.3
+2025-11-21 19:44 -05:00:    - Local:         http://localhost:3001
+2025-11-21 19:44 -05:00:    - Network:       http://192.168.0.158:3001
+2025-11-21 19:44 -05:00: 
+2025-11-21 19:44 -05:00:  ✓ Starting...
+2025-11-21 19:44 -05:00:  ✓ Ready in 701ms
+2025-11-21 20:25 -05:00: 
+2025-11-21 20:25 -05:00: > statuswatch-frontend@0.1.0 start
+2025-11-21 20:25 -05:00: > next start -p 3001
+2025-11-21 20:25 -05:00: 
+2025-11-21 20:25 -05:00:    ▲ Next.js 16.0.3
+2025-11-21 20:25 -05:00:    - Local:         http://localhost:3001
+2025-11-21 20:25 -05:00:    - Network:       http://192.168.0.158:3001
+2025-11-21 20:25 -05:00: 
+2025-11-21 20:25 -05:00:  ✓ Starting...
+2025-11-21 20:25 -05:00:  ✓ Ready in 1414ms

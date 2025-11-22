@@ -1,0 +1,13 @@
+nohup: ignoring input
+✅ Server running on http://localhost:5555
+📊 API endpoints:
+   - GET  /api/status          - Check all services
+   - GET  /api/status/:slug    - Check specific service
+   - POST /api/status/:slug/refresh - Force refresh
+
+🔎 Resolving database host from DATABASE_URL: aws-1-us-east-1.pooler.supabase.com
+
+⏸️ Cron jobs disabled in dev (DEV_CRON=false)
+  - 18.214.78.123 (family 4)
+  - 18.213.155.45 (family 4)
+  - 3.227.209.82 (family 4)
