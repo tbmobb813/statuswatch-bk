@@ -34,6 +34,11 @@ yarn-error.log*
 .env*
 .env.local*
 
+# logs and runtime files
+logs/
+*.log
+*.pid
+
 # vercel
 .vercel
 
