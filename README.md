@@ -297,6 +297,11 @@ PORT=5555
 RESEND_API_KEY="optional-email-service-key"
 ```
 
+Notes:
+
+- Do not commit your real `JWT_SECRET` to git. Use `.env.example` as a template and keep secrets in a secure place (local environment, a secrets manager, or your hosting provider's env vars).
+- To rotate the JWT signing key, generate a high-entropy secret (for example, `openssl rand -hex 32`) and update the `JWT_SECRET` in your deployment environment, then restart the backend. Consider whether active tokens should be invalidated after a rotation.
+
 ### Frontend (.env.local)
 
 ```env
