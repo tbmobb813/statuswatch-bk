@@ -22,10 +22,8 @@ module.exports = {
       name: 'statuswatch-frontend',
   // Run the production frontend via npm to ensure correct cwd and env.
   // pm2 will run: npm run start -- -p 3001 inside the frontend folder.
-      script: 'npm',
-      args: 'run start -- -p 3001',
-      interpreter: '/usr/bin/env',
-      interpreter_args: 'bash',
+  script: 'npm',
+  args: 'run start -- -p 3001',
       watch: false,
       autorestart: true,
       max_restarts: 5,
