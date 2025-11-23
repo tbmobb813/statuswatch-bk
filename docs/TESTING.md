@@ -4,7 +4,6 @@ This guide covers testing strategies and procedures for StatusWatch.
 
 ## Test Structure
 
-```
 statuswatch/
 ├── src/
 │   └── __tests__/          # Backend unit tests
@@ -13,7 +12,6 @@ statuswatch/
 ├── e2e/                    # End-to-end tests
 └── scripts/
     └── test-api.sh         # API integration tests
-```
 
 ## Running Tests
 
@@ -74,7 +72,8 @@ npm run test:e2e -- --project=chromium
 
 Test individual functions and components in isolation.
 
-**Backend Example:**
+*Backend Example:**
+
 ```typescript
 // src/__tests__/services/auth.test.ts
 import { hashPassword, verifyPassword } from '../../services/auth';
@@ -105,7 +104,8 @@ describe('Auth Service', () => {
 });
 ```
 
-**Frontend Example:**
+*Frontend Example:**
+
 ```typescript
 // frontend/__tests__/components/ServiceCard.test.tsx
 import { render, screen } from '@testing-library/react';
