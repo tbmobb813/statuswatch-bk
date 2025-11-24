@@ -100,7 +100,7 @@ export default function Dashboard() {
   const overallStatus = getOverallStatus();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+  <div className="min-h-screen bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header with Glassmorphism */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
