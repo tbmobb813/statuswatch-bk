@@ -1,22 +1,10 @@
 'use client';
 
 import { useTheme } from '@/contexts/ThemeContext';
-import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
   const { theme, setTheme, effectiveTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Required for preventing hydration mismatch
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="h-9 w-20 rounded-md bg-gray-200 dark:bg-slate-700 animate-pulse" />
-    );
-  }
+  // Removed mounted state and useEffect as they are not needed.
 
   return (
     <div className="flex items-center gap-2 p-1 bg-gray-200 dark:bg-slate-700 rounded-lg">
@@ -110,16 +98,6 @@ export function ThemeToggle() {
 // Simplified toggle (just light/dark)
 export function ThemeToggleSimple() {
   const { effectiveTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Required for preventing hydration mismatch
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="h-9 w-9 rounded-md bg-gray-200 dark:bg-slate-700 animate-pulse" />;
-  }
 
   const toggleTheme = () => {
     setTheme(effectiveTheme === 'dark' ? 'light' : 'dark');

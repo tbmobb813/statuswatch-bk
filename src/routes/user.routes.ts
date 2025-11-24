@@ -153,6 +153,7 @@ router.put('/alerts', async (req: AuthRequest, res) => {
       discordWebhook,
       slackWebhook
     } = req.body;
+  const { notifyOnDegraded, notifyOnOutage, notifyOnRecovery } = req.body;
 
     const alertPreference = await prisma.alertPreference.upsert({
       where: {

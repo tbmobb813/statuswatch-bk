@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import type { Service } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -72,7 +73,7 @@ export class AnalyticsService {
 
     // Group by service
     const serviceMap = new Map<string, {
-      service: any;
+      service: Service;
       incidents: typeof incidents;
       totalResolutionTime: number;
     }>();
@@ -138,7 +139,7 @@ export class AnalyticsService {
 
     // Group by service
     const serviceMap = new Map<string, {
-      service: any;
+      service: Service;
       detectionTimes: number[];
     }>();
 
@@ -352,7 +353,7 @@ export class AnalyticsService {
     target: number = 99.9
   ): Promise<SLAData[]> {
     const now = new Date();
-    let startDate = new Date();
+    const startDate = new Date();
 
     switch (period) {
       case 'day':

@@ -1,4 +1,4 @@
-import cron, { ScheduledTask } from 'node-cron';
+import cron from 'node-cron';
 import { StatusService, ServiceStatus } from './status.service';
 import { NotificationService } from './notification.service';
 import { PrismaClient } from '@prisma/client';

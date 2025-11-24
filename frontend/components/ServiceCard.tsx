@@ -78,11 +78,14 @@ export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <div className={`${config.bg} ${config.border} border rounded-lg p-6 transition-shadow`}>
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+        <div className="flex items-center gap-2">
+          <StatusIcon className="h-5 w-5 text-gray-700 dark:text-slate-300" />
+          <h3 className="text-lg font-semibold text-gray-900">{service.name}</h3>
+        </div>
         <div className={`w-3 h-3 rounded-full ${config.dot}`} />
       </div>
 
-  <div className="space-y-2">
+      <div className="space-y-2">
         <div className="flex items-center gap-2">
           <span className={`text-sm font-medium ${config.text}`}>
             {config.label}
@@ -97,18 +100,16 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <span>
             Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
           </span>
-          {service.responseTime && (
-            <span>{service.responseTime}ms</span>
-          )}
 
-          <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-2 border-t border-gray-200/50 dark:border-slate-700/50">
-            <span>
-              Last checked: {new Date(service.lastChecked).toLocaleTimeString()}
-            </span>
+          <div className="flex items-center gap-3">
             {service.responseTime && (
               <span className="font-mono bg-gray-100 dark:bg-slate-800/50 px-2 py-0.5 rounded">
                 {service.responseTime}ms
               </span>
+            )}
+
+            {uptimePercentage !== null && uptimePercentage !== undefined && (
+              <span className="text-xs text-gray-500">{uptimePercentage}% uptime (24h)</span>
             )}
           </div>
         </div>

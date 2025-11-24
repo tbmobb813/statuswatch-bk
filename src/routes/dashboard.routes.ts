@@ -30,8 +30,9 @@ router.get('/summary', async (req, res) => {
             // derive a simple status string for the frontend
             status: recentChecks[0]?.isUp ? 'operational' : 'major_outage'
           };
-        } catch (e) {
-          console.error(`Error for service ${s.slug} in dashboard summary:`, e?.message ?? e);
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : String(err);
+          console.error(`Error for service ${s.slug} in dashboard summary:`, msg);
           // Fail the individual service gracefully and continue with other services
           const recentChecks = await prisma.statusCheck.findMany({
             where: { serviceId: s.id },

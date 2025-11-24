@@ -109,6 +109,9 @@ export default function Dashboard() {
           <p className="mt-2 text-sm text-gray-700">
             Real-time status monitoring for your favorite developer tools
           </p>
+          <div className="absolute top-6 right-6">
+            <ThemeToggleSimple />
+          </div>
         </div>
       </header>
 

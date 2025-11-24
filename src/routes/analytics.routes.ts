@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { AnalyticsService } from '../services/analytics.service';
-import { authMiddleware, AuthRequest, optionalAuth } from '../middleware/auth.middleware';
+import { AuthRequest, optionalAuth } from '../middleware/auth.middleware';
 
 const router = Router();
 const analyticsService = new AnalyticsService();

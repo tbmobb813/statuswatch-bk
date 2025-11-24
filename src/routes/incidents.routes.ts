@@ -1,12 +1,7 @@
 import { Router, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { authMiddleware, adminMiddleware } from '../middleware/auth.middleware';
-import { validate } from '../middleware/validation.middleware';
-import {
-  createIncidentSchema,
-  updateIncidentSchema,
-  createIncidentUpdateSchema
-} from '../schemas/incident.schema';
+// Validation middleware and schemas intentionally not used in this file -
+// endpoints are simple and validation is applied at a higher level where needed.
 
 const router = Router();
 const prisma = new PrismaClient();

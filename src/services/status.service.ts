@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { StatusParser } from './parsers/status.parser';
 import { PrismaClient } from '@prisma/client';
+import type { Service } from '@prisma/client';
 
 // Use PrismaClient to interact with the configured DATABASE_URL (Postgres in dev)
 const prisma = new PrismaClient();
@@ -132,7 +133,7 @@ export class StatusService {
   }
 
   // Check custom service - simpler logic, just HTTP status code
-  private async checkCustomService(service: any): Promise<ServiceStatus> {
+  private async checkCustomService(service: Service): Promise<ServiceStatus> {
     const startTime = Date.now();
 
     try {

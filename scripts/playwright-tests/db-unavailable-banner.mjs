@@ -52,14 +52,14 @@ async function run() {
   try {
     await page.waitForSelector('div[role="status"]', { state: 'detached', timeout: 5000 });
     console.log('Banner disappeared after successful Retry');
-  } catch (e) {
-    throw new Error('Banner did not disappear after Retry');
+  } catch (err) {
+    throw new Error('Banner did not disappear after Retry: ' + String(err));
   }
 
   // Re-trigger banner by setting nextShouldSucceed = false and reloading
   nextShouldSucceed = false;
   await page.reload({ waitUntil: 'networkidle' });
-  const banner2 = await page.waitForSelector('div[role="status"]', { timeout: 5000 });
+  await page.waitForSelector('div[role="status"]', { timeout: 5000 });
   console.log('Banner re-appeared after reload');
 
   // Test: Dismiss persists in localStorage
@@ -81,7 +81,7 @@ async function run() {
   console.log('Playwright banner test PASSED');
 }
 
-run().catch((e) => {
-  console.error('Playwright banner test FAILED:', e);
+run().catch((err) => {
+  console.error('Playwright banner test FAILED:', err);
   process.exitCode = 1;
 });

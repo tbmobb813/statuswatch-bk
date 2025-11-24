@@ -103,7 +103,7 @@ function getMaxServicesForUser(user: { stripePriceId?: string | null }): number 
  */
 router.post('/test', authMiddleware, validate(testServiceSchema), async (req: AuthRequest, res) => {
   try {
-    const { url, checkType, expectedStatusCode, timeout } = req.body;
+  const { url, expectedStatusCode, timeout } = req.body;
 
     const startTime = Date.now();
 
