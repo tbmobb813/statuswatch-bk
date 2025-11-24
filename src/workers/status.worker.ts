@@ -1,141 +1,185 @@
-import { StatusService } from '../services/status.service';
 import { NotificationService } from '../services/notification.service';
+import { StatusService } from '../services/status.service';
 import { prisma } from '../lib/db';
-
-// Lightweight worker using BullMQ to process queued cron tasks.
-// This file attempts to import bullmq and ioredis dynamically so the project
-// still runs if dependencies are not installed.
-
-const statusService = new StatusService();
-const notificationService = new NotificationService();
+import type { Job } from 'bullmq';
 
 async function startWorker() {
+  let shuttingDown = false;
+  let worker: unknown = null;
+  let worker2: unknown = null;
+  let worker3: unknown = null;
+
+  const notificationService = new NotificationService();
+  const statusService = new StatusService();
+
   try {
-    const { Worker } = await import('bullmq');
     const redisUrl = process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
     const url = new URL(redisUrl);
     const connection = { host: url.hostname, port: Number(url.port) || 6379, password: url.password || undefined };
 
-    const processor = async (job: any) => {
+    const processor = async (job: Job) => {
       try {
-        console.log('Worker processing job:', job.name);
-
+        console.log('[Worker] processing job:', job.name);
         if (job.name === 'status-check-job') {
           const statuses = await statusService.checkAllServices();
-          console.log(`Worker: checked ${statuses.length} services`);
-
+          console.log(`[Worker] checked ${statuses.length} services`);
           for (const currentStatus of statuses) {
             try {
-              const service = await prisma.service.findUnique({
-                where: { slug: currentStatus.slug },
-                include: {
-                  statusChecks: {
-                    orderBy: { checkedAt: 'desc' },
-                    take: 2
-                  }
-                }
-              });
-
+              const service = await prisma.service.findUnique({ where: { slug: currentStatus.slug }, include: { statusChecks: { orderBy: { checkedAt: 'desc' }, take: 2 } } });
               if (!service || !service.statusChecks || service.statusChecks.length < 2) continue;
-
-              // Delegate to shared processor
-              const { default: processStatusChange } = await import('../services/status-change.processor');
-              await processStatusChange(service as { id: string; name: string; statusChecks: Array<{ isUp: boolean; checkedAt: Date }> }, currentStatus as { slug: string; message?: string | null }, { notificationService, prismaClient: prisma });
+              const processorModule = await import('../services/status-change.processor');
+              await processorModule.processStatusChange(service, currentStatus, { notificationService, prismaClient: prisma });
             } catch (err) {
-              console.error('Worker: error handling status change for service:', err);
+              console.error('[Worker] error handling status change for service:', err);
             }
           }
         }
-
         if (job.name === 'incident-check-job') {
           try {
-            const unresolvedIncidents = await prisma.incident.findMany({
-              where: { status: { not: 'resolved' } },
-              include: { service: true }
-            });
-            console.log(`Worker: found ${unresolvedIncidents.length} unresolved incidents`);
+            const unresolvedIncidents = await prisma.incident.findMany({ where: { status: { not: 'resolved' } }, include: { service: true } });
+            console.log(`[Worker] found ${unresolvedIncidents.length} unresolved incidents`);
           } catch (err) {
-            console.error('Worker: failed to fetch unresolved incidents:', err);
+            console.error('[Worker] failed to fetch unresolved incidents:', err);
           }
         }
-
         if (job.name === 'cleanup-job') {
           try {
             const sevenDaysAgo = new Date();
             sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-            // Allow cleanup to be scoped to a specific service when job.data.serviceId is provided.
-            // This keeps integration tests deterministic when the DB contains other older rows.
-            const serviceId = job.data && (job.data as { serviceId?: string }).serviceId;
-            const whereClause: Record<string, unknown> = { checkedAt: { lt: sevenDaysAgo } };
-            if (serviceId) whereClause.serviceId = serviceId;
-
-            const deleted = await prisma.statusCheck.deleteMany({ where: whereClause });
-            console.log(`Worker: deleted ${deleted.count} old status checks${serviceId ? ` for service=${serviceId}` : ''}`);
+            const serviceId = (job.data as unknown as { serviceId?: string })?.serviceId;
+            const where: Record<string, unknown> = { checkedAt: { lt: sevenDaysAgo } };
+            if (serviceId) where.serviceId = serviceId;
+            const deleted = await prisma.statusCheck.deleteMany({ where });
+            console.log(`[Worker] deleted ${deleted.count} old status checks`);
           } catch (err) {
-            console.error('Worker: cleanup failed:', err);
+            console.error('[Worker] cleanup failed:', err);
           }
         }
-
       } catch (err) {
-        console.error('Worker: job processor error:', err);
+        console.error('[Worker] job processor error:', err);
       }
     };
 
-  const worker = new Worker('status-check', processor, { connection });
-  const worker2 = new Worker('incident-check', processor, { connection });
-  const worker3 = new Worker('cleanup', processor, { connection });
+    const bullmq = await import('bullmq');
+    const Worker = bullmq.Worker;
 
-    worker.on('completed', (job) => console.log(`Worker: completed job ${job.id} (${job.name})`));
-    worker.on('failed', (job, err) => console.error(`Worker: job failed ${job?.id} (${job?.name}):`, err));
+    worker = new Worker('status-check', processor, { connection });
+    worker2 = new Worker('incident-check', processor, { connection });
+    worker3 = new Worker('cleanup', processor, { connection });
 
-    worker2.on('completed', (job) => console.log(`Worker2: completed job ${job.id} (${job.name})`));
-    worker2.on('failed', (job, err) => console.error(`Worker2: job failed ${job?.id} (${job?.name}):`, err));
+    // control worker: listens for 'shutdown' control job so tests can signal via Redis
+    const controlProcessor = async (job: Job) => {
+      try {
+        console.log('[Worker] control job received:', job.name, job.data);
+        if (job.name === 'shutdown') {
+          console.log('[Worker] control: shutdown requested');
+          await shutdown('control');
+        }
+      } catch (err) {
+        console.error('[Worker] control job error:', err);
+      }
+    };
+    const controlWorker = new Worker('control', controlProcessor, { connection });
+    controlWorker.on('error', (err: Error) => console.error('[Worker:control] error', err));
 
-    worker3.on('completed', (job) => console.log(`Worker3: completed job ${job.id} (${job.name})`));
-    worker3.on('failed', (job, err) => console.error(`Worker3: job failed ${job?.id} (${job?.name}):`, err));
+  // signal that control worker is ready so test harnesses can enqueue control jobs reliably
+  console.log('CONTROL_WORKER_READY');
+
+    worker.on('completed', (job: Job) => console.log(`[Worker:status-check] completed job ${job.id} (${job.name})`));
+    worker.on('failed', (job: Job | undefined, err: Error) => console.error(`[Worker:status-check] job failed ${job?.id} (${job?.name}):`, err));
+    worker.on('error', (err: Error) => console.error('[Worker:status-check] error', err));
+
+    worker2.on('completed', (job: Job) => console.log(`[Worker:incident-check] completed job ${job.id} (${job.name})`));
+    worker2.on('failed', (job: Job | undefined, err: Error) => console.error(`[Worker:incident-check] job failed ${job?.id} (${job?.name}):`, err));
+    worker2.on('error', (err: Error) => console.error('[Worker:incident-check] error', err));
+
+    worker3.on('completed', (job: Job) => console.log(`[Worker:cleanup] completed job ${job.id} (${job.name})`));
+    worker3.on('failed', (job: Job | undefined, err: Error) => console.error(`[Worker:cleanup] job failed ${job?.id} (${job?.name}):`, err));
+    worker3.on('error', (err: Error) => console.error('[Worker:cleanup] error', err));
 
     console.log('✅ BullMQ workers started for status-check, incident-check and cleanup');
 
-    // handle graceful shutdown
-    let shuttingDown = false;
+    const closeWithTimeout = async (w: unknown, name: string, timeoutMs = 2000) => {
+      if (!w) return;
+      let finished = false;
+      const finish = () => { finished = true; };
+      const closable = w as { close?: () => Promise<void> };
+      const p = (closable.close ? closable.close() : Promise.resolve()).then(finish).catch((e: unknown) => { console.error(`[Worker:${name}] close error`, e); finish(); });
+      const t = new Promise<void>((resolve) => setTimeout(() => { if (!finished) { console.warn(`[Worker:${name}] close timed out after ${timeoutMs}ms`); } resolve(); }, timeoutMs));
+      await Promise.race([p, t]);
+    };
+
+    const closeWorkers = async () => {
+      await Promise.all([
+        closeWithTimeout(worker, 'status-check', 2000),
+        closeWithTimeout(worker2, 'incident-check', 2000),
+        closeWithTimeout(worker3, 'cleanup', 2000),
+      ]);
+    };
+
     const shutdown = async (reason?: string) => {
-      if (shuttingDown) return;
-      shuttingDown = true;
-      console.log('Shutting down BullMQ workers...', reason ? `reason=${reason}` : '');
-      try {
-        await Promise.all([worker.close(), worker2.close(), worker3.close()]);
-        console.log('BullMQ workers closed');
-      } catch (err) {
-        console.error('Error closing BullMQ workers during shutdown:', err);
+      if (shuttingDown) {
+        console.log('[Worker] shutdown already in progress');
+        return;
       }
-      // allow test harness or process manager to decide exit code; but exit here for standalone run
+      shuttingDown = true;
+      console.log('[Worker] shutdown initiated', reason ?? '');
       try {
-        process.exit(0);
-      } catch {}
+        await closeWorkers();
+        console.log('[Worker] workers closed');
+      } catch (err) {
+        console.error('[Worker] error closing workers', err);
+      }
+
+      // Disconnect Prisma to close DB pool and allow process to exit in tests
+      try {
+        if (prisma && typeof (prisma as unknown as { $disconnect?: (...args: unknown[]) => Promise<void> }).$disconnect === 'function') {
+          await (prisma as unknown as { $disconnect: () => Promise<void> }).$disconnect();
+          console.log('[Worker] prisma disconnected');
+        }
+      } catch (err) {
+        console.warn('[Worker] error disconnecting prisma:', err);
+      }
+
+      // Disconnect IPC (if any) so parent sees connected==false
+      try {
+        const p = process as unknown as { disconnect?: () => void };
+        if (typeof p.disconnect === 'function') {
+          console.log('[Worker] disconnecting IPC');
+          p.disconnect();
+        }
+      } catch (err) {
+        console.warn('[Worker] error disconnecting IPC', err);
+      }
+
+      // Announce shutdown completion for test harnesses
+      try { console.log('SHUTDOWN_COMPLETE'); } catch {}
+
+      // give Node a short moment to naturally exit, then force
+      setTimeout(() => { try { process.exit(0); } catch {} }, 300);
+      setTimeout(() => { console.warn('[Worker] forcing exit after shutdown'); try { process.exit(1); } catch {} }, 5000);
     };
 
     process.on('SIGINT', () => shutdown('SIGINT'));
     process.on('SIGTERM', () => shutdown('SIGTERM'));
-    // support IPC-based shutdown for test harnesses (worker spawned with stdio:'ipc')
     process.on('message', (msg: unknown) => {
       try {
-        if (!msg) return;
-        const m = msg as { type?: string } | string;
-        if (m === 'shutdown') {
-          shutdown('ipc');
-        } else if (typeof m === 'object') {
-          const obj = m as { type?: unknown };
-          if (obj.type === 'shutdown') shutdown('ipc');
+        console.log('[Worker] IPC message', msg);
+        const m = msg as { type?: string } | string | null | undefined;
+        if (m === 'shutdown' || (typeof m === 'object' && m?.type === 'shutdown')) {
+          void shutdown('ipc');
         }
       } catch (err) {
-        console.error('Error handling IPC message in worker:', err);
+        console.error('[Worker] IPC handler error', err);
       }
     });
 
-  } catch {
-    console.warn('BullMQ/ioredis not available or failed to start worker. Skipping worker start.');
+    process.on('exit', (code) => console.log('[Worker] process exit', code));
+
+  } catch (err) {
+    console.warn('BullMQ/ioredis not available or failed to start worker. Skipping worker start.', err);
   }
 }
 
-startWorker().catch(err => console.error('Failed to start worker:', err));
+startWorker().catch((err) => console.error('Failed to start worker:', err));
+

@@ -97,7 +97,7 @@ export class NotificationService {
     serviceId: string,
     oldStatus: string,
     newStatus: string,
-    message?: string
+    message?: string | null
   ) {
     try {
       const service = await prisma.service.findUnique({

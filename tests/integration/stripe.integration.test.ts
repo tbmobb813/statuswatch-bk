@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || 'test-secret';
 process.env.JWT_SECRET = JWT_SECRET;
 process.env.DEV_CRON = 'false';
-process.env.NODE_ENV = 'test';
+(process.env as any).NODE_ENV = 'test';
 
 jest.setTimeout(20000);
 import app from '../../src/server';
