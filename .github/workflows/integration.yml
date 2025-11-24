@@ -1,0 +1,60 @@
+name: Integration tests (Postgres + Redis)
+
+on:
+  push:
+    branches: [ main, chore/**, "**" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Start test services (docker compose)
+        run: |
+          docker compose -f docker-compose.test.yml up -d --build
+
+      - name: Wait for Postgres to become available
+        run: |
+          for i in {1..60}; do
+            docker compose -f docker-compose.test.yml exec -T db pg_isready -h db -U statuswatch -d statuswatch_test && break || true
+            echo "Waiting for Postgres... ($i)";
+            sleep 1;
+          done
+
+      - name: Wait for Redis to become available
+        run: |
+          for i in {1..30}; do
+            docker compose -f docker-compose.test.yml exec -T redis redis-cli ping && break || true
+            echo "Waiting for Redis... ($i)";
+            sleep 1;
+          done
+
+      - name: Install dependencies
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          npm ci
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://statuswatch:password@127.0.0.1:5433/statuswatch_test
+          REDIS_URL: redis://127.0.0.1:6379
+          DEV_CRON: 'false'
+          JWT_SECRET: test-secret
+        run: |
+          npm run test:unit
+
+      - name: Tear down test services
+        if: always()
+        run: |
+          docker compose -f docker-compose.test.yml down --volumes

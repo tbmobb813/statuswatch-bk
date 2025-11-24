@@ -1,9 +1,60 @@
 import cron, { ScheduledTask } from 'node-cron';
 import { StatusService, ServiceStatus } from './status.service';
-import { NotificationService } from './notification.service';
+// notification service is used by the shared processor; import not required here
 import { prisma } from '../lib/db';
 const statusService = new StatusService();
-const notificationService = new NotificationService();
+// NotificationService is used by the shared processor; don't instantiate here to avoid unused variable lint
+
+// When USE_BULL=true we will enqueue repeatable jobs into BullMQ instead of running in-process cron.
+// Use dynamic imports so projects without bullmq/ioredis installed still run the normal cron path.
+const USE_BULL = process.env.USE_BULL === 'true' || process.env.USE_QUEUE === 'true';
+
+async function getQueue(name: string) {
+  try {
+    const { Queue } = await import('bullmq');
+    const redisUrl = process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
+    // parse redis url into host/port/password for compatibility
+    const url = new URL(redisUrl);
+    const connection = {
+      host: url.hostname,
+      port: Number(url.port) || 6379,
+      password: url.password || undefined
+    };
+    return new Queue(name, { connection });
+  } catch {
+    // bullmq not available — caller should fall back to cron
+    return null;
+  }
+}
+
+async function ensureRepeatable(queue: unknown, jobName: string, cronExpr: string, opts?: { jobId?: string }) {
+  type Repeatable = { name?: string; cron?: string };
+  type QueueLike = {
+    getRepeatableJobs?: (start: number, end: number) => Promise<Repeatable[]>;
+    add: (name: string, data: unknown, opts?: unknown) => Promise<unknown>;
+  };
+
+  try {
+    const q = queue as QueueLike;
+    // If bullmq provides getRepeatableJobs, check existing entries to avoid duplicates
+    if (typeof q.getRepeatableJobs === 'function') {
+      const repeatables = await q.getRepeatableJobs(0, 1000);
+      const exists = repeatables.some((r: Repeatable) => r.name === jobName && r.cron === cronExpr);
+      if (!exists) {
+        await q.add(jobName, {}, { repeat: { cron: cronExpr }, jobId: opts?.jobId ?? `${jobName}-${cronExpr}` });
+        console.log(`🔁 Registered repeatable job ${jobName} (${cronExpr})`);
+      } else {
+        console.log(`ℹ️ Repeatable job ${jobName} (${cronExpr}) already registered`);
+      }
+    } else {
+      // Fallback: try to add anyway
+      await q.add(jobName, {}, { repeat: { cron: cronExpr }, jobId: opts?.jobId ?? `${jobName}-${cronExpr}` });
+      console.log(`🔁 Registered repeatable job ${jobName} (${cronExpr}) (no getRepeatableJobs available)`);
+    }
+  } catch (err) {
+    console.error('Failed to ensure repeatable job in queue:', err);
+  }
+}
 
 export class CronService {
   private tasks: ScheduledTask[] = [];
@@ -30,6 +81,28 @@ export class CronService {
 
   // Check all services every 2 minutes
   startStatusMonitoring() {
+    // If BullMQ is enabled, enqueue a repeatable job instead of scheduling in-process
+    if (USE_BULL) {
+      getQueue('status-check').then(queue => {
+        if (!queue) {
+          console.warn('bullmq/ioredis not available — falling back to node-cron for status monitoring');
+          this.startStatusMonitoring();
+          return;
+        }
+
+        // Add a repeatable job using cron expression
+        ensureRepeatable(queue, 'status-check-job', '*/2 * * * *').catch(err => {
+          console.error('Failed to add repeatable status-check job to queue:', err);
+        });
+
+        console.log('✅ Status monitoring enqueued to BullMQ (every 2 minutes)');
+      }).catch(err => {
+        console.error('Error initializing BullMQ queue for status monitoring:', err);
+      });
+      return;
+    }
+
+    // Default in-process cron behavior
     const task = cron.schedule('*/2 * * * *', async () => {
       console.log('🔍 Running scheduled status checks...');
       try {
@@ -51,6 +124,25 @@ export class CronService {
 
   // Check every 5 minutes for unresolved incidents
   startIncidentMonitoring() {
+    if (USE_BULL) {
+      getQueue('incident-check').then(queue => {
+        if (!queue) {
+          console.warn('bullmq/ioredis not available — falling back to node-cron for incident monitoring');
+          this.startIncidentMonitoring();
+          return;
+        }
+
+        ensureRepeatable(queue, 'incident-check-job', '*/5 * * * *').catch(err => {
+          console.error('Failed to add repeatable incident-check job to queue:', err);
+        });
+
+        console.log('✅ Incident monitoring enqueued to BullMQ (every 5 minutes)');
+      }).catch(err => {
+        console.error('Error initializing BullMQ queue for incident monitoring:', err);
+      });
+      return;
+    }
+
     const task = cron.schedule('*/5 * * * *', async () => {
       console.log('🔍 Checking for unresolved incidents...');
       try {
@@ -81,6 +173,25 @@ export class CronService {
 
   // Clean up old status checks (keep last 7 days)
   startCleanupTask() {
+    if (USE_BULL) {
+      getQueue('cleanup').then(queue => {
+        if (!queue) {
+          console.warn('bullmq/ioredis not available — falling back to node-cron for cleanup task');
+          this.startCleanupTask();
+          return;
+        }
+
+        ensureRepeatable(queue, 'cleanup-job', '0 2 * * *').catch(err => {
+          console.error('Failed to add repeatable cleanup job to queue:', err);
+        });
+
+        console.log('✅ Cleanup task enqueued to BullMQ (daily at 2 AM)');
+      }).catch(err => {
+        console.error('Error initializing BullMQ queue for cleanup task:', err);
+      });
+      return;
+    }
+
     // Run daily at 2 AM
     const task = cron.schedule('0 2 * * *', async () => {
       console.log('🧹 Running cleanup task...');
@@ -122,36 +233,9 @@ export class CronService {
         }
       }));
 
-      if (!service || service.statusChecks.length < 2) {
-        return;
-      }
-
-      const [current, previous] = service.statusChecks;
-
-      // Compare by isUp boolean (Prisma StatusCheck uses isUp)
-      if (current.isUp !== previous.isUp) {
-        const prevStatus = previous.isUp ? 'operational' : 'outage';
-        const currStatus = current.isUp ? 'operational' : 'outage';
-        console.log(`⚠️  Status change detected for ${service.name}: ${prevStatus} → ${currStatus}`);
-
-        // Send notifications to users
-        await notificationService.notifyStatusChange(
-          service.id,
-          prevStatus,
-          currStatus,
-          currentStatus.message
-        );
-
-        // Create incident if status degraded
-        if (!current.isUp && previous.isUp) {
-          await this.createIncident(service.id, currStatus, currentStatus.message);
-        }
-
-        // Resolve incident if service recovered
-        if (current.isUp && !previous.isUp) {
-          await this.resolveIncidents(service.id);
-        }
-      }
+      // Delegate processing to shared processor for consistency and testability
+  const { default: processStatusChange } = await import('./status-change.processor');
+  await processStatusChange(service as { id: string; name: string; statusChecks: Array<{ isUp: boolean; checkedAt: Date }> }, currentStatus as ServiceStatus);
     } catch (error) {
       console.error('Error checking status change:', error);
     }

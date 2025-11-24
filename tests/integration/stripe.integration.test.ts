@@ -7,6 +7,7 @@ process.env.JWT_SECRET = JWT_SECRET;
 process.env.DEV_CRON = 'false';
 process.env.NODE_ENV = 'test';
 
+jest.setTimeout(20000);
 import app from '../../src/server';
 import { prisma } from '../../src/lib/db';
 
