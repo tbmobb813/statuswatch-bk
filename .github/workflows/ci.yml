@@ -2,93 +2,128 @@ name: CI
 
 on:
   push:
-    branches: [ main, chore/upgrade-root-pm2-20251120, prod/stage ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint --if-present
-
-      - name: Build backend
-        run: npm run build:backend --if-present
-
-      - name: Generate Prisma client
-        run: npx prisma generate
-
-      - name: Run tests (smoke)
-        env:
-          NODE_ENV: test
-        run: npm test
-
-      - name: Package (optional)
-        if: github.ref == 'refs/heads/main'
-        run: echo "Build succeeded on main"
-name: CI
-
-on:
-  push:
     branches: [ main, chore/**, prod/**, prod/stage ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps (lint)
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+  build-backend:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
 
       - name: Use Node.js 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install root deps
+      - name: Install dependencies
         run: npm ci
 
       - name: Build backend
         run: npm run build:backend
 
-      - name: Run smoke tests
+  test:
+    runs-on: ubuntu-latest
+    needs: build-backend
+    services:
+      postgres:
+        image: postgres:15
         env:
-          API_URL: http://127.0.0.1:5555
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: statuswatch
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/statuswatch
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Push Prisma schema to DB (safe for CI)
+        run: npx prisma db push || true
+
+      - name: Start backend
         run: |
-          # Start a temporary Postgres using docker (available on runners)
-          docker run -d --name ci-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=statuswatch -p 5432:5432 postgres:15
-          # Wait for Postgres to be available
-          for i in {1..30}; do
-            pg_isready -h 127.0.0.1 -p 5432 && break || sleep 1
-          done
-          # Set DATABASE_URL for tests
-          export DATABASE_URL="postgresql://postgres:postgres@127.0.0.1:5432/statuswatch"
-          npm run prisma:generate
-          npm run prisma:db:push --silent || true
-          nohup dotenv -e .env -- npx tsx src/server.ts > logs/backend.log 2>&1 &
-          # wait for server to start
+          mkdir -p logs
+          nohup env DATABASE_URL=${{ env.DATABASE_URL }} PORT=5555 node dist/server.js > logs/backend.log 2>&1 &
+
+      - name: Wait for /ready
+        run: |
           for i in {1..30}; do
             curl -sSf http://127.0.0.1:5555/ready && break || sleep 1
           done
-          npm test
+
+      - name: Run smoke tests
+        env:
+          API_URL: http://127.0.0.1:5555
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+        run: npm test
+
+      - name: Upload backend logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-logs
+          path: logs/backend.log
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    needs: build-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache frontend node modules
+        uses: actions/cache@v4
+        with:
+          path: frontend/node_modules
+          key: frontend-npm-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            frontend-npm-${{ runner.os }}-
 
       - name: Build frontend
         run: |

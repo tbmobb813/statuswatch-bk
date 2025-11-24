@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { StatusParser } from './parsers/status.parser';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Service } from '@prisma/client';
+import { cacheGet, cacheSet } from '../lib/cache';
 
 // Use PrismaClient to interact with the configured DATABASE_URL (Postgres in dev)
 const prisma = new PrismaClient();
@@ -132,7 +133,7 @@ export class StatusService {
   }
 
   // Check custom service - simpler logic, just HTTP status code
-  private async checkCustomService(service: any): Promise<ServiceStatus> {
+  private async checkCustomService(service: Service): Promise<ServiceStatus> {
     const startTime = Date.now();
 
     try {
@@ -230,6 +231,10 @@ export class StatusService {
   }
 
   async getLatestStatus(slug: string): Promise<ServiceStatus | null> {
+    const cacheKey = `latestStatus:${slug}`;
+    const cached = cacheGet<ServiceStatus | null>(cacheKey);
+    if (cached) return cached;
+
     const service = await prisma.service.findUnique({ where: { slug } });
     if (!service) return null;
 
@@ -240,7 +245,7 @@ export class StatusService {
 
     if (!latestCheck) return null;
 
-    return {
+    const result: ServiceStatus = {
       slug: service.slug,
       name: service.name,
       status: latestCheck.isUp ? 'operational' : 'degraded',
@@ -248,5 +253,14 @@ export class StatusService {
       lastChecked: latestCheck.checkedAt,
       responseTime: latestCheck.responseTime || undefined
     };
+
+    // cache latest status for short duration to reduce DB reads
+    try {
+      cacheSet(cacheKey, result, 30 * 1000); // 30s
+    } catch {
+      // non-fatal
+    }
+
+    return result;
   }
 }

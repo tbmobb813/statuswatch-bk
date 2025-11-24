@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 // Flat ESLint config (root) — this merges the minimal recommended rules we
 // used in the legacy `.eslintrc.cjs` into a flat config that ESLint v9+ can
 // consume. It keeps per-package configs operational by not forcing heavy

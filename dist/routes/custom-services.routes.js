@@ -99,7 +99,7 @@ function getMaxServicesForUser(user) {
  */
 router.post('/test', auth_middleware_1.authMiddleware, (0, validation_middleware_1.validate)(service_schema_1.testServiceSchema), async (req, res) => {
     try {
-        const { url, checkType, expectedStatusCode, timeout } = req.body;
+        const { url, expectedStatusCode, timeout } = req.body;
         const startTime = Date.now();
         try {
             const response = await (0, axios_1.default)({

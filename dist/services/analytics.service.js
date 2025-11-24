@@ -76,7 +76,6 @@ class AnalyticsService {
                 service: true,
             },
         });
-        // Group by service
         const serviceMap = new Map();
         for (const incident of incidents) {
             // Detection time = createdAt - startedAt
@@ -263,7 +262,7 @@ class AnalyticsService {
      */
     async calculateSLA(serviceId, period = 'month', target = 99.9) {
         const now = new Date();
-        let startDate = new Date();
+        const startDate = new Date();
         switch (period) {
             case 'day':
                 startDate.setDate(now.getDate() - 1);

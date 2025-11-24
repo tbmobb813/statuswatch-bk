@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Incident, Service } from '@prisma/client';
+
+type IncidentWithService = Incident & { service: Service };
 
 const prisma = new PrismaClient();
 
@@ -63,7 +65,7 @@ export class AnalyticsService {
       ...(serviceId && { serviceId }),
     };
 
-    const incidents = await prisma.incident.findMany({
+    const incidents: IncidentWithService[] = await prisma.incident.findMany({
       where,
       include: {
         service: true,
@@ -72,8 +74,8 @@ export class AnalyticsService {
 
     // Group by service
     const serviceMap = new Map<string, {
-      service: any;
-      incidents: typeof incidents;
+      service: Service;
+      incidents: IncidentWithService[];
       totalResolutionTime: number;
     }>();
 
@@ -129,16 +131,17 @@ export class AnalyticsService {
       ...(serviceId && { serviceId }),
     };
 
-    const incidents = await prisma.incident.findMany({
+    type IncidentWithService = Incident & { service: Service };
+
+    const incidents: IncidentWithService[] = await prisma.incident.findMany({
       where,
       include: {
         service: true,
       },
     });
-
-    // Group by service
+    
     const serviceMap = new Map<string, {
-      service: any;
+      service: Service;
       detectionTimes: number[];
     }>();
 
@@ -352,7 +355,7 @@ export class AnalyticsService {
     target: number = 99.9
   ): Promise<SLAData[]> {
     const now = new Date();
-    let startDate = new Date();
+    const startDate = new Date();
 
     switch (period) {
       case 'day':
