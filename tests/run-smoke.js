@@ -40,10 +40,29 @@ async function checkHealth() {
   }
 }
 
+async function checkReady() {
+  const url = process.env.API_URL || 'http://localhost:5555';
+  const readyUrl = `${url.replace(/\/$/, '')}/ready`;
+  console.log(`Checking backend readiness at ${readyUrl}...`);
+  try {
+    const res = await axios.get(readyUrl, { timeout: 5000 });
+    if (res.status === 200) {
+      console.log('Backend readiness OK');
+      return;
+    }
+    console.warn('Readiness endpoint returned status:', res.status);
+  } catch (e) {
+    console.warn('Readiness check failed:', e && e.message ? e.message : String(e));
+    // Rethrow so smoke test fails early if backend not ready
+    throw e;
+  }
+}
+
 (async () => {
   try {
-    await runMonitor();
-    await checkHealth();
+  await checkReady();
+  await runMonitor();
+  await checkHealth();
     console.log('SMOKE TESTS PASSED');
     process.exit(0);
   } catch (err) {

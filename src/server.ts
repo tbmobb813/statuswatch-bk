@@ -13,6 +13,7 @@ import dashboardRoutes from './routes/dashboard.routes';
 import customServicesRoutes from './routes/custom-services.routes';
 import analyticsRoutes from './routes/analytics.routes';
 import { CronService } from './services/cron.service';
+import { prisma } from './lib/db';
 
 const app = express();
 const PORT = process.env.PORT || 5555;
@@ -59,6 +60,19 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Readiness check - verifies database connectivity and essential subsystems.
+// Returns 200 only if DB is reachable; otherwise returns 503.
+app.get('/ready', async (req, res) => {
+  try {
+    // Simple DB ping
+    await prisma.$queryRaw`SELECT 1`;
+    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+  } catch (err) {
+    console.error('Readiness check failed:', err);
+    res.status(503).json({ status: 'fail', error: String(err) });
+  }
+});
+
 // Swagger API documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
@@ -101,7 +115,7 @@ app.use((err: Error, req: express.Request, res: express.Response, _next: express
   });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`📊 API endpoints:`);
   console.log(`   - GET  /api/status          - Check all services`);
@@ -142,5 +156,65 @@ app.listen(PORT, () => {
     console.log(`\n⏰ Automated monitoring started`);
   }
 });
+
+// Graceful shutdown: stop accepting new requests, stop cron jobs, disconnect DB, then exit.
+let shuttingDown = false;
+const shutdown = (signal: string) => {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`Received ${signal} - starting graceful shutdown`);
+
+  const finish = async () => {
+    try {
+      // Stop cron jobs first so background work doesn't start new DB queries
+      try {
+        cronService.stopAll();
+      } catch (e) {
+        console.warn('Error stopping cron jobs:', e);
+      }
+
+      // Disconnect shared Prisma client
+      try {
+        await prisma.$disconnect();
+      } catch (e) {
+        console.warn('Error disconnecting prisma client:', e);
+      }
+
+      console.log('Shutdown complete. Exiting.');
+      process.exit(0);
+    } catch (shutdownErr) {
+      console.error('Error during shutdown:', shutdownErr);
+      process.exit(1);
+    }
+  };
+
+  // If server is listening, close it to stop accepting new connections. If not,
+  // proceed to finish shutdown steps.
+  try {
+    if (server && (server.listening || server.address())) {
+      server.close((err) => {
+        if (err) {
+          console.error('Error closing HTTP server:', err);
+        }
+        // Continue shutdown regardless of server.close() result
+        void finish();
+      });
+    } else {
+      void finish();
+    }
+  } catch (err) {
+    console.warn('Error while closing server (continuing shutdown):', err);
+    void finish();
+  }
+
+  // Force exit if shutdown takes too long
+  setTimeout(() => {
+    console.error('Forcing shutdown after timeout');
+    process.exit(1);
+  }, 10_000).unref();
+};
+
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
 
 export default app;

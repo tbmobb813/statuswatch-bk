@@ -1,0 +1,213 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
+const promises_1 = __importDefault(require("dns/promises"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_1 = require("./config/swagger");
+const status_routes_1 = __importDefault(require("./routes/status.routes"));
+const incidents_routes_1 = __importDefault(require("./routes/incidents.routes"));
+const uptime_routes_1 = __importDefault(require("./routes/uptime.routes"));
+const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const user_routes_1 = __importDefault(require("./routes/user.routes"));
+const dashboard_routes_1 = __importDefault(require("./routes/dashboard.routes"));
+const custom_services_routes_1 = __importDefault(require("./routes/custom-services.routes"));
+const analytics_routes_1 = __importDefault(require("./routes/analytics.routes"));
+const cron_service_1 = require("./services/cron.service");
+const db_1 = require("./lib/db");
+const app = (0, express_1.default)();
+const PORT = process.env.PORT || 5555;
+const cronService = new cron_service_1.CronService();
+// Rate limiters
+const generalLimiter = (0, express_rate_limit_1.default)({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: {
+        success: false,
+        error: 'Too many requests, please try again later.'
+    },
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+const authLimiter = (0, express_rate_limit_1.default)({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 auth requests per windowMs
+    message: {
+        success: false,
+        error: 'Too many authentication attempts, please try again later.'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+// Middleware
+app.use((0, cors_1.default)({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true,
+}));
+app.use(express_1.default.json());
+app.use('/api/', generalLimiter);
+// Health check
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+// Alias for docs/tests that expect /api/health
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+// Readiness check - verifies database connectivity and essential subsystems.
+// Returns 200 only if DB is reachable; otherwise returns 503.
+app.get('/ready', async (req, res) => {
+    try {
+        // Simple DB ping
+        await db_1.prisma.$queryRaw `SELECT 1`;
+        res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+    }
+    catch (err) {
+        console.error('Readiness check failed:', err);
+        res.status(503).json({ status: 'fail', error: String(err) });
+    }
+});
+// Swagger API documentation
+app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerSpec, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'StatusWatch API Docs',
+}));
+// Swagger JSON endpoint
+app.get('/api-docs.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swagger_1.swaggerSpec);
+});
+// Routes
+app.use('/api/status', status_routes_1.default);
+app.use('/api/incidents', incidents_routes_1.default);
+app.use('/api/uptime', uptime_routes_1.default);
+app.use('/api/auth', authLimiter, auth_routes_1.default);
+app.use('/api/user', user_routes_1.default);
+app.use('/api/dashboard', dashboard_routes_1.default);
+app.use('/api/custom-services', custom_services_routes_1.default);
+app.use('/api/analytics', analytics_routes_1.default);
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        error: 'Route not found'
+    });
+});
+// Error handler
+app.use((err, req, res, _next) => {
+    // Mark `_next` as used to satisfy unused-var lint rule (we intentionally
+    // don't call it here because we handle the error response directly).
+    void _next;
+    console.error('Error:', err);
+    res.status(500).json({
+        success: false,
+        error: err.message || 'Internal server error'
+    });
+});
+const server = app.listen(PORT, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`📊 API endpoints:`);
+    console.log(`   - GET  /api/status          - Check all services`);
+    console.log(`   - GET  /api/status/:slug    - Check specific service`);
+    console.log(`   - POST /api/status/:slug/refresh - Force refresh`);
+    // Dev-only: resolve DB host from DATABASE_URL and print addresses (helps debug IPv4/IPv6)
+    if (process.env.NODE_ENV !== 'production') {
+        const dbUrl = process.env.DATABASE_URL;
+        if (dbUrl) {
+            try {
+                const hostname = new URL(dbUrl).hostname;
+                console.log(`\n🔎 Resolving database host from DATABASE_URL: ${hostname}`);
+                promises_1.default.lookup(hostname, { all: true })
+                    .then((addrs) => {
+                    if (!addrs || addrs.length === 0) {
+                        console.log('  (no addresses returned)');
+                    }
+                    else {
+                        addrs.forEach((a) => console.log(`  - ${a.address} (family ${a.family})`));
+                    }
+                })
+                    .catch((err) => {
+                    console.warn('Could not resolve DB host:', err && err.message ? err.message : err);
+                });
+            }
+            catch (_err) {
+                console.warn('Invalid DATABASE_URL, skipping DB host resolution', String(_err));
+            }
+        }
+        else {
+            console.log('DATABASE_URL not set; skipping DB host resolution');
+        }
+    }
+    // Start cron jobs
+    if (process.env.DEV_CRON === 'false') {
+        console.log('\n⏸️ Cron jobs disabled in dev (DEV_CRON=false)');
+    }
+    else {
+        cronService.startAll();
+        console.log(`\n⏰ Automated monitoring started`);
+    }
+});
+// Graceful shutdown: stop accepting new requests, stop cron jobs, disconnect DB, then exit.
+let shuttingDown = false;
+const shutdown = (signal) => {
+    if (shuttingDown)
+        return;
+    shuttingDown = true;
+    console.log(`Received ${signal} - starting graceful shutdown`);
+    const finish = async () => {
+        try {
+            // Stop cron jobs first so background work doesn't start new DB queries
+            try {
+                cronService.stopAll();
+            }
+            catch (e) {
+                console.warn('Error stopping cron jobs:', e);
+            }
+            // Disconnect shared Prisma client
+            try {
+                await db_1.prisma.$disconnect();
+            }
+            catch (e) {
+                console.warn('Error disconnecting prisma client:', e);
+            }
+            console.log('Shutdown complete. Exiting.');
+            process.exit(0);
+        }
+        catch (shutdownErr) {
+            console.error('Error during shutdown:', shutdownErr);
+            process.exit(1);
+        }
+    };
+    // If server is listening, close it to stop accepting new connections. If not,
+    // proceed to finish shutdown steps.
+    try {
+        if (server && (server.listening || server.address())) {
+            server.close((err) => {
+                if (err) {
+                    console.error('Error closing HTTP server:', err);
+                }
+                // Continue shutdown regardless of server.close() result
+                void finish();
+            });
+        }
+        else {
+            void finish();
+        }
+    }
+    catch (err) {
+        console.warn('Error while closing server (continuing shutdown):', err);
+        void finish();
+    }
+    // Force exit if shutdown takes too long
+    setTimeout(() => {
+        console.error('Forcing shutdown after timeout');
+        process.exit(1);
+    }, 10000).unref();
+};
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+exports.default = app;

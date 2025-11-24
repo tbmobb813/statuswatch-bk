@@ -1,9 +1,7 @@
 import cron, { ScheduledTask } from 'node-cron';
 import { StatusService, ServiceStatus } from './status.service';
 import { NotificationService } from './notification.service';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db';
 const statusService = new StatusService();
 const notificationService = new NotificationService();
 

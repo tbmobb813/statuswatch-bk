@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, chore/upgrade-root-pm2-20251120, prod/stage ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Build backend
+        run: npm run build:backend --if-present
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Run tests (smoke)
+        env:
+          NODE_ENV: test
+        run: npm test
+
+      - name: Package (optional)
+        if: github.ref == 'refs/heads/main'
+        run: echo "Build succeeded on main"
+name: CI
+
+on:
+  push:
+    branches: [ main, chore/**, prod/**, prod/stage ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Build backend
+        run: npm run build:backend
+
+      - name: Run smoke tests
+        env:
+          API_URL: http://127.0.0.1:5555
+        run: |
+          # Start a temporary Postgres using docker (available on runners)
+          docker run -d --name ci-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=statuswatch -p 5432:5432 postgres:15
+          # Wait for Postgres to be available
+          for i in {1..30}; do
+            pg_isready -h 127.0.0.1 -p 5432 && break || sleep 1
+          done
+          # Set DATABASE_URL for tests
+          export DATABASE_URL="postgresql://postgres:postgres@127.0.0.1:5432/statuswatch"
+          npm run prisma:generate
+          npm run prisma:db:push --silent || true
+          nohup dotenv -e .env -- npx tsx src/server.ts > logs/backend.log 2>&1 &
+          # wait for server to start
+          for i in {1..30}; do
+            curl -sSf http://127.0.0.1:5555/ready && break || sleep 1
+          done
+          npm test
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm ci
+          npm run build

@@ -63,22 +63,24 @@ npm install
 
 . **Set up environment variables**
 
-```bash
-# Recommended: use local Postgres (see docker-compose.yml)
-# Example: start Postgres and create .env
-docker compose up -d db
-echo 'DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/statuswatch"' > .env
-echo 'JWT_SECRET="your-super-secret-key-change-this"' >> .env
-echo 'PORT=5555' >> .env
+This project uses a `.env` file for local development. Do NOT commit secrets to git. Instead, copy the example file and populate the values securely.
 
-# Optional: Add email service (Resend, SendGrid, etc.)
-# echo 'RESEND_API_KEY="your-resend-key"' >> .env
+```bash
+# Start local Postgres (docker-compose)
+docker compose up -d db
+
+# Create a local .env from the example and edit the values (do not paste real secrets into commits)
+cp .env.example .env
+# Edit .env with a safe editor and populate secrets from your secrets manager or environment
 ```
 
 . **Generate Prisma client and run migrations**
 
 ```bash
+# Generate Prisma client (reads DATABASE_URL from your .env)
 npx prisma generate
+
+# Run migrations during local development. Use a safe, reviewed migration workflow in CI/production.
 npx prisma migrate dev --name init
 ```
 
@@ -199,8 +201,8 @@ private parseNewService($: cheerio.CheerioAPI): ParsedStatus {
 #### Email (Resend)
 
 ```bash
-# Add to .env
-RESEND_API_KEY=your_key
+# Add to your local .env (or set via your hosting provider's secret management)
+# RESEND_API_KEY=your_key
 ```
 
 #### Discord Webhook
@@ -290,17 +292,12 @@ npx prisma migrate reset
 
 ### Backend (.env)
 
-```env
-DATABASE_URL="file:./prisma/dev.db"
-JWT_SECRET="your-secret-key"
-PORT=5555
-RESEND_API_KEY="optional-email-service-key"
-```
+See `.env.example` for a safe template of required environment variables. Do not commit your real secrets to the repository. Use a secrets manager (GitHub Secrets, Vault, Railway/Render environment variables, etc.) in CI and production.
 
 Notes:
 
-- Do not commit your real `JWT_SECRET` to git. Use `.env.example` as a template and keep secrets in a secure place (local environment, a secrets manager, or your hosting provider's env vars).
-- To rotate the JWT signing key, generate a high-entropy secret (for example, `openssl rand -hex 32`) and update the `JWT_SECRET` in your deployment environment, then restart the backend. Consider whether active tokens should be invalidated after a rotation.
+- Never commit `JWT_SECRET`, database credentials, or API keys to version control.
+- Use short-lived credentials or rotate keys regularly. When rotating `JWT_SECRET` consider token invalidation strategies for active sessions.
 
 ### Frontend (.env.local)
 

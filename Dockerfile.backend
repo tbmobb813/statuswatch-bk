@@ -1,0 +1,41 @@
+## Backend Dockerfile (multi-stage, simple)
+#
+# Notes:
+# - This Dockerfile is a pragmatic starting point. The project uses TypeScript
+#   without an opinionated production build step (it relies on runtime tools
+#   like `tsx` in development). To keep this simple and reliable across
+#   environments we install dependencies and run the server with `npx tsx`.
+# - For a smaller production image you can add a proper build step (bundle
+#   with esbuild/webpack/swc or add a `build` script that emits JS), then copy
+#   only the built artifacts into the final image.
+
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Install all deps (including dev) so we can run prisma generate and tsc
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+# Copy source and generate prisma client (if configured)
+COPY . .
+RUN npx prisma generate || true
+
+# Build backend (emit JS into dist)
+RUN npm run build:backend
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+
+# Copy production node_modules from builder to keep generated prisma client
+COPY --from=builder /app/node_modules ./node_modules
+# Copy package.json (useful for runtime metadata)
+COPY package.json ./package.json
+# Copy compiled output
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 5555
+
+# Run the compiled server
+CMD ["node", "dist/server.js"]
