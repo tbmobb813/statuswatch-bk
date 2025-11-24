@@ -13,9 +13,15 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [mounted, setMounted] = useState(false);
-
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme') as Theme | null;
+      if (stored && ['light', 'dark', 'system'].includes(stored)) {
+        return stored;
+      }
+    }
+    return 'system';
+  });
   // Get system theme preference
   const getSystemTheme = (): 'light' | 'dark' => {
     if (typeof window === 'undefined') return 'light';
@@ -25,20 +31,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // Calculate effective theme
   const effectiveTheme: 'light' | 'dark' = theme === 'system' ? getSystemTheme() : theme;
 
-  // Initialize theme from localStorage
-  useEffect(() => {
-    setMounted(true);
-
-    const stored = localStorage.getItem('theme') as Theme | null;
-    if (stored && ['light', 'dark', 'system'].includes(stored)) {
-      setTheme(stored);
-    }
-  }, []);
+  // No need for useEffect to initialize theme from localStorage
 
   // Update theme when it changes
   useEffect(() => {
-    if (!mounted) return;
-
     const root = window.document.documentElement;
 
     // Remove previous theme classes
@@ -49,7 +45,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Save to localStorage
     localStorage.setItem('theme', theme);
-  }, [theme, effectiveTheme, mounted]);
+  }, [theme, effectiveTheme]);
 
   // Listen for system theme changes
   useEffect(() => {
