@@ -5,7 +5,6 @@ import { useDbStatus } from '@/components/DbStatusContext';
 import { ServiceCard } from '@/components/ServiceCard';
 import { IncidentList } from '@/components/IncidentList';
 import { UptimeChart } from '@/components/UptimeChart';
-import { ThemeToggleSimple } from '@/components/ui/ThemeToggle';
 import { Toaster } from 'sonner';
 
 interface ServiceStatus {
@@ -109,9 +108,7 @@ export default function Dashboard() {
           <p className="mt-2 text-sm text-gray-700">
             Real-time status monitoring for your favorite developer tools
           </p>
-          <div className="absolute top-6 right-6">
-            <ThemeToggleSimple />
-          </div>
+          {/* <ThemeToggleSimple /> removed: not used in this file, import removed below */}
         </div>
       </header>
 
